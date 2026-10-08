@@ -13,24 +13,36 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
   const activeTournaments = [
     {
       id: 't-1',
-      name: 'Liga Elite Verano',
+      name: 'League One',
       status: 'Active',
-      format: 'Round-robin',
-      teamsCount: 12,
-      maxTeams: 16,
-      progressPercent: 75,
-      progressLabel: '75% Capacity',
-      barColor: 'bg-[#032e22]',
+      format: 'Liga',
+      teamsCount: 22,
+      maxTeams: 22,
+      progressPercent: 100,
+      progressLabel: 'Registro cerrado',
+      // barColor: 'bg-[#0c7d2e]',
+      barColor: 'bg-rose-700',
     },
     {
       id: 't-2',
-      name: 'Copa Nocturna',
+      name: 'League Two',
       status: 'Active',
-      format: 'Knockout',
+      format: 'Liguilla',
       teamsCount: 8,
       maxTeams: 8,
       progressPercent: 100,
-      progressLabel: 'Registration Closed',
+      progressLabel: 'Registro cerrado',
+      barColor: 'bg-rose-700',
+    },
+    {
+      id: 't-3',
+      name: 'League Three',
+      status: 'Active',
+      format: 'Eliminación',
+      teamsCount: 8,
+      maxTeams: 8,
+      progressPercent: 100,
+      progressLabel: 'Registro cerrado',
       barColor: 'bg-rose-700',
     },
   ];
@@ -46,14 +58,14 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
     {
       id: 'reg-2',
       teamName: 'Deportivo Norte',
-      league: 'Copa Nocturna',
+      league: 'League Two',
       avatar: '🛡️',
       color: 'bg-[#064e3b] text-white',
     },
     {
       id: 'reg-3',
       teamName: 'Aston Birra',
-      league: 'Liga Elite Verano',
+      league: 'League Three',
       avatar: 'AV',
       color: 'bg-slate-200 text-slate-700',
     },
@@ -65,16 +77,16 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-[#0f172a] dark:text-white font-display">
-            Torneos & Ligas F7
+            Torneos & Ligas
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Panel de control de torneos y copas activas.</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Panel de control de torneos y copas.</p>
         </div>
 
         <button
           onClick={() => setIsNewTournamentModalOpen(true)}
-          className="px-5 py-3 bg-[#a3e635] hover:bg-[#84cc16] text-[#0f172a] font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2"
+          className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2"
         >
-          <div className="w-6 h-6 rounded-full bg-[#0f172a] text-[#a3e635] flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-[#21de5a] text-emerald-600 font-bold flex items-center justify-center">
             <Plus className="w-4 h-4" />
           </div>
           <span>Crear nuevo torneo</span>
@@ -88,12 +100,12 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => setIsRegisterTeamModalOpen(true)}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
         >
-          <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center flex-shrink-0">
             <UserPlus className="w-6 h-6" />
           </div>
           <div>
             <h3 className="font-bold text-base text-[#0f172a] dark:text-white">Inscribir equipo</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Añadir a las ligas activas</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Añadir a las ligas.</p>
           </div>
         </div>
 
@@ -102,7 +114,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => onNavigateTab('fixtures')}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
         >
-          <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center flex-shrink-0">
             <Calendar className="w-6 h-6" />
           </div>
           <div>
@@ -115,8 +127,8 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
         <div
           onClick={() => onNavigateTab('results')}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
-        >
-          <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#0f172a] dark:text-white flex items-center justify-center flex-shrink-0">
+          >
+            <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center flex-shrink-0">
             <FileEdit className="w-6 h-6" />
           </div>
           <div>
@@ -127,7 +139,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
       </div>
 
       {/* Main Grid: Active Tournaments (Left) & Recent Registrations (Right) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="w-full gap-8">
 
         {/* Active Tournaments Column */}
         <div className="lg:col-span-2 space-y-6">
@@ -137,15 +149,21 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             </h2>
             <button
               onClick={() => onNavigateTab('tournaments')}
-              className="text-xs font-bold text-[#0f172a] dark:text-[#a3e635] hover:underline"
+              className="text-xs font-bold text-emerald-600 dark:text-[#a3e635] hover:underline"
             >
               Ver todos
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {activeTournaments.map((tourney) => (
-              <div key={tourney.id} className="white-card p-6 space-y-6 flex flex-col justify-between">
+              <div
+                key={tourney.id}
+                onClick={tourney.name === 'League One' ? () => onNavigateTab('league-one') : undefined}
+                className={`white-card p-6 space-y-6 flex flex-col justify-between ${
+                  tourney.name === 'League One' ? 'white-card-hover cursor-pointer' : ''
+                }`}
+              >
                 <div>
                   {/* Status badge & options menu */}
                   <div className="flex items-center justify-between">
@@ -194,7 +212,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
         </div>
 
         {/* Recent Registrations Column */}
-        <div className="space-y-6">
+        {/* <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-extrabold text-[#0f172a] font-display">
               Registros recientes
@@ -217,7 +235,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
                   </div>
                 </div>
                 <button
-                  title="Contact Team Captain"
+                  title="Contactar al capitán"
                   className="p-2 text-slate-400 hover:text-[#0f172a] hover:bg-slate-200 rounded-lg transition-colors"
                 >
                   <Mail className="w-4 h-4" />
@@ -225,7 +243,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
       </div>
 
@@ -295,7 +313,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
       <Modal
         isOpen={isRegisterTeamModalOpen}
         onClose={() => setIsRegisterTeamModalOpen(false)}
-        title="Inscribir Equipo a Liga"
+        title="Inscribir equipo a Liga"
         subtitle="Registrar nuevo equipo y capitán al torneo activo"
       >
         <form
@@ -311,7 +329,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             <input
               type="text"
               required
-              placeholder="Ej. Los Pumas FC"
+              placeholder="Ej. Pumas FC"
               className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]"
             />
           </div>
@@ -329,8 +347,9 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">Torneo destino</label>
               <select className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]">
-                <option value="Liga Elite Verano">Liga Elite Verano</option>
-                <option value="Copa Nocturna">Copa Nocturna</option>
+                <option value="League One">League One</option>
+                <option value="League Two">League Two</option>
+                <option value="League Three">League Three</option>
               </select>
             </div>
           </div>
@@ -345,7 +364,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-[#a3e635] text-[#0f172a] rounded-xl text-xs font-black hover:bg-[#84cc16]"
+              className="px-5 py-2 bg-emerald-500 text-white hover:bg-emerald-600 rounded-xl text-xs font-black"
             >
               Confirmar inscripción
             </button>

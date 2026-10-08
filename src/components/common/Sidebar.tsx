@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Trophy, Users, Calendar, Flag, DollarSign, LogOut, Menu, X } from 'lucide-react';
+import {
+  Trophy,
+  Users,
+  Calendar,
+  Flag,
+  DollarSign,
+  LogOut,
+  Menu,
+  X,
+  PanelLeftClose,
+  PanelLeftOpen,
+} from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 interface SidebarProps {
@@ -10,6 +21,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onResetData }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navItems = [
     { id: 'tournaments', label: 'Torneos', icon: Trophy },
@@ -144,19 +156,48 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
       </div>
 
       {/* Desktop Vertical Left Sidebar (>= lg) */}
-      <aside className="hidden lg:flex w-64 bg-[#032e22] text-white flex-col justify-between p-5 min-h-screen flex-shrink-0">
+      <aside
+        className={`hidden lg:flex bg-[#032e22] text-white flex-col justify-between min-h-screen flex-shrink-0 overflow-hidden transition-all duration-300 ease-in-out ${
+          isCollapsed ? 'w-20 p-3' : 'w-64 p-5'
+        }`}
+      >
         <div className="space-y-8">
           {/* Brand Header */}
-          <div className="flex items-center space-x-3 px-2 pt-2">
-            <div className="w-10 h-10 rounded-2xl bg-[#a3e635] text-[#032e22] flex items-center justify-center font-black text-lg shadow-sm">
-              F7
+          <div
+            className={`flex pt-2 ${
+              isCollapsed ? 'flex-col items-center gap-3 px-0' : 'items-center justify-between px-2'
+            }`}
+          >
+            <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
+              <div className="w-10 h-10 rounded-2xl bg-[#a3e635] text-[#032e22] flex items-center justify-center font-black text-lg shadow-sm flex-shrink-0">
+                F7
+              </div>
+              {!isCollapsed && (
+                <div>
+                  <h1 className="font-display font-extrabold text-lg text-white leading-tight">
+                    F7 Manager
+                  </h1>
+                  <p className="text-[11px] text-[#94a3b8]">Elite League Admin</p>
+                </div>
+              )}
             </div>
-            <div>
-              <h1 className="font-display font-extrabold text-lg text-white leading-tight">
-                F7 Manager
-              </h1>
-              <p className="text-[11px] text-[#94a3b8]">Elite League Admin</p>
-            </div>
+
+            {/* Collapse / Expand Toggle Button */}
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              title={isCollapsed ? 'Expandir menú' : 'Contraer menú'}
+              aria-label={isCollapsed ? 'Expandir menú lateral' : 'Contraer menú lateral'}
+              aria-expanded={!isCollapsed}
+              className={`flex items-center justify-center rounded-xl text-slate-400 hover:text-white hover:bg-[#064e3b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635]/50 ${
+                isCollapsed ? 'p-2' : 'p-1.5'
+              }`}
+            >
+              {isCollapsed ? (
+                <PanelLeftOpen className="w-5 h-5" />
+              ) : (
+                <PanelLeftClose className="w-5 h-5" />
+              )}
+            </button>
           </div>
 
           {/* Navigation Menu */}
@@ -168,14 +209,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-150 ${
+                  title={isCollapsed ? item.label : undefined}
+                  className={`w-full flex items-center rounded-xl text-sm font-semibold transition-all duration-150 ${
+                    isCollapsed ? 'justify-center px-0 py-3' : 'space-x-3 px-4 py-3'
+                  } ${
                     isActive
                       ? 'bg-[#527a14] text-white shadow-md'
                       : 'text-slate-300 hover:bg-[#064e3b]/50 hover:text-white'
                   }`}
                 >
                   <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
-                  <span>{item.label}</span>
+                  {!isCollapsed && <span>{item.label}</span>}
                 </button>
               );
             })}
@@ -184,29 +228,35 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
 
         <div className="space-y-4">
           {/* Theme Toggle Switch */}
-          <div className="px-1">
-            <ThemeToggle />
+          <div className={isCollapsed ? '' : 'px-1'}>
+            <ThemeToggle collapsed={isCollapsed} />
           </div>
 
           {/* User Profile at Bottom */}
-          <div className="pt-4 border-t border-[#064e3b] flex items-center justify-between px-2">
-            <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-full bg-slate-200 border border-[#a3e635] overflow-hidden">
+          <div
+            className={`flex border-t border-[#064e3b] pt-4 ${
+              isCollapsed ? 'flex-col items-center gap-2 px-0' : 'items-center justify-between px-2'
+            }`}
+          >
+            <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
+              <div className="w-9 h-9 rounded-full bg-slate-200 border border-[#a3e635] overflow-hidden flex-shrink-0">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
                   alt="Admin"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div>
-                <p className="text-xs font-bold text-white">Admin User</p>
-                <button
-                  onClick={onResetData}
-                  className="text-[11px] text-slate-400 hover:text-[#a3e635] flex items-center gap-1 transition-colors"
-                >
-                  Logout / Reset
-                </button>
-              </div>
+              {!isCollapsed && (
+                <div>
+                  <p className="text-xs font-bold text-white">Admin User</p>
+                  <button
+                    onClick={onResetData}
+                    className="text-[11px] text-slate-400 hover:text-[#a3e635] flex items-center gap-1 transition-colors"
+                  >
+                    Logout / Reset
+                  </button>
+                </div>
+              )}
             </div>
             <button
               onClick={onResetData}

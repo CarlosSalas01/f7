@@ -1,7 +1,12 @@
-import React from 'react';
-import { Pitch, Booking } from '../../types';
-import { Badge } from '../common/Badge';
-import { Zap, Sun, CloudRain } from 'lucide-react';
+import React, { useState } from 'react';
+import type { Pitch, Booking } from '../../types';
+import Arsenal from '../../assets/teams/Premier/Arsenal.png';
+import Brentford from '../../assets/teams/Premier/Brentford.png';
+import Chelsea from '../../assets/teams/Premier/Cheelsea.png';
+import Liverpool from '../../assets/teams/Premier/Liverpool.png';
+import ManCity from '../../assets/teams/Premier/Manchester_city.png';
+import ManUnited from '../../assets/teams/Premier/Manchester_United.png';
+import Tottenham from '../../assets/teams/Premier/Tottenham.png';
 
 interface PitchVisualMapProps {
   pitches: Pitch[];
@@ -9,99 +14,165 @@ interface PitchVisualMapProps {
   onSelectPitch: (pitch: Pitch) => void;
 }
 
-export const PitchVisualMap: React.FC<PitchVisualMapProps> = ({ pitches, bookings, onSelectPitch }) => {
+interface TeamInfo {
+  name: string;
+  logo: string;
+}
+
+type Matchup = { home: TeamInfo; away: TeamInfo; league: string };
+
+interface Fixture extends Matchup {
+  time: string;
+  pitch: number;
+}
+
+const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'] as const;
+type Day = (typeof days)[number];
+
+const FIRST_HOUR = 18;
+const PITCH_COUNT = 2;
+const DEFAULT_LEAGUE_ONE = 'League One';
+const DEFAULT_LEAGUE_TWO = 'League Two';
+const DEFAULT_LEAGUE_THREE = 'League Three';
+const LEAGUES = [DEFAULT_LEAGUE_ONE, DEFAULT_LEAGUE_TWO, DEFAULT_LEAGUE_THREE];
+
+const teams: TeamInfo[] = [
+  { name: 'Arsenal', logo: Arsenal },
+  { name: 'Brentford', logo: Brentford },
+  { name: 'Chelsea', logo: Chelsea },
+  { name: 'Liverpool', logo: Liverpool },
+  { name: 'Man City', logo: ManCity },
+  { name: 'Man United', logo: ManUnited },
+  { name: 'Tottenham', logo: Tottenham },
+];
+
+// Partidos adicionales por día. Se agregan después de los automáticos,
+// por ejemplo: Lunes: [{ home: teams[0], away: teams[3], league: 'League Two' }]
+const extraMatchups: Partial<Record<Day, Matchup[]>> = {};
+
+// Round-robin (método del círculo): 7 equipos -> 3 partidos por día y uno descansa.
+// Cada partido se reparte entre las tres ligas (una por liga cada día, rotando).
+const buildMatchups = (): Matchup[][] => {
+  const rotation: (TeamInfo | null)[] = [...teams, null];
+  const half = rotation.length / 2;
+
+  return days.map((day, dayIndex) => {
+    const matches: Matchup[] = [];
+    for (let i = 0; i < half; i++) {
+      const home = rotation[i];
+      const away = rotation[rotation.length - 1 - i];
+      if (home && away) {
+        matches.push({
+          home,
+          away,
+          league: LEAGUES[(i + dayIndex) % LEAGUES.length],
+        });
+      }
+    }
+    rotation.splice(1, 0, rotation.pop() as TeamInfo | null);
+    return [...matches, ...(extraMatchups[day] ?? [])];
+  });
+};
+
+// Hora y cancha se asignan según el orden: 2 canchas por hora desde las 18:00
+const fixturesByDay: Fixture[][] = buildMatchups().map((matchups) =>
+  matchups.map((matchup, i) => ({
+    ...matchup,
+    time: `${FIRST_HOUR + Math.floor(i / PITCH_COUNT)}:00`,
+    pitch: (i % PITCH_COUNT) + 1,
+  }))
+);
+
+export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
+  const [activeLeague, setActiveLeague] = useState<string>('Todos');
+
+  const leagueFilters = [
+    DEFAULT_LEAGUE_ONE,
+    DEFAULT_LEAGUE_TWO,
+    DEFAULT_LEAGUE_THREE,
+    'Todos',
+  ];
+
+  const visibleFixturesByDay = fixturesByDay.map((fixtures) =>
+    activeLeague === 'Todos' ? fixtures : fixtures.filter((fixture) => fixture.league === activeLeague)
+  );
+
   return (
     <div className="white-card p-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+      <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h2 className="text-xl font-extrabold text-[#0f172a] font-display flex items-center gap-2">
-            <Zap className="w-5 h-5 text-emerald-600" /> Mapa táctico del Complejo
+          <h2 className="font-display flex items-center gap-2 text-xl font-extrabold text-[#0f172a] dark:text-white">
+            Calendario
           </h2>
-          <p className="text-xs text-slate-500 mt-1">
-            Visualización en tiempo real de las canchas y su disponibilidad de luz LED y domo
-          </p>
         </div>
-        <div className="flex items-center gap-3 text-xs bg-slate-100 p-2 rounded-xl border border-slate-200">
-          <span className="flex items-center gap-1 text-slate-700 font-medium">
-            <Sun className="w-3.5 h-3.5 text-amber-500" /> Tarifa Diurna
-          </span>
-          <span className="text-slate-300">|</span>
-          <span className="flex items-center gap-1 text-emerald-700 font-bold">
-            <Zap className="w-3.5 h-3.5 text-emerald-600" /> Nocturna (LED HQ)
-          </span>
+        <div className="flex items-center gap-3 rounded-xl p-2 text-xs">
+          {leagueFilters.map((league, index) => {
+            const isActive = activeLeague === league;
+            return (
+              <React.Fragment key={league}>
+                {index > 0 && <span className="text-slate-300">|</span>}
+                <button
+                  onClick={() => setActiveLeague(league)}
+                  className={`flex cursor-pointer items-center gap-1 rounded-xl p-2 font-bold transition-colors ${isActive
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'text-emerald-700 hover:bg-emerald-100 hover:font-extrabold'
+                    }`}
+                >
+                  {league}
+                </button>
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
 
-      {/* Grid Blueprint representation of the pitches */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {pitches.map((pitch) => {
-          const activeBooking = bookings.find((b) => b.pitchId === pitch.id && b.status === 'Confirmada');
-          const isOccupied = pitch.status === 'Ocupado' || !!activeBooking;
-
-          return (
-            <div
-              key={pitch.id}
-              onClick={() => onSelectPitch(pitch)}
-              className={`relative overflow-hidden rounded-2xl border transition-all duration-200 cursor-pointer group ${
-                isOccupied
-                  ? 'border-amber-400 shadow-sm'
-                  : 'border-slate-200 hover:border-[#032e22] hover:shadow-md'
-              }`}
+      {days.map((day, index) => {
+        const dayFixtures = visibleFixturesByDay[index];
+        return (
+          <section key={day}>
+            <p
+              className={`border-b border-slate-300 pb-3 font-extrabold ${index === 0 ? 'mb-5' : 'my-5'}`}
             >
-              {/* Soccer Turf Canvas Background */}
-              <div className="relative h-44 pitch-pattern p-4 flex flex-col justify-between overflow-hidden">
-                {/* Field Markings */}
-                <div className="absolute inset-2 border-2 border-white/30 rounded-lg pointer-events-none flex items-center justify-center">
-                  {/* Center Circle */}
-                  <div className="w-20 h-20 border-2 border-white/30 rounded-full flex items-center justify-center">
-                    <div className="w-2 h-2 bg-white/40 rounded-full" />
-                  </div>
-                  {/* Half Field Line */}
-                  <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-white/30" />
-                </div>
-
-                {/* Top Badge Overlay */}
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="px-3 py-1 bg-[#032e22]/90 backdrop-blur-md rounded-lg text-xs font-black text-white border border-white/10">
-                    {pitch.name}
-                  </span>
-                  <Badge status={isOccupied ? 'Ocupado' : pitch.status} />
-                </div>
-
-                {/* Bottom Stats Overlay */}
-                <div className="relative z-10 flex items-end justify-between">
-                  <div className="bg-[#032e22]/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10">
-                    <p className="text-[10px] text-slate-300 font-medium">Superficie</p>
-                    <p className="text-xs font-bold text-[#a3e635] flex items-center gap-1">
-                      {pitch.isIndoor && <CloudRain className="w-3 h-3 text-cyan-300" />}
-                      {pitch.surface}
-                    </p>
-                  </div>
-                  <div className="bg-[#032e22]/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-right">
-                    <p className="text-[10px] text-slate-300 font-medium">Tarifa Noche</p>
-                    <p className="text-xs font-black text-amber-300">${pitch.nightPricePerHour} MXN/h</p>
-                  </div>
-                </div>
-
-                {/* Active Match Banner if occupied */}
-                {activeBooking && (
-                  <div className="absolute inset-0 bg-[#032e22]/95 backdrop-blur-sm p-4 flex flex-col justify-center items-center text-center z-20 transition-opacity">
-                    <span className="px-2.5 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-bold rounded-full mb-1">
-                      PARTIDO EN CURSO
+              {day}
+            </p>
+            {dayFixtures.length > 0 ? (
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                {dayFixtures.map(({ home, away, time, pitch, league }) => (
+                  <div
+                    key={`${day}-${home.name}-${away.name}`}
+                    className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4 pb-9"
+                  >
+                    <div className="mb-3 flex items-center justify-between text-xs font-bold text-slate-600">
+                      <span>{time} hrs</span>
+                      <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-700">
+                        Cancha {pitch}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-1 flex-col items-center gap-1 text-center">
+                        <img src={home.logo} alt={home.name} className="h-12 w-12 object-contain" />
+                        <span className="text-xs font-semibold text-slate-800">{home.name}</span>
+                      </div>
+                      <span className="text-sm font-extrabold text-slate-400">VS</span>
+                      <div className="flex flex-1 flex-col items-center gap-1 text-center">
+                        <img src={away.logo} alt={away.name} className="h-12 w-12 object-contain" />
+                        <span className="text-xs font-semibold text-slate-800">{away.name}</span>
+                      </div>
+                    </div>
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-emerald-100 px-4 pt-1 pb-0.5 text-xs font-bold text-emerald-700">
+                      {league}
                     </span>
-                    <h4 className="text-sm font-bold text-white">
-                      {activeBooking.teamA || 'Equipo A'} vs {activeBooking.teamB || 'Equipo B'}
-                    </h4>
-                    <p className="text-xs text-slate-300 mt-1">
-                      Horario: {activeBooking.startTime} - {activeBooking.endTime} • Cliente: {activeBooking.customerName}
-                    </p>
                   </div>
-                )}
+                ))}
               </div>
-            </div>
-          );
-        })}
-      </div>
+            ) : (
+              <p className="text-xs font-semibold text-slate-400">
+                No hay partidos programados para esta liga.
+              </p>
+            )}
+          </section>
+        );
+      })}
     </div>
   );
 };
