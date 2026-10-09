@@ -1,12 +1,36 @@
 import React, { useState } from 'react';
 import type { Pitch, Booking } from '../../types';
-import Arsenal from '../../assets/teams/Premier/Arsenal.png';
-import Brentford from '../../assets/teams/Premier/Brentford.png';
-import Chelsea from '../../assets/teams/Premier/Cheelsea.png';
-import Liverpool from '../../assets/teams/Premier/Liverpool.png';
-import ManCity from '../../assets/teams/Premier/Manchester_city.png';
-import ManUnited from '../../assets/teams/Premier/Manchester_United.png';
-import Tottenham from '../../assets/teams/Premier/Tottenham.png';
+import { teamLogos } from '@/assets/teams/logos';
+
+const {
+  Arsenal,
+  Brentford,
+  Cheelsea: Chelsea,
+  Liverpool,
+  Manchester_city: ManCity,
+  Manchester_United: ManUnited,
+  Tottenham,
+  Barcelona,
+  Real_Madrid: RealMadrid,
+  Atletico: AtleticoMadrid,
+  Sevilla,
+  Levante,
+  Betis: RealBetis,
+  Athletic: AthleticBilbao,
+  Villarreal,
+  Celta: CeltaVigo,
+  Malaga,
+  Bayern,
+  Dortmund,
+  Frankfurt,
+  Hamburgo,
+  Koln,
+  Leipzig,
+  Leverkusen,
+  Mainz,
+  Monchen,
+  Stuttgart,
+} = teamLogos;
 
 interface PitchVisualMapProps {
   pitches: Pitch[];
@@ -36,43 +60,78 @@ const DEFAULT_LEAGUE_TWO = 'League Two';
 const DEFAULT_LEAGUE_THREE = 'League Three';
 const LEAGUES = [DEFAULT_LEAGUE_ONE, DEFAULT_LEAGUE_TWO, DEFAULT_LEAGUE_THREE];
 
-const teams: TeamInfo[] = [
-  { name: 'Arsenal', logo: Arsenal },
-  { name: 'Brentford', logo: Brentford },
-  { name: 'Chelsea', logo: Chelsea },
-  { name: 'Liverpool', logo: Liverpool },
-  { name: 'Man City', logo: ManCity },
-  { name: 'Man United', logo: ManUnited },
-  { name: 'Tottenham', logo: Tottenham },
-];
+const leagueTeams: Record<string, TeamInfo[]> = {
+  [DEFAULT_LEAGUE_ONE]: [
+    { name: 'Arsenal', logo: Arsenal },
+    { name: 'Brentford', logo: Brentford },
+    { name: 'Chelsea', logo: Chelsea },
+    { name: 'Liverpool', logo: Liverpool },
+    { name: 'Man City', logo: ManCity },
+    { name: 'Man United', logo: ManUnited },
+    { name: 'Tottenham', logo: Tottenham },
+  ],
+  [DEFAULT_LEAGUE_TWO]: [
+    { name: 'Barcelona', logo: Barcelona },
+    { name: 'Real Madrid', logo: RealMadrid },
+    { name: 'Atlético Madrid', logo: AtleticoMadrid },
+    { name: 'Sevilla', logo: Sevilla },
+    { name: 'Levante', logo: Levante },
+    { name: 'Real Betis', logo: RealBetis },
+    { name: 'Athletic Bilbao', logo: AthleticBilbao },
+    { name: 'Villarreal', logo: Villarreal },
+    { name: 'Celta Vigo', logo: CeltaVigo },
+    { name: 'Málaga', logo: Malaga },
+  ],
+  [DEFAULT_LEAGUE_THREE]: [
+    { name: 'Bayern München', logo: Bayern },
+    { name: 'Dortmund', logo: Dortmund },
+    { name: 'Frankfurt', logo: Frankfurt },
+    { name: 'Hamburgo', logo: Hamburgo },
+    { name: 'FC Köln', logo: Koln },
+    { name: 'RB Leipzig', logo: Leipzig },
+    { name: 'Leverkusen', logo: Leverkusen },
+    { name: 'Mainz 05', logo: Mainz },
+    { name: "M'gladbach", logo: Monchen },
+    { name: 'Stuttgart', logo: Stuttgart },
+  ],
+};
+
+// Cantidad de partidos que se juegan por día en cada liga
+const MATCHES_PER_DAY: Record<string, number> = {
+  [DEFAULT_LEAGUE_ONE]: 3,
+  [DEFAULT_LEAGUE_TWO]: 3,
+  [DEFAULT_LEAGUE_THREE]: 3,
+};
 
 // Partidos adicionales por día. Se agregan después de los automáticos,
-// por ejemplo: Lunes: [{ home: teams[0], away: teams[3], league: 'League Two' }]
+// por ejemplo: Lunes: [{ home: leagueTeams[DEFAULT_LEAGUE_TWO][0], away: leagueTeams[DEFAULT_LEAGUE_TWO][3], league: DEFAULT_LEAGUE_TWO }]
 const extraMatchups: Partial<Record<Day, Matchup[]>> = {};
 
-// Round-robin (método del círculo): 7 equipos -> 3 partidos por día y uno descansa.
-// Cada partido se reparte entre las tres ligas (una por liga cada día, rotando).
-const buildMatchups = (): Matchup[][] => {
-  const rotation: (TeamInfo | null)[] = [...teams, null];
+// Round-robin (método del círculo) por liga: cada día se juega una jornada distinta
+// y solo se programan los primeros MATCHES_PER_DAY partidos de esa jornada.
+const buildLeagueMatchups = (league: string, dayIndex: number): Matchup[] => {
+  const rotation: (TeamInfo | null)[] = [...leagueTeams[league]];
+  if (rotation.length % 2 !== 0) rotation.push(null);
   const half = rotation.length / 2;
 
-  return days.map((day, dayIndex) => {
-    const matches: Matchup[] = [];
-    for (let i = 0; i < half; i++) {
-      const home = rotation[i];
-      const away = rotation[rotation.length - 1 - i];
-      if (home && away) {
-        matches.push({
-          home,
-          away,
-          league: LEAGUES[(i + dayIndex) % LEAGUES.length],
-        });
-      }
-    }
+  for (let round = 0; round < dayIndex; round++) {
     rotation.splice(1, 0, rotation.pop() as TeamInfo | null);
-    return [...matches, ...(extraMatchups[day] ?? [])];
-  });
+  }
+
+  const matches: Matchup[] = [];
+  for (let i = 0; i < half; i++) {
+    const home = rotation[i];
+    const away = rotation[rotation.length - 1 - i];
+    if (home && away) matches.push({ home, away, league });
+  }
+  return matches.slice(0, MATCHES_PER_DAY[league]);
 };
+
+const buildMatchups = (): Matchup[][] =>
+  days.map((day, dayIndex) => [
+    ...LEAGUES.flatMap((league) => buildLeagueMatchups(league, dayIndex)),
+    ...(extraMatchups[day] ?? []),
+  ]);
 
 // Hora y cancha se asignan según el orden: 2 canchas por hora desde las 18:00
 const fixturesByDay: Fixture[][] = buildMatchups().map((matchups) =>
@@ -113,7 +172,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                 {index > 0 && <span className="text-slate-300">|</span>}
                 <button
                   onClick={() => setActiveLeague(league)}
-                  className={`flex cursor-pointer items-center gap-1 rounded-xl p-2 font-bold transition-colors ${isActive
+                  className={`flex cursor-pointer items-center text-sm gap-1 rounded-xl p-2 font-bold transition-colors ${isActive
                     ? 'bg-emerald-600 text-white shadow-sm'
                     : 'text-emerald-700 hover:bg-emerald-100 hover:font-extrabold'
                     }`}

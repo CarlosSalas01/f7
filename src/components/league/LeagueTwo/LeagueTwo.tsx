@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowLeft, Trophy } from 'lucide-react';
-import { leagueOneRecords as records } from '@/services/leagueData';
+import { leagueTwoRecords as records } from '@/services/leagueData';
 
-interface LeagueOneProps {
+interface LeagueTwoProps {
   onBack?: () => void;
 }
 
@@ -35,13 +35,13 @@ const getInitials = (name: string) =>
     .slice(0, 3)
     .toUpperCase();
 
-export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
+export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
   return (
     <div className="space-y-6 animate-fadeIn">
       <div className="white-card p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-[#0f172a] dark:text-white font-display flex items-center gap-2">
-            League One
+            League Two
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Tabla de clasificación · Clasifican a liguilla los primeros {PLAYOFF_SPOTS} lugares

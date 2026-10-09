@@ -1,232 +1,150 @@
 import React, { useState } from 'react';
-import { useMatch } from '../../hooks/useMatch';
-import { formatSecondsToMinutes } from '../../utils/formatters';
-import { Play, Pause, RotateCcw, Volume2, Plus, Flag, ShieldAlert, Radio } from 'lucide-react';
+import { leagues, type TeamRecord } from '../../services/leagueData';
+
+const ALL = 'Todos';
+const ROUNDS = 3;
+
+interface MatchResult {
+  id: string;
+  league: string;
+  round: number;
+  date: string;
+  home: TeamRecord;
+  away: TeamRecord;
+  homeScore: number;
+  awayScore: number;
+}
+
+// Generador pseudoaleatorio con semilla: los resultados parecen aleatorios pero no cambian al re-renderizar
+const createRandom = (seed: number) => () => {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+
+const randomGoals = (random: () => number) => {
+  const r = random();
+  return r < 0.2 ? 0 : r < 0.5 ? 1 : r < 0.75 ? 2 : r < 0.9 ? 3 : r < 0.97 ? 4 : 5;
+};
+
+const formatDate = (date: Date) => {
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${pad(date.getDate())} • ${pad(date.getMonth() + 1)} • ${date.getFullYear()}`;
+};
+
+// Round-robin (método del círculo): cada jornada enfrenta a todos los equipos una vez
+const buildResults = (): MatchResult[] => {
+  const random = createRandom(2026);
+  const today = new Date();
+
+  return leagues.flatMap(({ name: league, records }) => {
+    const rotation = [...records];
+    const half = rotation.length / 2;
+    const results: MatchResult[] = [];
+
+    for (let round = 0; round < ROUNDS; round++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - (ROUNDS - round) * 7);
+
+      for (let i = 0; i < half; i++) {
+        results.push({
+          id: `${league}-${round}-${i}`,
+          league,
+          round: round + 1,
+          date: formatDate(date),
+          home: rotation[i],
+          away: rotation[rotation.length - 1 - i],
+          homeScore: randomGoals(random),
+          awayScore: randomGoals(random),
+        });
+      }
+      rotation.splice(1, 0, rotation.pop() as TeamRecord);
+    }
+    return results.reverse();
+  });
+};
+
+const allResults = buildResults();
+
+const LOGO_SIZE = 'h-20 w-20';
+
+const TeamSide: React.FC<{ team: TeamRecord }> = ({ team }) => (
+  <div className="flex w-28 shrink-0 flex-col items-center gap-3 text-center">
+    <div className={`${LOGO_SIZE} flex shrink-0 items-center justify-center`}>
+      {team.logo ? (
+        <img src={team.logo} alt={team.name} className="h-full w-full object-contain" />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-200 text-lg font-black text-slate-600">
+          {team.name.slice(0, 3).toUpperCase()}
+        </div>
+      )}
+    </div>
+    <span className="line-clamp-2 min-h-8 text-xs font-extrabold uppercase text-[#0f172a] dark:text-white">
+      {team.name}
+    </span>
+  </div>
+);
 
 export const LiveScoreboard: React.FC = () => {
-  const { match, toggleTimer, resetTimer, setPeriod, addGoal, addCard, playWhistleSound } = useMatch();
-  const [goalPlayerName, setGoalPlayerName] = useState('');
-  const [selectedTeam, setSelectedTeam] = useState<'A' | 'B'>('A');
+  const [activeLeague, setActiveLeague] = useState<string>(ALL);
+
+  const visibleResults =
+    activeLeague === ALL ? allResults : allResults.filter((result) => result.league === activeLeague);
 
   return (
     <div className="space-y-6">
-      {/* Header Banner */}
-      <div className="white-card p-6 relative overflow-hidden">
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-rose-100 text-rose-700 border border-rose-300 text-xs font-extrabold rounded-full flex items-center gap-1.5 animate-pulse-fast">
-                <span className="w-2 h-2 rounded-full bg-rose-600" /> EN VIVO
+      {/* Header */}
+      <div className="flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
+        <div>
+          <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-black dark:text-white">
+            Resultados
+          </h1>
+          <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+            Marcadores finales de las últimas jornadas de cada liga
+          </p>
+        </div>
+      </div>
+
+      {/* League filter */}
+      <div className="my-8 flex flex-wrap items-center gap-2 text-xs">
+        {[...leagues.map((l) => l.name), ALL].map((league) => (
+          <button
+            key={league}
+            onClick={() => setActiveLeague(league)}
+            className={`rounded-xl px-4 py-2 text-sm font-bold transition-colors ${
+              activeLeague === league
+                ? 'bg-emerald-600 text-white shadow-sm'
+                : 'text-emerald-700 hover:bg-emerald-100'
+            }`}
+          >
+            {league}
+          </button>
+        ))}
+      </div>
+
+      {/* Grid of Result Cards */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {visibleResults.map(({ id, league, round, date, home, away, homeScore, awayScore }) => (
+          <div key={id} className="white-card white-card-hover flex flex-col gap-4 p-6">
+            <div className="flex items-center justify-between text-sm font-bold">
+              <span className="rounded-xl border border-emerald-400 bg-emerald-100 px-3 py-1.5 text-emerald-700">
+                {league}
               </span>
-              <span className="text-xs text-slate-500 font-mono font-bold">{match.pitchName}</span>
+              <span className="text-slate-500 dark:text-slate-400">Jornada {round}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-[#0f172a] font-display mt-1">
-              {match.title}
-            </h1>
-            <p className="text-xs text-slate-500 mt-0.5">Árbitro Oficial: <strong className="text-[#0f172a]">{match.refereeName}</strong></p>
+
+            <div className="flex items-start justify-between gap-2">
+              <TeamSide team={home} />
+              <span className="flex h-20 items-center whitespace-nowrap text-5xl font-black text-[#0f172a] dark:text-white">
+                {homeScore}-{awayScore}
+              </span>
+              <TeamSide team={away} />
+            </div>
+
+            <p className="text-center text-sm font-bold text-slate-500 dark:text-slate-400">{date}</p>
           </div>
-
-          {/* Period selector */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
-            {(['1er Tiempo', 'Descanso', '2do Tiempo', 'Finalizado'] as const).map((p) => (
-              <button
-                key={p}
-                onClick={() => setPeriod(p)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  match.period === p
-                    ? 'bg-[#032e22] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {p}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Main Scoreboard Display */}
-      <div className="white-card p-8 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-          
-          {/* Team A */}
-          <div className="flex flex-col items-center text-center space-y-3">
-            <div className="w-20 h-20 rounded-2xl bg-emerald-50 border-2 border-emerald-500/50 flex items-center justify-center text-4xl shadow-sm">
-              {match.teamA.logo}
-            </div>
-            <div>
-              <h2 className="text-xl font-extrabold text-[#0f172a] font-display">{match.teamA.name}</h2>
-              <span className="text-xs text-emerald-700 font-bold">Local</span>
-            </div>
-            <div className="text-6xl font-black font-display text-[#032e22] tracking-tight">
-              {match.teamA.score}
-            </div>
-            <button
-              onClick={() => {
-                setSelectedTeam('A');
-                addGoal('A', goalPlayerName || 'Mateo Hernández');
-              }}
-              className="px-4 py-2 bg-[#a3e635] hover:bg-[#84cc16] text-[#0f172a] font-extrabold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-all"
-            >
-              <Plus className="w-4 h-4" /> +1 Gol Local
-            </button>
-          </div>
-
-          {/* Timer & Whistle Center Box */}
-          <div className="flex flex-col items-center justify-center space-y-4 py-4 md:py-0 border-y md:border-y-0 md:border-x border-slate-200 px-4">
-            <span className="px-3 py-1 bg-slate-100 rounded-full text-xs font-bold text-slate-700 border border-slate-200">
-              {match.period}
-            </span>
-
-            {/* Big Stopwatch Display */}
-            <div className="font-mono text-5xl sm:text-6xl font-black tracking-widest text-[#032e22]">
-              {formatSecondsToMinutes(match.timerSeconds)}
-            </div>
-
-            {/* Stopwatch controls */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggleTimer}
-                className={`p-3.5 rounded-full font-bold transition-transform active:scale-95 shadow-md ${
-                  match.isTimerRunning
-                    ? 'bg-amber-500 text-white'
-                    : 'bg-[#a3e635] text-[#0f172a]'
-                }`}
-              >
-                {match.isTimerRunning ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-0.5" />}
-              </button>
-
-              <button
-                onClick={resetTimer}
-                title="Reiniciar Cronómetro"
-                className="p-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-full border border-slate-300 transition-colors"
-              >
-                <RotateCcw className="w-5 h-5" />
-              </button>
-
-              <button
-                onClick={playWhistleSound}
-                title="Silbato de Árbitro (Sonido Audio)"
-                className="p-3 bg-amber-100 hover:bg-amber-200 text-amber-800 border border-amber-300 rounded-full transition-colors"
-              >
-                <Volume2 className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Team B */}
-          <div className="flex flex-col items-center text-center space-y-3">
-            <div className="w-20 h-20 rounded-2xl bg-amber-50 border-2 border-amber-500/50 flex items-center justify-center text-4xl shadow-sm">
-              {match.teamB.logo}
-            </div>
-            <div>
-              <h2 className="text-xl font-extrabold text-[#0f172a] font-display">{match.teamB.name}</h2>
-              <span className="text-xs text-amber-700 font-bold">Visitante</span>
-            </div>
-            <div className="text-6xl font-black font-display text-amber-600 tracking-tight">
-              {match.teamB.score}
-            </div>
-            <button
-              onClick={() => {
-                setSelectedTeam('B');
-                addGoal('B', goalPlayerName || 'Rodrigo Benítez');
-              }}
-              className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs rounded-xl shadow-sm flex items-center gap-1.5 transition-all"
-            >
-              <Plus className="w-4 h-4" /> +1 Gol Visitante
-            </button>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Referee Logger & Events Timeline */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        {/* Quick Card / Incident Logger */}
-        <div className="white-card p-6 space-y-4">
-          <h3 className="text-lg font-extrabold text-[#0f172a] font-display flex items-center gap-2">
-            <ShieldAlert className="w-5 h-5 text-amber-600" /> Registro de Tarjetas
-          </h3>
-          <p className="text-xs text-slate-500">Amonestaciones del árbitro durante el encuentro</p>
-
-          <div className="space-y-3">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Nombre del Jugador</label>
-              <input
-                type="text"
-                placeholder="Ej. Adrián Castillo #4"
-                value={goalPlayerName}
-                onChange={(e) => setGoalPlayerName(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 pt-2">
-              <button
-                onClick={() => addCard('A', 'Tarjeta Amarilla', goalPlayerName)}
-                className="py-2.5 px-3 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 rounded-xl text-xs font-bold transition-all text-center"
-              >
-                🟨 Amarilla Local
-              </button>
-              <button
-                onClick={() => addCard('B', 'Tarjeta Amarilla', goalPlayerName)}
-                className="py-2.5 px-3 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 rounded-xl text-xs font-bold transition-all text-center"
-              >
-                🟨 Amarilla Visit.
-              </button>
-              <button
-                onClick={() => addCard('A', 'Tarjeta Roja', goalPlayerName)}
-                className="py-2.5 px-3 bg-rose-100 hover:bg-rose-200 text-rose-900 border border-rose-300 rounded-xl text-xs font-bold transition-all text-center"
-              >
-                🟥 Roja Local
-              </button>
-              <button
-                onClick={() => addCard('B', 'Tarjeta Roja', goalPlayerName)}
-                className="py-2.5 px-3 bg-rose-100 hover:bg-rose-200 text-rose-900 border border-rose-300 rounded-xl text-xs font-bold transition-all text-center"
-              >
-                🟥 Roja Visit.
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Live Match Log Timeline */}
-        <div className="lg:col-span-2 white-card p-6 space-y-4">
-          <h3 className="text-lg font-extrabold text-[#0f172a] font-display flex items-center gap-2">
-            <Flag className="w-5 h-5 text-[#032e22]" /> Cronología de Incidencias en Vivo
-          </h3>
-
-          <div className="space-y-3 max-h-72 overflow-y-auto pr-2">
-            {match.events.length === 0 ? (
-              <p className="text-xs text-slate-500 py-4 text-center">No hay incidencias registradas en este partido.</p>
-            ) : (
-              match.events.map((ev) => (
-                <div
-                  key={ev.id}
-                  className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="px-2 py-1 bg-slate-200 rounded-lg text-[#0f172a] font-mono font-bold text-[11px]">
-                      {ev.minute}' min
-                    </span>
-                    <span className="text-base">
-                      {ev.type === 'Gol' ? '⚽' : ev.type === 'Tarjeta Amarilla' ? '🟨' : '🟥'}
-                    </span>
-                    <div>
-                      <span className="font-extrabold text-slate-900">{ev.playerName}</span>
-                      <span className="text-slate-500 ml-2">
-                        ({ev.team === 'A' ? match.teamA.name : match.teamB.name})
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-bold text-slate-600">{ev.type}</span>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-
+        ))}
       </div>
     </div>
   );

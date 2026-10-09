@@ -7,6 +7,8 @@ import { BookingCalendar } from './components/bookings/BookingCalendar';
 import { NewBookingModal } from './components/bookings/NewBookingModal';
 import { LiveScoreboard } from './components/matches/LiveScoreboard';
 import { LeagueOne } from './components/league/LeagueOne/LeagueOne';
+import { LeagueTwo } from './components/league/LeagueTwo/LeagueTwo';
+import { LeagueThree } from './components/league/LeagueThree/LeagueThree';
 import { TeamGrid } from './components/teams/TeamGrid';
 import { RevenueOverview } from './components/finance/RevenueOverview';
 
@@ -50,6 +52,8 @@ export function App() {
           )}
 
           {activeTab === 'league-one' && <LeagueOne onBack={() => setActiveTab('tournaments')} />}
+          {activeTab === 'league-two' && <LeagueTwo onBack={() => setActiveTab('tournaments')} />}
+          {activeTab === 'league-three' && <LeagueThree onBack={() => setActiveTab('tournaments')} />}
 
           {/* Tab 2: Teams */}
           {activeTab === 'teams' && <TeamGrid />}
@@ -57,10 +61,11 @@ export function App() {
           {/* Tab 3: Fixtures & Canchas */}
           {activeTab === 'fixtures' && (
             <div className="space-y-8 animate-fadeIn">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 white-card p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6">
                 <div>
                   <h1 className="text-2xl font-extrabold text-[#0f172a] dark:text-white font-display flex items-center gap-2">
-                    Canchas & Fixture de Partidos <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    Canchas & Fixture de Partidos 
+                    {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
                   </h1>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     Administra las canchas del complejo, horarios y asignación de turnos

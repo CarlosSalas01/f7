@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { Plus, UserPlus, Calendar, FileEdit, MoreVertical, Mail, CheckCircle, Shield } from 'lucide-react';
 import { Modal } from '../common/Modal';
 
+const LEAGUE_TABS: Record<string, string> = {
+  'League One': 'league-one',
+  'League Two': 'league-two',
+  'League Three': 'league-three',
+};
+
 interface TournamentsOverviewProps {
   onNavigateTab: (tab: string) => void;
 }
@@ -47,29 +53,6 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
     },
   ];
 
-  const recentRegistrations = [
-    {
-      id: 'reg-1',
-      teamName: 'Los Pumas FC',
-      league: 'Liga Elite Verano',
-      avatar: '⚽',
-      color: 'bg-amber-100 text-amber-800',
-    },
-    {
-      id: 'reg-2',
-      teamName: 'Deportivo Norte',
-      league: 'League Two',
-      avatar: '🛡️',
-      color: 'bg-[#064e3b] text-white',
-    },
-    {
-      id: 'reg-3',
-      teamName: 'Aston Birra',
-      league: 'League Three',
-      avatar: 'AV',
-      color: 'bg-slate-200 text-slate-700',
-    },
-  ];
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -159,9 +142,9 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             {activeTournaments.map((tourney) => (
               <div
                 key={tourney.id}
-                onClick={tourney.name === 'League One' ? () => onNavigateTab('league-one') : undefined}
+                onClick={LEAGUE_TABS[tourney.name] ? () => onNavigateTab(LEAGUE_TABS[tourney.name]) : undefined}
                 className={`white-card p-6 space-y-6 flex flex-col justify-between ${
-                  tourney.name === 'League One' ? 'white-card-hover cursor-pointer' : ''
+                  LEAGUE_TABS[tourney.name] ? 'white-card-hover cursor-pointer' : ''
                 }`}
               >
                 <div>
