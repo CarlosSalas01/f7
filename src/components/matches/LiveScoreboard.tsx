@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { leagues, type TeamRecord } from '../../services/leagueData';
 
 const ALL = 'Todos';
@@ -67,22 +67,18 @@ const buildResults = (): MatchResult[] => {
 
 const allResults = buildResults();
 
-const LOGO_SIZE = 'h-20 w-20';
-
 const TeamSide: React.FC<{ team: TeamRecord }> = ({ team }) => (
-  <div className="flex w-28 shrink-0 flex-col items-center gap-3 text-center">
-    <div className={`${LOGO_SIZE} flex shrink-0 items-center justify-center`}>
+  <div className="flex min-w-0 flex-1 flex-col items-center gap-1 text-center">
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center">
       {team.logo ? (
         <img src={team.logo} alt={team.name} className="h-full w-full object-contain" />
       ) : (
-        <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-200 text-lg font-black text-slate-600">
+        <div className="flex h-full w-full items-center justify-center rounded-full bg-slate-200 text-xs font-black text-slate-600">
           {team.name.slice(0, 3).toUpperCase()}
         </div>
       )}
     </div>
-    <span className="line-clamp-2 min-h-8 text-xs font-extrabold uppercase text-[#0f172a] dark:text-white">
-      {team.name}
-    </span>
+    <span className="line-clamp-2 min-h-8 w-full break-words text-xs font-semibold text-slate-800">{team.name}</span>
   </div>
 );
 
@@ -92,60 +88,78 @@ export const LiveScoreboard: React.FC = () => {
   const visibleResults =
     activeLeague === ALL ? allResults : allResults.filter((result) => result.league === activeLeague);
 
+  // Se agrupan por jornada, de la más reciente a la más antigua
+  const rounds = Array.from({ length: ROUNDS }, (_, i) => ROUNDS - i)
+    .map((round) => {
+      const results = visibleResults.filter((result) => result.round === round);
+      return { round, date: results[0]?.date, results };
+    })
+    .filter(({ results }) => results.length > 0);
+
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-black dark:text-white">
-            Resultados
-          </h1>
-          <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
-            Marcadores finales de las últimas jornadas de cada liga
-          </p>
+    <div className="white-card p-6">
+      <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <h2 className="font-display flex items-center gap-2 text-xl font-extrabold text-[#0f172a] dark:text-white">
+          Resultados
+        </h2>
+        <div className="flex items-center gap-3 rounded-xl p-2 text-xs">
+          {[...leagues.map((l) => l.name), ALL].map((league, index) => {
+            const isActive = activeLeague === league;
+            return (
+              <React.Fragment key={league}>
+                {index > 0 && <span className="text-slate-300">|</span>}
+                <button
+                  onClick={() => setActiveLeague(league)}
+                  className={`flex cursor-pointer items-center gap-1 rounded-xl p-2 font-bold transition-colors ${
+                    isActive
+                      ? 'bg-emerald-600 text-white shadow-sm'
+                      : 'text-emerald-700 hover:bg-emerald-100 hover:font-extrabold'
+                  }`}
+                >
+                  {league}
+                </button>
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
 
-      {/* League filter */}
-      <div className="my-8 flex flex-wrap items-center gap-2 text-xs">
-        {[...leagues.map((l) => l.name), ALL].map((league) => (
-          <button
-            key={league}
-            onClick={() => setActiveLeague(league)}
-            className={`rounded-xl px-4 py-2 text-sm font-bold transition-colors ${
-              activeLeague === league
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-emerald-700 hover:bg-emerald-100'
+      {rounds.map(({ round, date, results }, index) => (
+        <section key={round}>
+          <p
+            className={`flex items-center justify-between border-b border-slate-300 pb-3 font-extrabold ${
+              index === 0 ? 'mb-5' : 'my-5'
             }`}
           >
-            {league}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid of Result Cards */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {visibleResults.map(({ id, league, round, date, home, away, homeScore, awayScore }) => (
-          <div key={id} className="white-card white-card-hover flex flex-col gap-4 p-6">
-            <div className="flex items-center justify-between text-sm font-bold">
-              <span className="rounded-xl border border-emerald-400 bg-emerald-100 px-3 py-1.5 text-emerald-700">
-                {league}
-              </span>
-              <span className="text-slate-500 dark:text-slate-400">Jornada {round}</span>
-            </div>
-
-            <div className="flex items-start justify-between gap-2">
-              <TeamSide team={home} />
-              <span className="flex h-20 items-center whitespace-nowrap text-5xl font-black text-[#0f172a] dark:text-white">
-                {homeScore}-{awayScore}
-              </span>
-              <TeamSide team={away} />
-            </div>
-
-            <p className="text-center text-sm font-bold text-slate-500 dark:text-slate-400">{date}</p>
+            <span>Jornada {round}</span>
+            <span className="text-xs font-bold text-slate-500">{date}</span>
+          </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {results.map(({ id, league, home, away, homeScore, awayScore }) => (
+              <div
+                key={id}
+                className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4 pb-9"
+              >
+                <div className="mb-3 flex items-center justify-between text-xs font-bold text-slate-600">
+                  <span>Jornada {round}</span>
+                  <span className="rounded-full bg-red-400 px-2 py-0.5 text-white">Finalizado</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <TeamSide team={home} />
+                  <span className="flex h-12 items-center whitespace-nowrap text-2xl font-extrabold text-[#0f172a]">
+                    {homeScore} - {awayScore}
+                  </span>
+                  <TeamSide team={away} />
+                </div>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-emerald-100 px-4 pt-1 pb-0.5 text-xs font-bold text-emerald-700">
+                  {league}
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </section>
+      ))}
     </div>
   );
 };
+
