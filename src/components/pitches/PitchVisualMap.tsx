@@ -52,6 +52,7 @@ interface Fixture extends Matchup {
 
 const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'] as const;
 type Day = (typeof days)[number];
+const ALL_DAYS = 'Todos los días';
 
 const FIRST_HOUR = 18;
 const PITCH_COUNT = 2;
@@ -59,6 +60,7 @@ const DEFAULT_LEAGUE_ONE = 'League One';
 const DEFAULT_LEAGUE_TWO = 'League Two';
 const DEFAULT_LEAGUE_THREE = 'League Three';
 const LEAGUES = [DEFAULT_LEAGUE_ONE, DEFAULT_LEAGUE_TWO, DEFAULT_LEAGUE_THREE];
+const ALL_LEAGUES = 'Todas las ligas';
 
 const leagueTeams: Record<string, TeamInfo[]> = {
   [DEFAULT_LEAGUE_ONE]: [
@@ -143,18 +145,20 @@ const fixturesByDay: Fixture[][] = buildMatchups().map((matchups) =>
 );
 
 export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
-  const [activeLeague, setActiveLeague] = useState<string>('Todos');
+  const [activeLeague, setActiveLeague] = useState<string>(ALL_LEAGUES);
+  const [activeDay, setActiveDay] = useState<Day | typeof ALL_DAYS>(ALL_DAYS);
 
-  const leagueFilters = [
-    DEFAULT_LEAGUE_ONE,
-    DEFAULT_LEAGUE_TWO,
-    DEFAULT_LEAGUE_THREE,
-    'Todos',
-  ];
+  const leagueFilters = [...LEAGUES, ALL_LEAGUES] as const;
+
+  const dayFilters = [...days, ALL_DAYS] as const;
 
   const visibleFixturesByDay = fixturesByDay.map((fixtures) =>
-    activeLeague === 'Todos' ? fixtures : fixtures.filter((fixture) => fixture.league === activeLeague)
+    activeLeague === ALL_LEAGUES || activeLeague === 'Todos' || activeLeague === 'Todas'
+      ? fixtures
+      : fixtures.filter((fixture) => fixture.league === activeLeague)
   );
+
+  const visibleDays = days.filter((day) => activeDay === ALL_DAYS || activeDay === day);
 
   return (
     <div className="white-card p-6">
@@ -164,33 +168,91 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
             Calendario
           </h2>
         </div>
-        <div className="flex items-center gap-3 rounded-xl p-2 text-xs">
-          {leagueFilters.map((league, index) => {
-            const isActive = activeLeague === league;
-            return (
-              <React.Fragment key={league}>
-                {index > 0 && <span className="text-slate-300">|</span>}
-                <button
-                  onClick={() => setActiveLeague(league)}
-                  className={`flex cursor-pointer items-center text-sm gap-1 rounded-xl p-2 font-bold transition-colors ${isActive
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'text-emerald-700 hover:bg-emerald-100 hover:font-extrabold'
-                    }`}
-                >
-                  {league}
-                </button>
-              </React.Fragment>
-            );
-          })}
+
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="league-filter"
+              className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+            >
+              Liga
+            </label>
+
+            <div className="relative inline-flex items-center">
+              <select
+                id="league-filter"
+                value={activeLeague}
+                onChange={(e) => setActiveLeague(e.target.value)}
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
+              >
+                {leagueFilters.map((league) => (
+                  <option key={league} value={league}>
+                    {league}
+                  </option>
+                ))}
+              </select>
+
+              <svg
+                className="pointer-events-none absolute right-3 h-4 w-4 text-emerald-700 dark:text-emerald-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="day-filter"
+              className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+            >
+              Día
+            </label>
+
+            <div className="relative inline-flex items-center">
+              <select
+                id="day-filter"
+                value={activeDay}
+                onChange={(e) => setActiveDay(e.target.value as Day | typeof ALL_DAYS)}
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
+              >
+                {dayFilters.map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </select>
+
+              <svg
+                className="pointer-events-none absolute right-3 h-4 w-4 text-emerald-700 dark:text-emerald-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
 
-      {days.map((day, index) => {
+      {visibleDays.map((day, visibleIndex) => {
+        const index = days.indexOf(day);
         const dayFixtures = visibleFixturesByDay[index];
         return (
           <section key={day}>
             <p
-              className={`border-b border-slate-300 pb-3 font-extrabold ${index === 0 ? 'mb-5' : 'my-5'}`}
+              className={`border-b border-slate-300 pb-3 font-extrabold ${visibleIndex === 0 ? 'mb-5' : 'my-5'}`}
             >
               {day}
             </p>

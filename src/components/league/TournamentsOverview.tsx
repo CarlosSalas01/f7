@@ -69,7 +69,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => setIsNewTournamentModalOpen(true)}
           className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2"
         >
-          <div className="w-6 h-6 rounded-full bg-[#21de5a] text-emerald-600 font-bold flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-white text-emerald-600 font-bold flex items-center justify-center">
             <Plus className="w-4 h-4" />
           </div>
           <span>Crear nuevo torneo</span>
@@ -83,7 +83,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => setIsRegisterTeamModalOpen(true)}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
         >
-          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center shrink-0">
             <UserPlus className="w-6 h-6" />
           </div>
           <div>
@@ -97,7 +97,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => onNavigateTab('fixtures')}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
         >
-          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center shrink-0">
             <Calendar className="w-6 h-6" />
           </div>
           <div>
@@ -111,7 +111,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => onNavigateTab('results')}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
           >
-            <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center flex-shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center shrink-0">
             <FileEdit className="w-6 h-6" />
           </div>
           <div>

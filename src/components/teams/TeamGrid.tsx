@@ -61,7 +61,7 @@ export const TeamGrid: React.FC = () => {
         <div>
           <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-black">
             {/* <Users className="h-6 w-6 text-emerald-700" /> */}
-             Equipos & Plantillas de jugadores
+            Equipos & Plantillas de jugadores
           </h1>
           <p className="mt-0.5 text-xs text-slate-500">
             Directorio oficial de capitanes, números de camisas y registros disciplinarios
@@ -75,16 +75,15 @@ export const TeamGrid: React.FC = () => {
           <button
             key={league}
             onClick={() => setActiveLeague(league)}
-            className={`rounded-xl text-sm px-4 py-2 font-bold transition-colors ${
+            className={`rounded-xl px-4 py-2 text-sm font-bold transition-colors ${
               activeLeague === league
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : 'text-emerald-700 hover:bg-emerald-100'
             }`}
           >
             {league}
-          </button> 
+          </button>
         ))}
-        
       </div>
 
       {/* Grid of Team Cards */}
@@ -102,8 +101,8 @@ export const TeamGrid: React.FC = () => {
                 isLeader ? 'border-2 border-blue-400' : ''
               }`}
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
+                <div className="flex flex-col items-center gap-3">
                   {isImageLogo(team.logo) ? (
                     <img src={team.logo} alt={team.name} className="h-20 w-20 object-contain" />
                   ) : (
@@ -117,26 +116,18 @@ export const TeamGrid: React.FC = () => {
                       {team.logo}
                     </div>
                   )}
-                  {isLeader && (
-                    <span className="flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1.5 text-xs font-extrabold text-amber-700 uppercase">
-                      <Crown className="h-4 w-4" /> Líder
-                    </span>
-                  )}
                 </div>
-                <button
-                  type="button"
-                  aria-label="Más opciones"
-                  onClick={(e) => e.stopPropagation()}
-                  className="rounded-xl bg-slate-100 p-2 text-slate-500 transition-colors hover:bg-slate-200"
-                >
-                  <MoreHorizontal className="h-5 w-5" />
-                </button>
               </div>
 
-              <div>
+              <div className="flex flex-col items-center gap-3">
                 <h3 className="font-display text-xl font-black text-[#0f172a] uppercase">
                   {team.name}
                 </h3>
+                {isLeader && (
+                  <span className="flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1.5 text-xs font-extrabold text-amber-700 uppercase">
+                    <Crown className="h-4 w-4" /> Líder
+                  </span>
+                )}
                 <p className="mt-1 text-sm text-slate-500">Capitán: {team.captainName}</p>
               </div>
 
