@@ -100,7 +100,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
             <select
               value={pitchId}
               onChange={(e) => setPitchId(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 font-medium focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 font-medium focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
             >
               {pitches.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -117,7 +117,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 font-medium focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+                className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 font-medium focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
               />
               <Calendar className="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
             </div>
@@ -139,12 +139,12 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
                   onClick={() => setStartTime(slot)}
                   className={`py-2 px-1 rounded-xl text-xs font-bold transition-all border text-center cursor-pointer ${
                     isSelected
-                      ? 'bg-[#a3e635] text-[#0f172a] border-[#84cc16] shadow-sm font-extrabold'
+                      ? 'bg-[#2FE85F] text-[#111827] border-[#28cf54] shadow-sm font-extrabold'
                       : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:border-slate-400'
                   }`}
                 >
                   <div>{slot}</div>
-                  <div className={`text-[9px] ${isSelected ? 'text-[#0f172a]' : isNight ? 'text-blue-600 dark:text-blue-400' : 'text-amber-600 dark:text-amber-400'}`}>
+                  <div className={`text-[9px] ${isSelected ? 'text-[#111827]' : isNight ? 'text-blue-600 dark:text-blue-400' : 'text-amber-600 dark:text-amber-400'}`}>
                     {isNight ? 'Noche' : 'Día'}
                   </div>
                 </button>
@@ -164,7 +164,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
                 placeholder="Ej. Carlos Mendoza"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+                className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
               />
               <User className="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
             </div>
@@ -179,7 +179,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
                 placeholder="+52 55 1234 5678"
                 value={customerPhone}
                 onChange={(e) => setCustomerPhone(e.target.value)}
-                className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+                className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
               />
               <Phone className="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
             </div>
@@ -195,7 +195,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
               placeholder="Los Pumas FC"
               value={teamA}
               onChange={(e) => setTeamA(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
             />
           </div>
 
@@ -206,7 +206,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
               placeholder="Deportivo Norte"
               value={teamB}
               onChange={(e) => setTeamB(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+              className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
             />
           </div>
         </div>
@@ -217,7 +217,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
             <span className="text-slate-600 dark:text-slate-400">
               Cancha: <strong className="text-slate-900 dark:text-slate-100">{currentPitch?.name || 'Cancha'}</strong>
             </span>
-            <span className="text-emerald-700 dark:text-emerald-400 font-bold">
+            <span className="text-[#0A4D1A] dark:text-[#2FE85F] font-bold">
               Tarifa {priceCalc.isNightRate ? 'Nocturna (Luz LED)' : 'Diurna'}
             </span>
           </div>
@@ -225,7 +225,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-700/80">
             <div>
               <span className="text-xs text-slate-500 dark:text-slate-400 block">Costo Total Renta</span>
-              <span className="text-xl font-black text-[#0f172a] dark:text-white">{formatCurrency(totalPrice)}</span>
+              <span className="text-xl font-black text-[#111827] dark:text-white">{formatCurrency(totalPrice)}</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
@@ -236,7 +236,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
                   step="50"
                   value={depositPaid}
                   onChange={(e) => setDepositPaid(Number(e.target.value))}
-                  className="w-full sm:w-28 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-right font-bold text-emerald-700 dark:text-emerald-400 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+                  className="w-full sm:w-28 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-right font-bold text-[#0A4D1A] dark:text-[#2FE85F] focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
                 />
               </div>
 
@@ -245,7 +245,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
                 <select
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value as PaymentMethod)}
-                  className="w-full sm:w-auto bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 font-bold text-slate-900 dark:text-slate-100 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+                  className="w-full sm:w-auto bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 font-bold text-slate-900 dark:text-slate-100 focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
                 >
                   <option value="Efectivo">Efectivo</option>
                   <option value="Transferencia">Transferencia</option>
@@ -264,7 +264,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
             placeholder="Ej. Requieren 2 balones #5 y petos amarillos..."
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#032e22] dark:focus:border-[#a3e635] focus:outline-none"
+            className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:border-[#0A4D1A] dark:focus:border-[#2FE85F] focus:outline-none"
           />
         </div>
 
@@ -279,7 +279,7 @@ export const NewBookingModal: React.FC<NewBookingModalProps> = ({
           </button>
           <button
             type="submit"
-            className="px-6 py-2.5 bg-[#a3e635] hover:bg-[#84cc16] text-[#0f172a] font-black text-xs rounded-xl shadow-sm transition-all"
+            className="px-6 py-2.5 bg-[#2FE85F] hover:bg-[#28cf54] text-[#111827] font-black text-xs rounded-xl shadow-md transition-all"
           >
             Confirmar Reserva
           </button>

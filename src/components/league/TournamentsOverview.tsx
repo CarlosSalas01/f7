@@ -67,9 +67,9 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
 
         <button
           onClick={() => setIsNewTournamentModalOpen(true)}
-          className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2"
+          className="px-5 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
         >
-          <div className="w-6 h-6 rounded-full bg-white text-emerald-600 font-bold flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-white text-[#05AD31] font-bold flex items-center justify-center">
             <Plus className="w-4 h-4" />
           </div>
           <span>Crear nuevo torneo</span>
@@ -83,11 +83,11 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => setIsRegisterTeamModalOpen(true)}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
         >
-          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-[#05AD31] dark:bg-[#111827] text-white border border-[#2FE85F]/20 flex items-center justify-center shrink-0">
             <UserPlus className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#0f172a] dark:text-white">Inscribir equipo</h3>
+            <h3 className="font-bold text-base text-[#111827] dark:text-white">Inscribir equipo</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Añadir a las ligas.</p>
           </div>
         </div>
@@ -97,11 +97,11 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => onNavigateTab('fixtures')}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
         >
-          <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center shrink-0">
+          <div className="w-12 h-12 rounded-xl bg-[#05AD31] dark:bg-[#111827] text-white border border-[#2FE85F]/20 flex items-center justify-center shrink-0">
             <Calendar className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#0f172a] dark:text-white">Generar partidos</h3>
+            <h3 className="font-bold text-base text-[#111827] dark:text-white">Generar partidos</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Asignar fechas y horarios</p>
           </div>
         </div>
@@ -111,11 +111,11 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           onClick={() => onNavigateTab('results')}
           className="white-card white-card-hover p-5 flex items-center space-x-4 cursor-pointer"
           >
-            <div className="w-12 h-12 rounded-xl bg-emerald-600 dark:bg-slate-800 text-white dark:text-white flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-[#05AD31] dark:bg-[#111827] text-white border border-[#2FE85F]/20 flex items-center justify-center shrink-0">
             <FileEdit className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="font-bold text-base text-[#0f172a] dark:text-white">Cargar resultados</h3>
+            <h3 className="font-bold text-base text-[#111827] dark:text-white">Cargar resultados</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Actualizar marcadores</p>
           </div>
         </div>
@@ -127,12 +127,12 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
         {/* Active Tournaments Column */}
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-extrabold text-[#0f172a] dark:text-white font-display">
+            <h2 className="text-xl font-extrabold text-[#111827] dark:text-white font-display">
               Torneos activos
             </h2>
             <button
               onClick={() => onNavigateTab('tournaments')}
-              className="text-xs font-bold text-emerald-600 dark:text-[#a3e635] hover:underline"
+              className="text-xs font-bold text-[#0A4D1A] dark:text-[#2FE85F] hover:underline"
             >
               Ver todos
             </button>
@@ -149,9 +149,9 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
               >
                 <div>
                   {/* Status badge & options menu */}
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500" /> Active
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="px-3 py-1 bg-[#05AD31] text-white border border-[#2FE85F]/40 rounded-full text-xs font-semibold flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#2FE85F]" /> Activo
                     </span>
                     <button className="text-slate-400 hover:text-slate-600 p-1">
                       <MoreVertical className="w-4 h-4" />
@@ -251,25 +251,25 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
               type="text"
               required
               placeholder="Ej. Copa de Verano 2026"
-              className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]"
+              className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Formato</label>
-              <select className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]">
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Formato</label>
+              <select className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]">
                 <option value="Round-robin">Round-robin (Liga)</option>
                 <option value="Knockout">Knockout (Eliminación Directa)</option>
                 <option value="Mixto">Fase de Grupos + Liguilla</option>
               </select>
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Límite de equipos</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Límite de equipos</label>
               <input
                 type="number"
                 defaultValue={16}
-                className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]"
+                className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
               />
             </div>
           </div>
@@ -284,7 +284,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-[#a3e635] text-[#0f172a] rounded-xl text-xs font-black hover:bg-[#84cc16]"
+              className="px-5 py-2 bg-[#2FE85F] text-[#111827] rounded-xl text-xs font-black hover:bg-[#28cf54] shadow-sm transition-all"
             >
               Guardar torneo
             </button>
@@ -308,28 +308,28 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
           className="space-y-4 text-sm"
         >
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1">Nombre del equipo</label>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Nombre del equipo</label>
             <input
               type="text"
               required
               placeholder="Ej. Pumas FC"
-              className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]"
+              className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Nombre del capitán</label>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Nombre del capitán</label>
               <input
                 type="text"
                 required
                 placeholder="Ej. Roberto Gómez"
-                className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]"
+                className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Torneo destino</label>
-              <select className="w-full border border-slate-300 rounded-xl px-3 py-2 text-slate-900 focus:outline-none focus:border-[#032e22]">
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Torneo destino</label>
+              <select className="w-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]">
                 <option value="League One">League One</option>
                 <option value="League Two">League Two</option>
                 <option value="League Three">League Three</option>
@@ -347,7 +347,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
             </button>
             <button
               type="submit"
-              className="px-5 py-2 bg-emerald-500 text-white hover:bg-emerald-600 rounded-xl text-xs font-black"
+              className="px-5 py-2 bg-[#2FE85F] text-[#111827] hover:bg-[#28cf54] rounded-xl text-xs font-black shadow-sm transition-all"
             >
               Confirmar inscripción
             </button>

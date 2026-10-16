@@ -8,19 +8,36 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: {
+          dark: '#0A4D1A',
+          DEFAULT: '#0A4D1A',
+          neon: '#2FE85F',
+          accent: '#2FE85F',
+          night: '#111827',
+          white: '#FFFFFF',
+          soft: '#DCEFE1',
+        },
         sidebar: {
-          dark: '#032e22', // Deep Forest Pine Green from screenshot
-          active: '#527a14', // Olive/Lime Active Tab background
-          text: '#e2e8f0',
-          muted: '#94a3b8',
+          dark: '#0A4D1A', // Deep Forest Pine Green from palette
+          active: '#073612', // Darker active tab background
+          border: '#0e5f22',
+          highlight: '#2FE85F',
+          text: '#FFFFFF',
+          muted: '#DCEFE1',
         },
         lime: {
-          400: '#a3e635', // Primary Lime Action Button
-          500: '#84cc16',
-          hover: '#93c5fd',
+          400: '#2FE85F', // Primary vibrant neon green
+          500: '#28cf54',
+          hover: '#22b647',
         },
-        canvas: '#f3f6f9', // Soft light gray content background
-        card: '#ffffff',
+        canvas: {
+          light: '#f4f8f5',
+          dark: '#111827',
+        },
+        card: {
+          light: '#ffffff',
+          dark: '#111827',
+        },
       },
       fontFamily: {
         sans: ['Manrope Variable', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -28,6 +45,7 @@ export default {
       },
       boxShadow: {
         'card-soft': '0 2px 12px -2px rgba(0, 0, 0, 0.05)',
+        'neon-glow': '0 0 15px rgba(47, 232, 95, 0.35)',
       }
     },
   },

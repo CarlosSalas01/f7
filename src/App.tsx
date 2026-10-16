@@ -38,7 +38,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen lg:h-screen lg:overflow-hidden bg-[#f3f6f9] dark:bg-[#0b1329] text-slate-800 dark:text-slate-100 flex flex-col lg:flex-row font-sans antialiased transition-colors duration-300">
+    <div className="min-h-screen lg:h-screen lg:overflow-hidden bg-[#f4f8f5] dark:bg-[#111827] text-[#111827] dark:text-white flex flex-col lg:flex-row font-sans antialiased transition-colors duration-300">
       {/* Sidebar Navigation (Responsive: Top bar + Drawer on mobile, Vertical on desktop) */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onResetData={handleResetData} />
 
@@ -60,11 +60,11 @@ export function App() {
 
           {/* Tab 3: Fixtures & Canchas */}
           {activeTab === 'fixtures' && (
-            <div className="space-y-8 animate-fadeIn">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6">
+            <div className="space-y-4 animate-fadeIn">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 pb-6">
                 <div>
-                  <h1 className="text-2xl font-extrabold text-[#0f172a] dark:text-white font-display flex items-center gap-2">
-                    Canchas & Fixture de Partidos 
+                  <h1 className="text-3xl font-extrabold text-[#111827] dark:text-white font-display flex items-center gap-2">
+                    Canchas y fixture de partidos 
                     {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
                   </h1>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -74,7 +74,7 @@ export function App() {
 
                 <button
                   onClick={() => handleOpenBookingModal()}
-                  className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
                 >
                   <CalendarPlus className="w-4 h-4" /> + Nueva Reserva
                 </button>

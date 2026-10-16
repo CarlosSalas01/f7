@@ -164,7 +164,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
     <div className="white-card p-6">
       <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h2 className="font-display flex items-center gap-2 text-xl font-extrabold text-[#0f172a] dark:text-white">
+          <h2 className="font-display flex items-center gap-2 text-xl font-extrabold text-[#111827] dark:text-white">
             Calendario
           </h2>
         </div>
@@ -183,7 +183,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                 id="league-filter"
                 value={activeLeague}
                 onChange={(e) => setActiveLeague(e.target.value)}
-                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] dark:text-[#2FE85F] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
               >
                 {leagueFilters.map((league) => (
                   <option key={league} value={league}>
@@ -193,7 +193,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
               </select>
 
               <svg
-                className="pointer-events-none absolute right-3 h-4 w-4 text-emerald-700 dark:text-emerald-400"
+                className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -220,7 +220,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                 id="day-filter"
                 value={activeDay}
                 onChange={(e) => setActiveDay(e.target.value as Day | typeof ALL_DAYS)}
-                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] dark:text-[#2FE85F] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
               >
                 {dayFilters.map((day) => (
                   <option key={day} value={day}>
@@ -230,7 +230,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
               </select>
 
               <svg
-                className="pointer-events-none absolute right-3 h-4 w-4 text-emerald-700 dark:text-emerald-400"
+                className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="none"
@@ -261,26 +261,26 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                 {dayFixtures.map(({ home, away, time, pitch, league }) => (
                   <div
                     key={`${day}-${home.name}-${away.name}`}
-                    className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4 pb-9"
+                    className="relative w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 p-4 pb-9 hover:border-emerald-600"
                   >
-                    <div className="mb-3 flex items-center justify-between text-xs font-bold text-slate-600">
+                    <div className="mb-5 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
                       <span>{time} hrs</span>
-                      <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-700">
+                      <span className="rounded-full bg-[#43bd63] dark:bg-[#0A4D1A]/60 px-2.5 py-0.5 text-white dark:text-[#2FE85F] font-medium border border-[#2FE85F]/20">
                         Cancha {pitch}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center justify-between gap-2 py-2">
                       <div className="flex flex-1 flex-col items-center gap-1 text-center">
                         <img src={home.logo} alt={home.name} className="h-12 w-12 object-contain" />
-                        <span className="text-xs font-semibold text-slate-800">{home.name}</span>
+                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">{home.name}</span>
                       </div>
                       <span className="text-sm font-extrabold text-slate-400">VS</span>
                       <div className="flex flex-1 flex-col items-center gap-1 text-center">
                         <img src={away.logo} alt={away.name} className="h-12 w-12 object-contain" />
-                        <span className="text-xs font-semibold text-slate-800">{away.name}</span>
+                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">{away.name}</span>
                       </div>
                     </div>
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-emerald-100 px-4 pt-1 pb-0.5 text-xs font-bold text-emerald-700">
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-[#43bd63] dark:bg-[#0A4D1A] px-4 pt-1 pb-0.5 text-xs font-medium text-white dark:text-[#2FE85F] border-t border-x border-[#2FE85F]/30">
                       {league}
                     </span>
                   </div>

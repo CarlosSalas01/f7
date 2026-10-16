@@ -12,6 +12,7 @@ import {
   PanelLeftOpen,
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import adminImage from '../../assets/img/admin.jpg';
 
 interface SidebarProps {
   activeTab: string;
@@ -28,7 +29,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
     { id: 'teams', label: 'Equipos', icon: Users },
     { id: 'fixtures', label: 'Partidos', icon: Calendar },
     { id: 'results', label: 'Resultados', icon: Flag },
-    { id: 'finances', label: 'Finanzas', icon: DollarSign },
+    // { id: 'finances', label: 'Finanzas', icon: DollarSign },
   ];
 
   const handleTabClick = (id: string) => {
@@ -39,23 +40,23 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
   return (
     <>
       {/* Mobile Top Header Bar (< lg) */}
-      <header className="lg:hidden sticky top-0 z-40 bg-[#032e22] text-white px-4 py-3 flex items-center justify-between shadow-md border-b border-[#064e3b]">
+      <header className="lg:hidden sticky top-0 z-40 bg-[#0A4D1A] text-white px-4 py-3 flex items-center justify-between shadow-md border-b border-[#0e5f22]">
         <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 rounded-xl bg-[#a3e635] text-[#032e22] flex items-center justify-center font-black text-base shadow-sm">
+          <div className="w-9 h-9 rounded-xl bg-[#2FE85F] text-[#0A4D1A] flex items-center justify-center font-black text-base shadow-sm">
             F7
           </div>
           <div>
             <h1 className="font-display font-extrabold text-base text-white leading-tight">
               F7 Manager
             </h1>
-            <p className="text-[10px] text-[#94a3b8]">Elite League Admin</p>
+            <p className="text-[10px] text-[#DCEFE1]/80">Elite League Admin</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="p-2 rounded-xl bg-[#064e3b] text-white hover:bg-[#527a14] transition-colors focus:outline-none"
+            className="p-2 rounded-xl bg-[#073612] text-white hover:bg-[#0e5f22] transition-colors focus:outline-none"
             aria-label="Toggle Navigation Menu"
           >
             {isMobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -73,26 +74,26 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
 
       {/* Mobile Drawer Content */}
       <div
-        className={`lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-[#032e22] text-white flex flex-col justify-between p-5 shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-[#0A4D1A] text-white flex flex-col justify-between p-5 shadow-2xl transition-transform duration-300 ease-in-out ${
           isMobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-[#064e3b]">
+          <div className="flex items-center justify-between pb-4 border-b border-[#0e5f22]">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#a3e635] text-[#032e22] flex items-center justify-center font-black text-lg shadow-sm">
+              <div className="w-10 h-10 rounded-2xl bg-[#2FE85F] text-[#0A4D1A] flex items-center justify-center font-black text-lg shadow-sm">
                 F7
               </div>
               <div>
                 <h2 className="font-display font-extrabold text-lg text-white leading-tight">
                   F7 Manager
                 </h2>
-                <p className="text-[11px] text-[#94a3b8]">Elite League Admin</p>
+                <p className="text-[11px] text-[#DCEFE1]/80">Elite League Admin</p>
               </div>
             </div>
             <button
               onClick={() => setIsMobileOpen(false)}
-              className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-[#064e3b]"
+              className="p-1.5 text-[#DCEFE1]/70 hover:text-white rounded-lg hover:bg-[#073612]"
             >
               <X className="w-5 h-5" />
             </button>
@@ -108,11 +109,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
                   onClick={() => handleTabClick(item.id)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-150 ${
                     isActive
-                      ? 'bg-[#527a14] text-white shadow-md'
-                      : 'text-slate-300 hover:bg-[#064e3b]/50 hover:text-white'
+                      ? 'bg-[#2FE85F] text-[#111827] shadow-md font-extrabold'
+                      : 'text-[#DCEFE1]/85 hover:bg-[#073612] hover:text-white'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-[#111827]' : 'text-[#DCEFE1]/70'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -120,25 +121,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
           </nav>
         </div>
 
-        <div className="space-y-4 pt-4 border-t border-[#064e3b]">
+        <div className="space-y-4 pt-4 border-t border-[#0e5f22]">
           <div className="px-1">
             <ThemeToggle />
           </div>
 
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center space-x-3">
-              <div className="w-9 h-9 rounded-full bg-slate-200 border border-[#a3e635] overflow-hidden">
+              <div className="w-9 h-9 rounded-full bg-slate-200 border-2 border-[#2FE85F] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
+                  src="../../assets/img/admin.jpg"
                   alt="Admin"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <p className="text-xs font-bold text-white">Admin User</p>
+                <p className="text-xs font-bold text-white">Administrador</p>
                 <button
                   onClick={onResetData}
-                  className="text-[11px] text-slate-400 hover:text-[#a3e635] flex items-center gap-1 transition-colors"
+                  className="text-[11px] text-[#DCEFE1]/70 hover:text-[#2FE85F] flex items-center gap-1 transition-colors"
                 >
                   Logout / Reset
                 </button>
@@ -147,7 +148,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
             <button
               onClick={onResetData}
               title="Reset Demo Data"
-              className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-[#064e3b]"
+              className="text-[#DCEFE1]/70 hover:text-white p-1 rounded-lg hover:bg-[#073612]"
             >
               <LogOut className="w-4 h-4" />
             </button>
@@ -157,7 +158,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
 
       {/* Desktop Vertical Left Sidebar (>= lg) */}
       <aside
-        className={`hidden lg:flex bg-[#032e22] text-white flex-col justify-between min-h-screen flex-shrink-0 overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`hidden lg:flex bg-[#0A4D1A] text-white flex-col justify-between min-h-screen shrink-0 overflow-hidden transition-all duration-300 ease-in-out border-r border-[#0e5f22]/40 ${
           isCollapsed ? 'w-20 p-3' : 'w-64 p-5'
         }`}
       >
@@ -169,7 +170,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
             }`}
           >
             <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
-              <div className="w-10 h-10 rounded-2xl bg-[#a3e635] text-[#032e22] flex items-center justify-center font-black text-lg shadow-sm flex-shrink-0">
+              <div className="w-10 h-10 rounded-2xl bg-[#2FE85F] text-[#0A4D1A] flex items-center justify-center font-black text-lg shadow-sm flex-shrink-0">
                 F7
               </div>
               {!isCollapsed && (
@@ -177,7 +178,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
                   <h1 className="font-display font-extrabold text-lg text-white leading-tight">
                     F7 Manager
                   </h1>
-                  <p className="text-[11px] text-[#94a3b8]">Elite League Admin</p>
+                  <p className="text-[11px] text-[#DCEFE1]/80">Elite League Admin</p>
                 </div>
               )}
             </div>
@@ -188,7 +189,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
               title={isCollapsed ? 'Expandir menú' : 'Contraer menú'}
               aria-label={isCollapsed ? 'Expandir menú lateral' : 'Contraer menú lateral'}
               aria-expanded={!isCollapsed}
-              className={`flex items-center justify-center rounded-xl text-slate-400 hover:text-white hover:bg-[#064e3b] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635]/50 ${
+              className={`flex items-center justify-center rounded-xl text-[#DCEFE1]/70 hover:text-white hover:bg-[#073612] transition-colors focus:outline-none focus:ring-2 focus:ring-[#2FE85F]/50 ${
                 isCollapsed ? 'p-2' : 'p-1.5'
               }`}
             >
@@ -214,11 +215,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
                     isCollapsed ? 'justify-center px-0 py-3' : 'space-x-3 px-4 py-3'
                   } ${
                     isActive
-                      ? 'bg-[#527a14] text-white shadow-md'
-                      : 'text-slate-300 hover:bg-[#064e3b]/50 hover:text-white'
+                      ? 'bg-[#2FE85F] text-[#111827] shadow-md font-extrabold'
+                      : 'text-[#DCEFE1]/85 hover:bg-[#073612] hover:text-white'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-[#111827]' : 'text-[#DCEFE1]/70'}`} />
                   {!isCollapsed && <span>{item.label}</span>}
                 </button>
               );
@@ -234,24 +235,24 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
 
           {/* User Profile at Bottom */}
           <div
-            className={`flex border-t border-[#064e3b] pt-4 ${
+            className={`flex border-t border-[#0e5f22] pt-4 ${
               isCollapsed ? 'flex-col items-center gap-2 px-0' : 'items-center justify-between px-2'
             }`}
           >
             <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
-              <div className="w-9 h-9 rounded-full bg-slate-200 border border-[#a3e635] overflow-hidden flex-shrink-0">
+              <div className="w-9 h-9 rounded-full bg-slate-200 border-2 border-[#0b7628] overflow-hidden shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
+                  src={adminImage}
                   alt="Admin"
                   className="w-full h-full object-cover"
                 />
               </div>
               {!isCollapsed && (
                 <div>
-                  <p className="text-xs font-bold text-white">Admin User</p>
+                  <p className="text-xs font-bold text-white">Administrador</p>
                   <button
                     onClick={onResetData}
-                    className="text-[11px] text-slate-400 hover:text-[#a3e635] flex items-center gap-1 transition-colors"
+                    className="text-[11px] text-[#DCEFE1]/70 hover:text-[#2FE85F] flex items-center gap-1 transition-colors"
                   >
                     Logout / Reset
                   </button>
@@ -261,7 +262,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
             <button
               onClick={onResetData}
               title="Reset Demo Data"
-              className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-[#064e3b]"
+              className="text-[#DCEFE1]/70 hover:text-white p-1 rounded-lg hover:bg-[#073612]"
             >
               <LogOut className="w-4 h-4" />
             </button>

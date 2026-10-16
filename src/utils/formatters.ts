@@ -42,7 +42,7 @@ export function getStatusBadgeColor(status: string): { bg: string; text: string;
     case 'Confirmada':
     case 'Pagado Total':
     case 'Finalizado':
-      return { bg: 'bg-red-400', text: 'text-white', border: 'border-emerald-500/30' };
+      return { bg: 'bg-[#DCEFE1] dark:bg-[#0A4D1A]', text: 'text-[#0A4D1A] dark:text-[#2FE85F]', border: 'border-[#2FE85F]/30' };
     case 'Reservado':
     case 'Ocupado':
     case 'En Vivo':

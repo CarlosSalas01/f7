@@ -50,7 +50,7 @@ export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
         {onBack && (
           <button
             onClick={onBack}
-            className="px-4 py-2 text-xs font-bold text-emerald-700 dark:text-[#a3e635] hover:bg-[#84CA16] hover:text-slate-800 rounded-xl flex items-center gap-2 transition-colors"
+            className="px-4 py-2 text-xs font-bold text-[#0A4D1A] dark:text-[#2FE85F] hover:bg-[#DCEFE1] dark:hover:bg-[#0A4D1A]/50 rounded-xl flex items-center gap-2 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Volver a torneos
           </button>
@@ -71,7 +71,7 @@ export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
                 ))}
                 <th
                   title="Puntos"
-                  className="py-3 px-3 text-center font-black text-[#032e22] dark:text-[#a3e635]"
+                  className="py-3 px-3 text-center font-black text-[#0A4D1A] dark:text-[#2FE85F]"
                 >
                   PTS
                 </th>
@@ -82,16 +82,16 @@ export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
                 <tr
                   key={team.name}
                   className={`hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors ${
-                    idx < PLAYOFF_SPOTS ? 'bg-emerald-50/30 dark:bg-emerald-950/20' : ''
+                    idx < PLAYOFF_SPOTS ? 'bg-[#DCEFE1]/30 dark:bg-[#0A4D1A]/20' : ''
                   }`}
                 >
                   <td className="py-3 px-3">
                     <span
                       className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${
                         idx === 0
-                          ? 'bg-amber-400 text-[#0f172a] font-black'
+                          ? 'bg-amber-400 text-[#111827] font-black'
                           : idx < PLAYOFF_SPOTS
-                            ? 'bg-[#032e22] dark:bg-[#a3e635] text-white dark:text-[#032e22]'
+                            ? 'bg-[#0A4D1A] dark:bg-[#2FE85F] text-white dark:text-[#111827]'
                             : 'text-slate-500 dark:text-slate-400'
                       }`}
                     >
@@ -99,7 +99,7 @@ export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
                     </span>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="flex items-center gap-3 font-extrabold text-[#0f172a] dark:text-white">
+                    <div className="flex items-center gap-3 font-extrabold text-[#111827] dark:text-white">
                       {team.logo ? (
                         <img
                           src={team.logo}
@@ -117,7 +117,7 @@ export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
                     </div>
                   </td>
                   <td className="py-3 px-2 text-center font-mono text-slate-600 dark:text-slate-400">{team.played}</td>
-                  <td className="py-3 px-2 text-center font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                  <td className="py-3 px-2 text-center font-mono font-bold text-[#0A4D1A] dark:text-[#2FE85F]">
                     {team.wins}
                   </td>
                   <td className="py-3 px-2 text-center font-mono text-slate-500 dark:text-slate-400">{team.draws}</td>
@@ -129,7 +129,7 @@ export const LeagueTwo: React.FC<LeagueTwoProps> = ({ onBack }) => {
                   <td className="py-3 px-2 text-center font-mono font-bold text-slate-900 dark:text-slate-100">
                     {team.diff > 0 ? `+${team.diff}` : team.diff}
                   </td>
-                  <td className="py-3 px-3 text-center font-mono font-black text-base text-[#032e22] dark:text-[#a3e635]">
+                  <td className="py-3 px-3 text-center font-mono font-black text-base text-[#0A4D1A] dark:text-[#2FE85F]">
                     {team.points}
                   </td>
                 </tr>

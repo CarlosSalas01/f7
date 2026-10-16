@@ -12,7 +12,7 @@ interface PitchCardProps {
 
 export const PitchCard: React.FC<PitchCardProps> = ({ pitch, onBookClick, onToggleStatus }) => {
   return (
-    <div className="white-card white-card-hover overflow-hidden flex flex-col justify-between">
+    <div className="white-card white-card-hover overflow-hidden flex flex-col justify-between border border-[#05AD31]">
 
     </div>
   );

@@ -23,12 +23,12 @@ export const StandingsTable: React.FC = () => {
       <div className="white-card p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/50 text-[10px] font-extrabold rounded-full">
+            <span className="px-2.5 py-0.5 bg-[#DCEFE1] dark:bg-[#0A4D1A]/50 text-[#0A4D1A] dark:text-[#2FE85F] border border-[#2FE85F]/30 text-[10px] font-extrabold rounded-full">
               TORNEO CLAUSURA F7
             </span>
             <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Jornada 8 de 14</span>
           </div>
-          <h1 className="text-2xl font-extrabold text-[#0f172a] dark:text-white font-display mt-1 flex items-center gap-2">
+          <h1 className="text-2xl font-extrabold text-[#111827] dark:text-white font-display mt-1 flex items-center gap-2">
             <Trophy className="w-6 h-6 text-amber-500" /> Tabla general de clasificación
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -54,7 +54,7 @@ export const StandingsTable: React.FC = () => {
                   <th className="py-3 px-2 text-center">GF</th>
                   <th className="py-3 px-2 text-center">GC</th>
                   <th className="py-3 px-2 text-center">DG</th>
-                  <th className="py-3 px-3 text-center font-black text-[#032e22] dark:text-[#a3e635]">PTS</th>
+                  <th className="py-3 px-3 text-center font-black text-[#0A4D1A] dark:text-[#2FE85F]">PTS</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-xs">
@@ -66,16 +66,16 @@ export const StandingsTable: React.FC = () => {
                     <tr
                       key={team.id}
                       className={`hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors ${
-                        isPlayoffZone ? 'bg-emerald-50/30 dark:bg-emerald-950/20' : ''
+                        isPlayoffZone ? 'bg-[#DCEFE1]/30 dark:bg-[#0A4D1A]/20' : ''
                       }`}
                     >
                       <td className="py-3.5 px-3">
                         <span
                           className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${
                             idx === 0
-                              ? 'bg-amber-400 text-[#0f172a] shadow-sm font-black'
+                              ? 'bg-amber-400 text-[#111827] shadow-sm font-black'
                               : idx < 4
-                                ? 'bg-[#032e22] dark:bg-[#a3e635] text-white dark:text-[#032e22] font-bold'
+                                ? 'bg-[#0A4D1A] dark:bg-[#2FE85F] text-white dark:text-[#111827] font-bold'
                                 : 'text-slate-500 dark:text-slate-400'
                           }`}
                         >
@@ -83,13 +83,13 @@ export const StandingsTable: React.FC = () => {
                         </span>
                       </td>
 
-                      <td className="py-3.5 px-4 font-extrabold text-[#0f172a] dark:text-white flex items-center gap-2">
+                      <td className="py-3.5 px-4 font-extrabold text-[#111827] dark:text-white flex items-center gap-2">
                         <span className="text-lg">{team.logo}</span>
                         <span>{team.name}</span>
                       </td>
 
                       <td className="py-3.5 px-2 text-center font-mono text-slate-600 dark:text-slate-400">{team.matchesPlayed}</td>
-                      <td className="py-3.5 px-2 text-center font-mono text-emerald-700 dark:text-emerald-400 font-bold">{team.wins}</td>
+                      <td className="py-3.5 px-2 text-center font-mono text-[#0A4D1A] dark:text-[#2FE85F] font-bold">{team.wins}</td>
                       <td className="py-3.5 px-2 text-center font-mono text-slate-500 dark:text-slate-400">{team.draws}</td>
                       <td className="py-3.5 px-2 text-center font-mono text-rose-600 dark:text-rose-400">{team.losses}</td>
                       <td className="py-3.5 px-2 text-center font-mono text-slate-600 dark:text-slate-400">{team.goalsFor}</td>
@@ -97,7 +97,7 @@ export const StandingsTable: React.FC = () => {
                       <td className="py-3.5 px-2 text-center font-mono font-bold text-slate-900 dark:text-slate-100">
                         {dg > 0 ? `+${dg}` : dg}
                       </td>
-                      <td className="py-3.5 px-3 text-center font-mono font-black text-base text-[#032e22] dark:text-[#a3e635]">
+                      <td className="py-3.5 px-3 text-center font-mono font-black text-base text-[#0A4D1A] dark:text-[#2FE85F]">
                         {team.points}
                       </td>
                     </tr>

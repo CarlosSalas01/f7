@@ -111,9 +111,7 @@ export const LiveScoreboard: React.FC = () => {
         : result.league === activeLeague;
 
     const matchesRound =
-      activeRound === ALL_ROUNDS
-        ? true
-        : `Jornada ${result.round}` === activeRound;
+      activeRound === ALL_ROUNDS ? true : `Jornada ${result.round}` === activeRound;
 
     const matchesDate = !selectedDate ? true : result.rawDate === selectedDate;
 
@@ -129,185 +127,194 @@ export const LiveScoreboard: React.FC = () => {
     .filter(({ results }) => results.length > 0);
 
   return (
-    <div className="white-card p-6">
-      <div className="mb-6 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
+    <div className="">
+      <div className="flex flex-col justify-between gap-4 px-2 pb-6 sm:flex-row sm:items-center">
         <div>
-          <h2 className="font-display flex items-center gap-2 text-xl font-extrabold text-[#0f172a] dark:text-white">
+          <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
             Resultados
-          </h2>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
-          {/* Filtro Liga */}
-          <div className="flex items-center gap-3">
-            <label
-              htmlFor="league-filter"
-              className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
-            >
-              Liga
-            </label>
-
-            <div className="relative inline-flex items-center">
-              <select
-                id="league-filter"
-                value={activeLeague}
-                onChange={(e) => setActiveLeague(e.target.value)}
-                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
-              >
-                {leagueFilters.map((league) => (
-                  <option key={league} value={league}>
-                    {league}
-                  </option>
-                ))}
-              </select>
-
-              <svg
-                className="pointer-events-none absolute right-3 h-4 w-4 text-emerald-700 dark:text-emerald-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Filtro Jornada */}
-          <div className="flex items-center gap-3">
-            <label
-              htmlFor="round-filter"
-              className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
-            >
-              Jornada
-            </label>
-
-            <div className="relative inline-flex items-center">
-              <select
-                id="round-filter"
-                value={activeRound}
-                onChange={(e) => setActiveRound(e.target.value)}
-                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
-              >
-                {roundFilters.map((round) => (
-                  <option key={round} value={round}>
-                    {round}
-                  </option>
-                ))}
-              </select>
-
-              <svg
-                className="pointer-events-none absolute right-3 h-4 w-4 text-emerald-700 dark:text-emerald-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Filtro Calendario / Fecha */}
-          <div className="flex items-center gap-3">
-            <label
-              htmlFor="date-filter"
-              className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
-            >
-              Fecha
-            </label>
-
-            <div className="relative inline-flex items-center">
-              <input
-                id="date-filter"
-                type="date"
-                list="match-dates"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-44 cursor-pointer rounded-xl border border-slate-200 bg-white py-2 px-3 text-sm font-bold text-emerald-700 shadow-sm transition-colors outline-none hover:border-emerald-400 focus:border-emerald-600 dark:border-slate-700 dark:bg-slate-800 dark:text-emerald-400"
-              />
-              <datalist id="match-dates">
-                {availableDates.map((date) => (
-                  <option key={date} value={date} />
-                ))}
-              </datalist>
-
-              {selectedDate && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedDate('')}
-                  title="Restablecer filtro de fecha"
-                  className="ml-1 cursor-pointer rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700 transition-colors"
-                >
-                  <span className="text-xs font-bold">✕</span>
-                </button>
-              )}
-            </div>
-          </div>
+            {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
+          </h1>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+            Visualiza los resultados de los partidos por liga, jornada y fecha
+          </p>
         </div>
       </div>
+      <div className="white-card p-6">
+        <div className="mb-6 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
+          <div className="flex flex-wrap items-center gap-4 text-sm sm:gap-6">
+            {/* Filtro Liga */}
+            <div className="flex items-center gap-3">
+              <label
+                htmlFor="league-filter"
+                className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+              >
+                Liga
+              </label>
 
-      {rounds.length > 0 ? (
-        rounds.map(({ round, date, results }, index) => (
-          <section key={round}>
-            <p
-              className={`flex items-center justify-between border-b border-slate-300 pb-3 font-extrabold ${
-                index === 0 ? 'mb-5' : 'my-5'
-              }`}
-            >
-              <span>Jornada {round}</span>
-              <span className="text-xs font-bold text-slate-500">{date}</span>
-            </p>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {results.map(({ id, league, home, away, homeScore, awayScore }) => (
-                <div
-                  key={id}
-                  className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4 pb-9"
+              <div className="relative inline-flex items-center">
+                <select
+                  id="league-filter"
+                  value={activeLeague}
+                  onChange={(e) => setActiveLeague(e.target.value)}
+                  className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
                 >
-                  <div className="mb-3 flex items-center justify-between text-xs font-bold text-slate-600">
-                    <span>Jornada {round}</span>
-                    <span className="rounded-full bg-red-400 px-2 py-0.5 text-white">Finalizado</span>
-                  </div>
-                  <div className="flex items-start justify-between gap-2">
-                    <TeamSide team={home} />
-                    <span className="flex h-12 items-center text-2xl font-extrabold whitespace-nowrap text-[#0f172a]">
-                      {homeScore} - {awayScore}
-                    </span>
-                    <TeamSide team={away} />
-                  </div>
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-emerald-100 px-4 pt-1 pb-0.5 text-xs font-bold text-emerald-700">
-                    {league}
-                  </span>
-                </div>
-              ))}
+                  {leagueFilters.map((league) => (
+                    <option key={league} value={league}>
+                      {league}
+                    </option>
+                  ))}
+                </select>
+
+                <svg
+                  className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
             </div>
-          </section>
-        ))
-      ) : (
-        <div className="py-12 text-center">
-          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-            No se encontraron partidos para los filtros seleccionados.
-          </p>
-          {(activeLeague !== ALL_LEAGUES || activeRound !== ALL_ROUNDS || selectedDate) && (
-            <button
-              onClick={() => {
-                setActiveLeague(ALL_LEAGUES);
-                setActiveRound(ALL_ROUNDS);
-                setSelectedDate('');
-              }}
-              className="mt-3 inline-block text-xs font-bold text-emerald-600 hover:text-emerald-700 underline cursor-pointer"
-            >
-              Restablecer filtros
-            </button>
-          )}
+
+            {/* Filtro Jornada */}
+            <div className="flex items-center gap-3">
+              <label
+                htmlFor="round-filter"
+                className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+              >
+                Jornada
+              </label>
+
+              <div className="relative inline-flex items-center">
+                <select
+                  id="round-filter"
+                  value={activeRound}
+                  onChange={(e) => setActiveRound(e.target.value)}
+                  className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
+                >
+                  {roundFilters.map((round) => (
+                    <option key={round} value={round}>
+                      {round}
+                    </option>
+                  ))}
+                </select>
+
+                <svg
+                  className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Filtro Calendario / Fecha */}
+            <div className="flex items-center gap-3">
+              <label
+                htmlFor="date-filter"
+                className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+              >
+                Fecha
+              </label>
+
+              <div className="relative inline-flex items-center">
+                <input
+                  id="date-filter"
+                  type="date"
+                  list="match-dates"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="w-44 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
+                />
+                <datalist id="match-dates">
+                  {availableDates.map((date) => (
+                    <option key={date} value={date} />
+                  ))}
+                </datalist>
+
+                {selectedDate && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedDate('')}
+                    title="Restablecer filtro de fecha"
+                    className="ml-1 cursor-pointer rounded-lg p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700"
+                  >
+                    <span className="text-xs font-bold">✕</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-      )}
+
+        {rounds.length > 0 ? (
+          rounds.map(({ round, date, results }, index) => (
+            <section key={round}>
+              <p
+                className={`flex items-center justify-between border-b border-slate-300 pb-3 font-extrabold ${
+                  index === 0 ? 'mb-5' : 'my-5'
+                }`}
+              >
+                <span>Jornada {round}</span>
+                <span className="text-xs font-bold text-slate-500">{date}</span>
+              </p>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                {results.map(({ id, league, home, away, homeScore, awayScore }) => (
+                  <div
+                    key={id}
+                    className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4 pb-9 hover:border-emerald-600 dark:border-slate-800 dark:bg-slate-900/60"
+                  >
+                    <div className="mb-5 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
+                      <span>Jornada {round}</span>
+                      <span className="rounded-full bg-red-400 px-2 py-0.5 text-white">
+                        Finalizado
+                      </span>
+                    </div>
+                    <div className="flex items-start justify-between gap-2 pt-2">
+                      <TeamSide team={home} />
+                      <span className="flex h-12 items-center text-2xl font-extrabold whitespace-nowrap text-[#111827] dark:text-white">
+                        {homeScore} - {awayScore}
+                      </span>
+                      <TeamSide team={away} />
+                    </div>
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full border-x border-t border-[#05AD31]/30 bg-[#43bd63] px-4 pt-1 pb-0.5 text-xs font-medium text-white dark:bg-[#0A4D1A] dark:text-[#2FE85F]">
+                      {league}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))
+        ) : (
+          <div className="py-12 text-center">
+            <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+              No se encontraron partidos para los filtros seleccionados.
+            </p>
+            {(activeLeague !== ALL_LEAGUES || activeRound !== ALL_ROUNDS || selectedDate) && (
+              <button
+                onClick={() => {
+                  setActiveLeague(ALL_LEAGUES);
+                  setActiveRound(ALL_ROUNDS);
+                  setSelectedDate('');
+                }}
+                className="mt-3 inline-block cursor-pointer text-xs font-bold text-[#0A4D1A] hover:underline dark:text-[#2FE85F]"
+              >
+                Restablecer filtros
+              </button>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
