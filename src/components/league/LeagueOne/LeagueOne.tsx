@@ -38,8 +38,8 @@ const getInitials = (name: string) =>
 export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
   return (
     <div className="space-y-6 animate-fadeIn">
-      <div className="white-card p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
+      {/* <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <div className="flex flex-col my-4">
           <h1 className="text-2xl font-extrabold text-[#0f172a] dark:text-white font-display flex items-center gap-2">
             League One
           </h1>
@@ -55,14 +55,14 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
             <ArrowLeft className="w-4 h-4" /> Volver a torneos
           </button>
         )}
-      </div>
+      </div> */}
 
-      <div className="white-card p-4 sm:p-6">
+      <div className="p-2">
         <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse min-w-[600px]">
+          <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
-              <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-[11px] font-extrabold uppercase text-slate-500 dark:text-slate-400 tracking-wider">
-                <th className="py-3 px-3">#</th>
+              <tr className="border-b border-slate-200 dark:border-slate-800 bg-[#0A4D1A] dark:bg-slate-900/50 text-[11px] font-extrabold uppercase text-white dark:text-slate-400 tracking-wider">
+                <th className="py-3 px-3">Posición</th>
                 <th className="py-3 px-4">Equipo</th>
                 {columns.map(({ key, title }) => (
                   <th key={key} title={title} className="py-3 px-2 text-center">
@@ -71,7 +71,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
                 ))}
                 <th
                   title="Puntos"
-                  className="py-3 px-3 text-center font-black text-[#0A4D1A] dark:text-[#2FE85F]"
+                  className="py-3 px-3 text-center font-black text-white dark:text-[#2FE85F]"
                 >
                   PTS
                 </th>

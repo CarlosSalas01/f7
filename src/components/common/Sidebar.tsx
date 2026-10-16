@@ -10,6 +10,7 @@ import {
   X,
   PanelLeftClose,
   PanelLeftOpen,
+  ListOrdered,
 } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import adminImage from '../../assets/img/admin.jpg';
@@ -30,6 +31,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onRes
     { id: 'fixtures', label: 'Partidos', icon: Calendar },
     { id: 'results', label: 'Resultados', icon: Flag },
     // { id: 'finances', label: 'Finanzas', icon: DollarSign },
+    { id: 'positions', label: 'Posiciones', icon: ListOrdered },
   ];
 
   const handleTabClick = (id: string) => {

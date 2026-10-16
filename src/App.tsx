@@ -9,6 +9,7 @@ import { LiveScoreboard } from './components/matches/LiveScoreboard';
 import { LeagueOne } from './components/league/LeagueOne/LeagueOne';
 import { LeagueTwo } from './components/league/LeagueTwo/LeagueTwo';
 import { LeagueThree } from './components/league/LeagueThree/LeagueThree';
+import { LeaguePositions } from './components/league/LeaguePositions';
 import { TeamGrid } from './components/teams/TeamGrid';
 import { RevenueOverview } from './components/finance/RevenueOverview';
 
@@ -54,6 +55,8 @@ export function App() {
           {activeTab === 'league-one' && <LeagueOne onBack={() => setActiveTab('tournaments')} />}
           {activeTab === 'league-two' && <LeagueTwo onBack={() => setActiveTab('tournaments')} />}
           {activeTab === 'league-three' && <LeagueThree onBack={() => setActiveTab('tournaments')} />}
+
+          {activeTab === 'positions' && <LeaguePositions />}
 
           {/* Tab 2: Teams */}
           {activeTab === 'teams' && <TeamGrid />}
