@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Team } from '../../types';
 import { leagues } from '../../services/leagueData';
-import { Modal } from '../common/Modal';
-import { Users, Flame, Crown, MoreHorizontal, ArrowRight } from 'lucide-react';
+import { getSquad } from '../../services/playerData';
+import { PlayersView } from '../players/PlayersView';
+import { Crown, ArrowLeft } from 'lucide-react';
 import '@fontsource-variable/manrope';
 
 const SEASON = '2025/26';
@@ -33,7 +34,7 @@ const allTeams: LeagueTeam[] = leagues.flatMap(({ name: league, records }) =>
       primaryColor: record.primaryColor,
       captainName: record.captainName,
       captainPhone: record.captainPhone,
-      playersCount: record.playersCount,
+      playersCount: getSquad(record.name).length || record.playersCount,
       players: [],
       matchesPlayed: record.wins + record.draws + record.losses,
       wins: record.wins,
@@ -50,6 +51,21 @@ const allTeams: LeagueTeam[] = leagues.flatMap(({ name: league, records }) =>
 export const TeamGrid: React.FC = () => {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
   const [activeLeague, setActiveLeague] = useState<string>(ALL);
+
+  const squad = selectedTeam ? getSquad(selectedTeam.name) : [];
+
+  useEffect(() => {
+    if (!selectedTeam) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedTeam(null);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedTeam]);
 
   const visibleTeams =
     activeLeague === ALL ? allTeams : allTeams.filter((t) => t.league === activeLeague);
@@ -175,53 +191,32 @@ export const TeamGrid: React.FC = () => {
         })}
       </div>
 
-      {/* Roster Modal */}
+      {/* Roster Overlay (fullscreen players view) */}
       {selectedTeam && (
-        <Modal
-          isOpen={!!selectedTeam}
-          onClose={() => setSelectedTeam(null)}
-          title={`Plantilla Oficial - ${selectedTeam.name}`}
-          subtitle={`Capitán: ${selectedTeam.captainName} • Teléfono: ${selectedTeam.captainPhone}`}
-        >
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
-              Jugadores Registrados
-            </h4>
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-[#f4f8f5] dark:bg-[#111827] animate-fadeIn">
+          <div className="mx-auto w-full max-w-7xl space-y-6 p-4 sm:p-6 lg:p-10">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                type="button"
+                onClick={() => setSelectedTeam(null)}
+                className="flex w-fit cursor-pointer items-center gap-2 rounded-xl border border-[#2FE85F]/30 bg-white px-4 py-2.5 text-xs font-extrabold text-[#05AD31] transition-colors hover:bg-[#DCEFE1] dark:border-slate-700 dark:bg-slate-900 dark:text-[#DCEFE1] dark:hover:bg-slate-800"
+              >
+                <ArrowLeft className="h-4 w-4" /> Volver a Equipos
+              </button>
 
-            <div className="space-y-2">
-              {selectedTeam.players.length === 0 ? (
-                <p className="py-4 text-center text-xs text-slate-500 dark:text-slate-400">
-                  La plantilla completa se encuentra en proceso de validación por la liga.
+              <div className="flex flex-col gap-1 sm:items-end">
+                <p className="text-xs font-bold text-[#111827] dark:text-white">
+                  Capitán: {selectedTeam.captainName} · Teléfono: {selectedTeam.captainPhone}
                 </p>
-              ) : (
-                selectedTeam.players.map((player) => (
-                  <div
-                    key={player.id}
-                    className="flex items-center justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 p-3 text-xs"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#05AD31] font-mono text-sm font-black text-[#2FE85F]">
-                        #{player.number}
-                      </span>
-                      <div>
-                        <h5 className="font-extrabold text-[#111827] dark:text-white">{player.name}</h5>
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400">{player.position}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-4 font-mono text-xs">
-                      <span className="flex items-center gap-1 font-bold text-amber-600">
-                        <Flame className="h-3.5 w-3.5" /> {player.goals} Goles
-                      </span>
-                      <span className="font-bold text-amber-600">🟨 {player.yellowCards}</span>
-                      <span className="font-bold text-rose-600">🟥 {player.redCards}</span>
-                    </div>
-                  </div>
-                ))
-              )}
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  {squad.length} jugadores registrados · Temporada {SEASON}
+                </p>
+              </div>
             </div>
+
+            <PlayersView teamName={selectedTeam.name} />
           </div>
-        </Modal>
+        </div>
       )}
     </div>
   );

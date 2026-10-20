@@ -48,6 +48,19 @@ export interface Player {
   avatarUrl?: string;
 }
 
+export interface SquadPlayer {
+  id: string;
+  name: string;
+  team: string;
+  posicion: 'Portero' | 'Defensa' | 'Medio' | 'Delantero';
+  age: number;
+  matchesPlayed: number;
+  goals: number;
+  assists: number;
+  saves?: number;
+  avatarUrl?: string;
+}
+
 export interface Team {
   id: string;
   name: string;

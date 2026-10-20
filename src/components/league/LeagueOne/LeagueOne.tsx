@@ -59,7 +59,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
 
       <div className="p-2">
         <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left border-collapse min-w-[700px]">
+          <table className="w-full text-left border-collapse min-w-175">
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-800 bg-[#0A4D1A] dark:bg-slate-900/50 text-[11px] font-extrabold uppercase text-white dark:text-slate-400 tracking-wider">
                 <th className="py-3 px-3">Posición</th>

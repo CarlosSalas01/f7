@@ -1,0 +1,900 @@
+[
+  {
+    "nombreCompleto": "David Raya",
+    "equipo": "Arsenal",
+    "posicion": "Portero",
+    "edad": 30,
+    "partidosJugados": 38,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 114
+  },
+  {
+    "nombreCompleto": "William Saliba",
+    "equipo": "Arsenal",
+    "posicion": "Defensa",
+    "edad": 25,
+    "partidosJugados": 36,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Jurrien Timber",
+    "equipo": "Arsenal",
+    "posicion": "Defensa",
+    "edad": 23,
+    "partidosJugados": 4,
+    "goles": 0,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Riccardo Calafiori",
+    "equipo": "Arsenal",
+    "posicion": "Defensa",
+    "edad": 22,
+    "partidosJugados": 34,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Gabriel Magalhaes",
+    "equipo": "Arsenal",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 35,
+    "goles": 4,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Ben White",
+    "equipo": "Arsenal",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 33,
+    "goles": 1,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Declan Rice",
+    "equipo": "Arsenal",
+    "posicion": "Medio",
+    "edad": 26,
+    "partidosJugados": 34,
+    "goles": 5,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Martin Odegaard",
+    "equipo": "Arsenal",
+    "posicion": "Medio",
+    "edad": 26,
+    "partidosJugados": 32,
+    "goles": 9,
+    "asistencias": 11
+  },
+  {
+    "nombreCompleto": "Mikel Merino",
+    "equipo": "Arsenal",
+    "posicion": "Medio",
+    "edad": 28,
+    "partidosJugados": 35,
+    "goles": 6,
+    "asistencias": 10
+  },
+  {
+    "nombreCompleto": "Bruno Guimaraes",
+    "equipo": "Arsenal",
+    "posicion": "Medio",
+    "edad": 26,
+    "partidosJugados": 30,
+    "goles": 7,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Bukayo Saka",
+    "equipo": "Arsenal",
+    "posicion": "Delantero",
+    "edad": 24,
+    "partidosJugados": 31,
+    "goles": 12,
+    "asistencias": 10
+  },
+  {
+    "nombreCompleto": "Gabriel Martinelli",
+    "equipo": "Arsenal",
+    "posicion": "Delantero",
+    "edad": 24,
+    "partidosJugados": 30,
+    "goles": 10,
+    "asistencias": 7
+  },
+  {
+    "nombreCompleto": "Kai Havertz",
+    "equipo": "Arsenal",
+    "posicion": "Delantero",
+    "edad": 26,
+    "partidosJugados": 32,
+    "goles": 13,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Leandro Trossard",
+    "equipo": "Arsenal",
+    "posicion": "Delantero",
+    "edad": 30,
+    "partidosJugados": 29,
+    "goles": 8,
+    "asistencias": 6
+  },
+  {
+    "nombreCompleto": "Victor Gyokeres",
+    "equipo": "Arsenal",
+    "posicion": "Delantero",
+    "edad": 28,
+    "partidosJugados": 29,
+    "goles": 22,
+    "asistencias": 16
+  },
+  {
+    "nombreCompleto": "Noni Madueke",
+    "equipo": "Arsenal",
+    "posicion": "Delantero",
+    "edad": 23,
+    "partidosJugados": 31,
+    "goles": 8,
+    "asistencias": 4
+  },
+  {
+    "nombreCompleto": "Gianluigi Donnarumma",
+    "equipo": "Manchester City",
+    "posicion": "Portero",
+    "edad": 26,
+    "partidosJugados": 30,
+    "goles": 0,
+    "asistencias": 1,
+    "atajadas": 89
+  },
+  {
+    "nombreCompleto": "Ruben Dias",
+    "equipo": "Manchester City",
+    "posicion": "Defensa",
+    "edad": 29,
+    "partidosJugados": 34,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Josko Gvardiol",
+    "equipo": "Manchester City",
+    "posicion": "Defensa",
+    "edad": 24,
+    "partidosJugados": 35,
+    "goles": 4,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Marc Guehi",
+    "equipo": "Manchester City",
+    "posicion": "Defensa",
+    "edad": 24,
+    "partidosJugados": 31,
+    "goles": 3,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Matheus Nunes",
+    "equipo": "Manchester City",
+    "posicion": "Medio",
+    "edad": 27,
+    "partidosJugados": 34,
+    "goles": 4,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Vitor Reis",
+    "equipo": "Manchester City",
+    "posicion": "Medio",
+    "edad": 24,
+    "partidosJugados": 30,
+    "goles": 9,
+    "asistencias": 13
+  },
+  {
+    "nombreCompleto": "Phil Foden",
+    "equipo": "Manchester City",
+    "posicion": "Medio",
+    "edad": 31,
+    "partidosJugados": 36,
+    "goles": 5,
+    "asistencias": 9
+  },
+  {
+    "nombreCompleto": "Claudio Echeverri",
+    "equipo": "Manchester City",
+    "posicion": "Medio",
+    "edad": 19,
+    "partidosJugados": 29,
+    "goles": 7,
+    "asistencias": 10
+  },
+  {
+    "nombreCompleto": "Enzo Fernandez",
+    "equipo": "Manchester City",
+    "posicion": "Medio",
+    "edad": 24,
+    "partidosJugados": 30,
+    "goles": 5,
+    "asistencias": 11
+  },
+  {
+    "nombreCompleto": "Erling Haaland",
+    "equipo": "Manchester City",
+    "posicion": "Delantero",
+    "edad": 26,
+    "partidosJugados": 33,
+    "goles": 27,
+    "asistencias": 4
+  },
+  {
+    "nombreCompleto": "Jéremy Doku",
+    "equipo": "Manchester City",
+    "posicion": "Delantero",
+    "edad": 23,
+    "partidosJugados": 28,
+    "goles": 7,
+    "asistencias": 9
+  },
+  {
+    "nombreCompleto": "Omar Marmoush",
+    "equipo": "Manchester City",
+    "posicion": "Delantero",
+    "edad": 26,
+    "partidosJugados": 30,
+    "goles": 11,
+    "asistencias": 6
+  },
+
+  {
+    "nombreCompleto": "Sam Lammens",
+    "equipo": "Manchester United",
+    "posicion": "Portero",
+    "edad": 26,
+    "partidosJugados": 30,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 110
+  },
+  {
+    "nombreCompleto": "Matthijs de Ligt",
+    "equipo": "Manchester United",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 33,
+    "goles": 2,
+    "asistencias": 0
+  },
+  {
+    "nombreCompleto": "Lisandro Martinez",
+    "equipo": "Manchester United",
+    "posicion": "Defensa",
+    "edad": 28,
+    "partidosJugados": 27,
+    "goles": 1,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Diogo Dalot",
+    "equipo": "Manchester United",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 35,
+    "goles": 2,
+    "asistencias": 4
+  },
+  {
+    "nombreCompleto": "Casemiro",
+    "equipo": "Manchester United",
+    "posicion": "Medio",
+    "edad": 34,
+    "partidosJugados": 29,
+    "goles": 3,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Kobbie Mainoo",
+    "equipo": "Manchester United",
+    "posicion": "Medio",
+    "edad": 21,
+    "partidosJugados": 30,
+    "goles": 4,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Bruno Fernandes",
+    "equipo": "Manchester United",
+    "posicion": "Medio",
+    "edad": 32,
+    "partidosJugados": 36,
+    "goles": 10,
+    "asistencias": 12
+  },
+  {
+    "nombreCompleto": "Amad Diallo",
+    "equipo": "Manchester United",
+    "posicion": "Delantero",
+    "edad": 23,
+    "partidosJugados": 29,
+    "goles": 8,
+    "asistencias": 7
+  },
+  {
+    "nombreCompleto": "Alejandro Garnacho",
+    "equipo": "Manchester United",
+    "posicion": "Delantero",
+    "edad": 21,
+    "partidosJugados": 35,
+    "goles": 9,
+    "asistencias": 6
+  },
+  {
+    "nombreCompleto": "Rasmus Hojlund",
+    "equipo": "Manchester United",
+    "posicion": "Delantero",
+    "edad": 23,
+    "partidosJugados": 33,
+    "goles": 15,
+    "asistencias": 3
+  },
+
+  {
+    "nombreCompleto": "Guglielmo Vicario",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Portero",
+    "edad": 30,
+    "partidosJugados": 36,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 121
+  },
+  {
+    "nombreCompleto": "Cristian Romero",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Defensa",
+    "edad": 28,
+    "partidosJugados": 31,
+    "goles": 3,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Micky van de Ven",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Defensa",
+    "edad": 25,
+    "partidosJugados": 30,
+    "goles": 1,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Pedro Porro",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 35,
+    "goles": 3,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Destiny Udogie",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Defensa",
+    "edad": 23,
+    "partidosJugados": 28,
+    "goles": 2,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Yves Bissouma",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Medio",
+    "edad": 30,
+    "partidosJugados": 32,
+    "goles": 2,
+    "asistencias": 3
+  },
+  {
+    "nombreCompleto": "James Maddison",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Medio",
+    "edad": 29,
+    "partidosJugados": 30,
+    "goles": 8,
+    "asistencias": 11
+  },
+  {
+    "nombreCompleto": "Dejan Kulusevski",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Medio",
+    "edad": 26,
+    "partidosJugados": 34,
+    "goles": 7,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Brennan Johnson",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Delantero",
+    "edad": 25,
+    "partidosJugados": 31,
+    "goles": 10,
+    "asistencias": 4
+  },
+  {
+    "nombreCompleto": "Son Heung-min",
+    "equipo": "Tottenham Hotspur",
+    "posicion": "Delantero",
+    "edad": 34,
+    "partidosJugados": 33,
+    "goles": 16,
+    "asistencias": 10
+  },
+
+  {
+    "nombreCompleto": "Nick Pope",
+    "equipo": "Newcastle United",
+    "posicion": "Portero",
+    "edad": 34,
+    "partidosJugados": 31,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 109
+  },
+  {
+    "nombreCompleto": "Kieran Trippier",
+    "equipo": "Newcastle United",
+    "posicion": "Defensa",
+    "edad": 36,
+    "partidosJugados": 29,
+    "goles": 1,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Sven Botman",
+    "equipo": "Newcastle United",
+    "posicion": "Defensa",
+    "edad": 26,
+    "partidosJugados": 28,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Dan Burn",
+    "equipo": "Newcastle United",
+    "posicion": "Defensa",
+    "edad": 34,
+    "partidosJugados": 33,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Bruno Guimaraes",
+    "equipo": "Newcastle United",
+    "posicion": "Medio",
+    "edad": 29,
+    "partidosJugados": 36,
+    "goles": 5,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Sandro Tonali",
+    "equipo": "Newcastle United",
+    "posicion": "Medio",
+    "edad": 26,
+    "partidosJugados": 30,
+    "goles": 3,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Joelinton",
+    "equipo": "Newcastle United",
+    "posicion": "Medio",
+    "edad": 30,
+    "partidosJugados": 29,
+    "goles": 6,
+    "asistencias": 4
+  },
+  {
+    "nombreCompleto": "Anthony Gordon",
+    "equipo": "Newcastle United",
+    "posicion": "Delantero",
+    "edad": 25,
+    "partidosJugados": 35,
+    "goles": 11,
+    "asistencias": 9
+  },
+  {
+    "nombreCompleto": "Harvey Barnes",
+    "equipo": "Newcastle United",
+    "posicion": "Delantero",
+    "edad": 28,
+    "partidosJugados": 30,
+    "goles": 8,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Alexander Isak",
+    "equipo": "Newcastle United",
+    "posicion": "Delantero",
+    "edad": 27,
+    "partidosJugados": 32,
+    "goles": 22,
+    "asistencias": 5
+  },
+
+  {
+    "nombreCompleto": "Mark Flekken",
+    "equipo": "Brentford",
+    "posicion": "Portero",
+    "edad": 33,
+    "partidosJugados": 37,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 136
+  },
+  {
+    "nombreCompleto": "Nathan Collins",
+    "equipo": "Brentford",
+    "posicion": "Defensa",
+    "edad": 25,
+    "partidosJugados": 36,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Ben Mee",
+    "equipo": "Brentford",
+    "posicion": "Defensa",
+    "edad": 37,
+    "partidosJugados": 24,
+    "goles": 1,
+    "asistencias": 0
+  },
+  {
+    "nombreCompleto": "Kristoffer Ajer",
+    "equipo": "Brentford",
+    "posicion": "Defensa",
+    "edad": 28,
+    "partidosJugados": 29,
+    "goles": 1,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Christian Norgaard",
+    "equipo": "Brentford",
+    "posicion": "Medio",
+    "edad": 32,
+    "partidosJugados": 31,
+    "goles": 4,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Vitaly Janelt",
+    "equipo": "Brentford",
+    "posicion": "Medio",
+    "edad": 28,
+    "partidosJugados": 32,
+    "goles": 3,
+    "asistencias": 3
+  },
+  {
+    "nombreCompleto": "Mathias Jensen",
+    "equipo": "Brentford",
+    "posicion": "Medio",
+    "edad": 30,
+    "partidosJugados": 29,
+    "goles": 4,
+    "asistencias": 6
+  },
+  {
+    "nombreCompleto": "Kevin Schade",
+    "equipo": "Brentford",
+    "posicion": "Delantero",
+    "edad": 25,
+    "partidosJugados": 27,
+    "goles": 7,
+    "asistencias": 3
+  },
+  {
+    "nombreCompleto": "Yoane Wissa",
+    "equipo": "Brentford",
+    "posicion": "Delantero",
+    "edad": 30,
+    "partidosJugados": 34,
+    "goles": 15,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Bryan Mbeumo",
+    "equipo": "Brentford",
+    "posicion": "Delantero",
+    "edad": 27,
+    "partidosJugados": 35,
+    "goles": 18,
+    "asistencias": 8
+  },
+
+  {
+    "nombreCompleto": "Alisson Becker",
+    "equipo": "Liverpool",
+    "posicion": "Portero",
+    "edad": 33,
+    "partidosJugados": 34,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 98
+  },
+  {
+    "nombreCompleto": "Virgil van Dijk",
+    "equipo": "Liverpool",
+    "posicion": "Defensa",
+    "edad": 35,
+    "partidosJugados": 37,
+    "goles": 4,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Ibrahima Konate",
+    "equipo": "Liverpool",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 33,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Andrew Robertson",
+    "equipo": "Liverpool",
+    "posicion": "Defensa",
+    "edad": 32,
+    "partidosJugados": 30,
+    "goles": 1,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Alexis Mac Allister",
+    "equipo": "Liverpool",
+    "posicion": "Medio",
+    "edad": 28,
+    "partidosJugados": 35,
+    "goles": 6,
+    "asistencias": 7
+  },
+  {
+    "nombreCompleto": "Ryan Gravenberch",
+    "equipo": "Liverpool",
+    "posicion": "Medio",
+    "edad": 25,
+    "partidosJugados": 34,
+    "goles": 4,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Dominik Szoboszlai",
+    "equipo": "Liverpool",
+    "posicion": "Medio",
+    "edad": 26,
+    "partidosJugados": 32,
+    "goles": 7,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Luis Diaz",
+    "equipo": "Liverpool",
+    "posicion": "Delantero",
+    "edad": 30,
+    "partidosJugados": 34,
+    "goles": 13,
+    "asistencias": 6
+  },
+  {
+    "nombreCompleto": "Cody Gakpo",
+    "equipo": "Liverpool",
+    "posicion": "Delantero",
+    "edad": 27,
+    "partidosJugados": 31,
+    "goles": 12,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Mohamed Salah",
+    "equipo": "Liverpool",
+    "posicion": "Delantero",
+    "edad": 34,
+    "partidosJugados": 36,
+    "goles": 24,
+    "asistencias": 14
+  },
+
+  {
+    "nombreCompleto": "Emiliano Martinez",
+    "equipo": "Aston Villa",
+    "posicion": "Portero",
+    "edad": 34,
+    "partidosJugados": 38,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 123
+  },
+  {
+    "nombreCompleto": "Ezri Konsa",
+    "equipo": "Aston Villa",
+    "posicion": "Defensa",
+    "edad": 29,
+    "partidosJugados": 34,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Pau Torres",
+    "equipo": "Aston Villa",
+    "posicion": "Defensa",
+    "edad": 30,
+    "partidosJugados": 33,
+    "goles": 1,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Lucas Digne",
+    "equipo": "Aston Villa",
+    "posicion": "Defensa",
+    "edad": 33,
+    "partidosJugados": 32,
+    "goles": 1,
+    "asistencias": 7
+  },
+  {
+    "nombreCompleto": "Boubacar Kamara",
+    "equipo": "Aston Villa",
+    "posicion": "Medio",
+    "edad": 27,
+    "partidosJugados": 30,
+    "goles": 2,
+    "asistencias": 3
+  },
+  {
+    "nombreCompleto": "Youri Tielemans",
+    "equipo": "Aston Villa",
+    "posicion": "Medio",
+    "edad": 30,
+    "partidosJugados": 35,
+    "goles": 6,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "John McGinn",
+    "equipo": "Aston Villa",
+    "posicion": "Medio",
+    "edad": 32,
+    "partidosJugados": 34,
+    "goles": 4,
+    "asistencias": 6
+  },
+  {
+    "nombreCompleto": "Morgan Rogers",
+    "equipo": "Aston Villa",
+    "posicion": "Delantero",
+    "edad": 24,
+    "partidosJugados": 33,
+    "goles": 9,
+    "asistencias": 7
+  },
+  {
+    "nombreCompleto": "Leon Bailey",
+    "equipo": "Aston Villa",
+    "posicion": "Delantero",
+    "edad": 29,
+    "partidosJugados": 31,
+    "goles": 10,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Ollie Watkins",
+    "equipo": "Aston Villa",
+    "posicion": "Delantero",
+    "edad": 31,
+    "partidosJugados": 35,
+    "goles": 19,
+    "asistencias": 9
+  },
+
+  {
+    "nombreCompleto": "Alphonse Areola",
+    "equipo": "West Ham",
+    "posicion": "Portero",
+    "edad": 34,
+    "partidosJugados": 36,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 127
+  },
+  {
+    "nombreCompleto": "Max Kilman",
+    "equipo": "West Ham",
+    "posicion": "Defensa",
+    "edad": 30,
+    "partidosJugados": 35,
+    "goles": 2,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Jean-Clair Todibo",
+    "equipo": "West Ham",
+    "posicion": "Defensa",
+    "edad": 27,
+    "partidosJugados": 32,
+    "goles": 1,
+    "asistencias": 1
+  },
+  {
+    "nombreCompleto": "Aaron Wan-Bissaka",
+    "equipo": "West Ham",
+    "posicion": "Defensa",
+    "edad": 29,
+    "partidosJugados": 33,
+    "goles": 1,
+    "asistencias": 4
+  },
+  {
+    "nombreCompleto": "Edson Alvarez",
+    "equipo": "West Ham",
+    "posicion": "Medio",
+    "edad": 29,
+    "partidosJugados": 31,
+    "goles": 3,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Tomas Soucek",
+    "equipo": "West Ham",
+    "posicion": "Medio",
+    "edad": 32,
+    "partidosJugados": 34,
+    "goles": 6,
+    "asistencias": 2
+  },
+  {
+    "nombreCompleto": "Lucas Paqueta",
+    "equipo": "West Ham",
+    "posicion": "Medio",
+    "edad": 29,
+    "partidosJugados": 29,
+    "goles": 7,
+    "asistencias": 8
+  },
+  {
+    "nombreCompleto": "Mohammed Kudus",
+    "equipo": "West Ham",
+    "posicion": "Delantero",
+    "edad": 26,
+    "partidosJugados": 32,
+    "goles": 11,
+    "asistencias": 6
+  },
+  {
+    "nombreCompleto": "Crysencio Summerville",
+    "equipo": "West Ham",
+    "posicion": "Delantero",
+    "edad": 25,
+    "partidosJugados": 30,
+    "goles": 8,
+    "asistencias": 5
+  },
+  {
+    "nombreCompleto": "Jarrod Bowen",
+    "equipo": "West Ham",
+    "posicion": "Delantero",
+    "edad": 30,
+    "partidosJugados": 34,
+    "goles": 15,
+    "asistencias": 9
+  }
+]

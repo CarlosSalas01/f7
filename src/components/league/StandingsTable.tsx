@@ -42,7 +42,7 @@ export const StandingsTable: React.FC = () => {
         {/* Main Standings Table */}
         <div className="lg:col-span-2 white-card p-4 sm:p-6 overflow-hidden">
           <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
-            <table className="w-full text-left border-collapse min-w-[550px]">
+            <table className="w-full text-left border-collapse min-w-137">
               <thead>
                 <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-[11px] font-extrabold uppercase text-slate-500 dark:text-slate-400 tracking-wider">
                   <th className="py-3 px-3">#</th>
