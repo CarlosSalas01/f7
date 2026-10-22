@@ -63,6 +63,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-800 bg-[#0A4D1A] dark:bg-slate-900/50 text-[11px] font-extrabold uppercase text-white dark:text-slate-400 tracking-wider">
                 <th className="py-3 px-3">Posición</th>
+                
                 <th className="py-3 px-4">Equipo</th>
                 {columns.map(({ key, title }) => (
                   <th key={key} title={title} className="py-3 px-2 text-center">
@@ -77,7 +78,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-xs">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-base">
               {standings.map((team, idx) => (
                 <tr
                   key={team.name}
@@ -87,7 +88,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
                 >
                   <td className="py-3 px-3">
                     <span
-                      className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-[11px] ${
+                      className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-base ${
                         idx === 0
                           ? 'bg-amber-400 text-[#111827] font-black'
                           : idx < PLAYOFF_SPOTS
@@ -99,7 +100,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
                     </span>
                   </td>
                   <td className="py-3 px-4">
-                    <div className="flex items-center gap-3 font-extrabold text-[#111827] dark:text-white">
+                    <div className="flex items-center gap-3 font-extrabold text-base text-[#111827] dark:text-white">
                       {team.logo ? (
                         <img
                           src={team.logo}
@@ -116,14 +117,14 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
                       <span>{team.name}</span>
                     </div>
                   </td>
-                  <td className="py-3 px-2 text-center font-mono text-slate-600 dark:text-slate-400">{team.played}</td>
-                  <td className="py-3 px-2 text-center font-mono font-bold text-[#0A4D1A] dark:text-[#2FE85F]">
+                  <td className="py-3 px-2 text-center font-mono text-base text-slate-600 dark:text-slate-400">{team.played}</td>
+                  <td className="py-3 px-2 text-center font-mono text-base font-bold text-[#0A4D1A] dark:text-[#2FE85F]">
                     {team.wins}
                   </td>
-                  <td className="py-3 px-2 text-center font-mono text-slate-500 dark:text-slate-400">{team.draws}</td>
-                  <td className="py-3 px-2 text-center font-mono text-rose-600 dark:text-rose-400">{team.losses}</td>
-                  <td className="py-3 px-2 text-center font-mono text-slate-600 dark:text-slate-400">{team.goalsFor}</td>
-                  <td className="py-3 px-2 text-center font-mono text-slate-600 dark:text-slate-400">
+                  <td className="py-3 px-2 text-center font-mono text-base text-slate-500 dark:text-slate-400">{team.draws}</td>
+                  <td className="py-3 px-2 text-center font-mono text-base text-rose-600 dark:text-rose-400">{team.losses}</td>
+                  <td className="py-3 px-2 text-center font-mono text-base text-slate-600 dark:text-slate-400">{team.goalsFor}</td>
+                  <td className="py-3 px-2 text-center font-mono text-base text-slate-600 dark:text-slate-400">
                     {team.goalsAgainst}
                   </td>
                   <td className="py-3 px-2 text-center font-mono font-bold text-slate-900 dark:text-slate-100">
@@ -138,7 +139,7 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
           </table>
         </div>
 
-        <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-1 text-[11px] text-slate-500 dark:text-slate-400">
+        <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-1 text-base text-slate-500 dark:text-slate-400">
           {[...columns, { key: 'PTS', title: 'Puntos' }].map(({ key, title }) => (
             <div key={key} className="flex gap-1">
               <dt className="font-bold text-slate-700 dark:text-slate-300">{key}:</dt>

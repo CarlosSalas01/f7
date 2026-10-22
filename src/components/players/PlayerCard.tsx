@@ -74,7 +74,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
     >
       {/* LEFT: Photo + team-color bg */}
       <div
-        className="relative w-[180px] flex-shrink-0 overflow-hidden"
+        className="relative w-[38%] max-w-[150px] min-w-[120px] flex-shrink-0 overflow-hidden"
         style={{
           background: `linear-gradient(135deg, ${primaryColor}cc 0%, ${primaryColor}44 100%)`,
         }}
@@ -109,7 +109,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
       </div>
 
       {/* RIGHT: Info panel */}
-      <div className="flex flex-1 flex-col justify-center gap-1.5 px-5">
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 px-4">
         {/* JUGADOR label */}
         <span className="text-[10px] leading-none font-bold tracking-[0.18em] text-slate-400 uppercase">
           <h5
@@ -129,7 +129,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
         </h3>
 
         {/* Team badge + position */}
-        <div className="mt-0.5 flex items-center gap-3">
+        <div className="mt-0.5 flex items-center gap-2">
           {/* Team badge */}
           <div
             className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-extrabold text-white shadow-sm"
@@ -150,7 +150,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
 
           {/* Position */}
           <span
-            className="text-[11px] font-bold tracking-widest uppercase"
+            className="text-[11px] font-bold tracking-widest whitespace-nowrap uppercase"
             style={{ color: positionStyle.text }}
           >
             {player.posicion}

@@ -59,10 +59,8 @@ export const TeamGrid: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSelectedTeam(null);
     };
-    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedTeam]);
@@ -70,11 +68,39 @@ export const TeamGrid: React.FC = () => {
   const visibleTeams =
     activeLeague === ALL ? allTeams : allTeams.filter((t) => t.league === activeLeague);
 
+  // Rendered inline (not fixed) so the app sidebar stays visible
+  if (selectedTeam) {
+    return (
+      <div className="animate-fadeIn space-y-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <button
+            type="button"
+            onClick={() => setSelectedTeam(null)}
+            className="flex w-fit cursor-pointer items-center gap-2 rounded-xl border border-[#2FE85F]/30 bg-white px-4 py-2.5 text-xs font-extrabold text-[#05AD31] transition-colors hover:bg-[#DCEFE1] dark:border-slate-700 dark:bg-slate-900 dark:text-[#DCEFE1] dark:hover:bg-slate-800"
+          >
+            <ArrowLeft className="h-4 w-4" /> Volver a Equipos
+          </button>
+
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p className="text-xs font-bold text-[#111827] dark:text-white">
+              Capitán: {selectedTeam.captainName} · Teléfono: {selectedTeam.captainPhone}
+            </p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              {squad.length} jugadores registrados · Temporada {SEASON}
+            </p>
+          </div>
+        </div>
+
+        <PlayersView teamName={selectedTeam.name} />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col items-start justify-between gap-4 px-2 pb-6 sm:flex-row sm:items-center">
-        <div>
+      <div className="flex flex-col gap-4 px-2 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="lg:shrink-0">
           <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
             {/* <Users className="h-6 w-6 text-emerald-700" /> */}
             Equipos
@@ -83,27 +109,27 @@ export const TeamGrid: React.FC = () => {
             Directorio oficial de capitanes, números de camisas y registros disciplinarios
           </p>
         </div>
-      </div>
 
-      {/* League filter */}
-      <div className="my-8 flex flex-wrap items-center gap-2 text-xs">
-        {[...leagues.map((l) => l.name), ALL].map((league) => (
-          <button
-            key={league}
-            onClick={() => setActiveLeague(league)}
-            className={`rounded-xl px-4 py-2 text-sm font-bold transition-colors cursor-pointer ${
-              activeLeague === league
-                ? 'bg-[#05AD31] text-white shadow-sm font-extrabold border border-[#2FE85F]/40'
-                : 'text-[#05AD31] dark:text-[#DCEFE1] hover:bg-[#DCEFE1] dark:hover:bg-[#05AD31]/50'
-            }`}
-          >
-            {league}
-          </button>
-        ))}
+        {/* League filter (right aligned) */}
+        <div className="flex flex-wrap items-center gap-2 text-xs lg:ml-auto lg:justify-end">
+          {[...leagues.map((l) => l.name), ALL].map((league) => (
+            <button
+              key={league}
+              onClick={() => setActiveLeague(league)}
+              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-bold transition-colors ${
+                activeLeague === league
+                  ? 'border border-[#2FE85F]/40 bg-[#05AD31] font-extrabold text-white shadow-sm'
+                  : 'text-[#05AD31] hover:bg-[#DCEFE1] dark:text-[#DCEFE1] dark:hover:bg-[#05AD31]/50'
+              }`}
+            >
+              {league}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Grid of Team Cards */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6">
         {visibleTeams.map((team) => {
           const { position } = team;
           const isLeader = position === 1;
@@ -136,7 +162,7 @@ export const TeamGrid: React.FC = () => {
               </div>
 
               <div className="flex flex-col items-center gap-3">
-                <h3 className="font-display text-xl font-black text-[#111827] dark:text-white uppercase">
+                <h3 className="font-display text-xl font-black text-[#111827] uppercase dark:text-white">
                   {team.name}
                 </h3>
                 {isLeader && (
@@ -144,23 +170,35 @@ export const TeamGrid: React.FC = () => {
                     <Crown className="h-4 w-4" /> Líder
                   </span>
                 )}
-                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Capitán: {team.captainName}</p>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  Capitán: {team.captainName}
+                </p>
               </div>
 
-              <div className="grid grid-cols-3 divide-x divide-slate-200 dark:divide-slate-800 text-center">
+              <div className="grid grid-cols-3 divide-x divide-slate-200 text-center dark:divide-slate-800">
                 <div>
                   <span className="block text-3xl font-black text-[#111827] dark:text-white">
                     {team.playersCount}
                   </span>
-                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Jugadores</span>
+                  <span className="text-xs font-semibold text-slate-500 uppercase dark:text-slate-400">
+                    Jugadores
+                  </span>
                 </div>
                 <div>
-                  <span className="block text-3xl font-black text-[#111827] dark:text-white">{team.points}</span>
-                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Puntos</span>
+                  <span className="block text-3xl font-black text-[#111827] dark:text-white">
+                    {team.points}
+                  </span>
+                  <span className="text-xs font-semibold text-slate-500 uppercase dark:text-slate-400">
+                    Puntos
+                  </span>
                 </div>
                 <div>
-                  <span className="block text-3xl font-black text-[#111827] dark:text-white">#{position}</span>
-                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Posición</span>
+                  <span className="block text-3xl font-black text-[#111827] dark:text-white">
+                    #{position}
+                  </span>
+                  <span className="text-xs font-semibold text-slate-500 uppercase dark:text-slate-400">
+                    Posición
+                  </span>
                 </div>
               </div>
 
@@ -181,7 +219,7 @@ export const TeamGrid: React.FC = () => {
 
               <button
                 type="button"
-                className="mt-auto flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#2FE85F]/30 bg-[#05AD31] py-3 text-sm font-bold text-white transition-all hover:bg-[#078328] hover:text-white hover:border-[#2FE85F]"
+                className="mt-auto flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#2FE85F]/30 bg-[#05AD31] py-3 text-sm font-bold text-white transition-all hover:border-[#2FE85F] hover:bg-[#078328] hover:text-white"
               >
                 Ver plantilla
                 {/* <ArrowRight className="w-4 h-4" /> */}
@@ -190,34 +228,6 @@ export const TeamGrid: React.FC = () => {
           );
         })}
       </div>
-
-      {/* Roster Overlay (fullscreen players view) */}
-      {selectedTeam && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-[#f4f8f5] dark:bg-[#111827] animate-fadeIn">
-          <div className="mx-auto w-full max-w-7xl space-y-6 p-4 sm:p-6 lg:p-10">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                type="button"
-                onClick={() => setSelectedTeam(null)}
-                className="flex w-fit cursor-pointer items-center gap-2 rounded-xl border border-[#2FE85F]/30 bg-white px-4 py-2.5 text-xs font-extrabold text-[#05AD31] transition-colors hover:bg-[#DCEFE1] dark:border-slate-700 dark:bg-slate-900 dark:text-[#DCEFE1] dark:hover:bg-slate-800"
-              >
-                <ArrowLeft className="h-4 w-4" /> Volver a Equipos
-              </button>
-
-              <div className="flex flex-col gap-1 sm:items-end">
-                <p className="text-xs font-bold text-[#111827] dark:text-white">
-                  Capitán: {selectedTeam.captainName} · Teléfono: {selectedTeam.captainPhone}
-                </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
-                  {squad.length} jugadores registrados · Temporada {SEASON}
-                </p>
-              </div>
-            </div>
-
-            <PlayersView teamName={selectedTeam.name} />
-          </div>
-        </div>
-      )}
     </div>
   );
 };

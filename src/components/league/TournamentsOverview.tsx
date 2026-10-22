@@ -57,8 +57,8 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
   return (
     <div className="space-y-8 animate-fadeIn">
       {/* Header section */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-10">
+        <div className="lg:shrink-0">
           <h1 className="text-3xl font-extrabold text-[#0f172a] dark:text-white font-display">
             Torneos & Ligas
           </h1>
@@ -67,7 +67,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
 
         <button
           onClick={() => setIsNewTournamentModalOpen(true)}
-          className="px-5 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
+          className="lg:ml-auto px-5 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-sm rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
         >
           <div className="w-6 h-6 rounded-full bg-white text-[#05AD31] font-bold flex items-center justify-center">
             <Plus className="w-4 h-4" />
@@ -77,7 +77,7 @@ export const TournamentsOverview: React.FC<TournamentsOverviewProps> = ({ onNavi
       </div>
 
       {/* Quick Action Cards (3 items) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 sm:gap-6">
         {/* Card 1: Inscribir Equipo */}
         <div
           onClick={() => setIsRegisterTeamModalOpen(true)}

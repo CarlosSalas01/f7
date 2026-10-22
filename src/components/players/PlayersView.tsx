@@ -30,7 +30,7 @@ export const PlayersView: React.FC<PlayersViewProps> = ({ teamName, emptyMessage
 
   const pool = useMemo(
     () => (teamName ? allPlayers.filter((p) => p.team === teamName) : allPlayers),
-    [teamName],
+    [teamName]
   );
 
   const filtered = useMemo(() => {
@@ -49,8 +49,8 @@ export const PlayersView: React.FC<PlayersViewProps> = ({ teamName, emptyMessage
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col items-start justify-between gap-4 px-2 pb-2 sm:flex-row sm:items-center">
-        <div>
+      <div className="flex flex-col gap-4 px-2 pb-2 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="lg:shrink-0">
           <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
             {teamName ?? 'Jugadores'}
           </h1>
@@ -61,55 +61,58 @@ export const PlayersView: React.FC<PlayersViewProps> = ({ teamName, emptyMessage
           </p>
         </div>
 
-        {/* Search */}
-        <div className="relative w-full sm:w-72">
-          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
-          <input
-            id="player-search"
-            type="search"
-            placeholder="Buscar jugador, equipo…"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pr-4 pl-9 text-sm text-[#111827] transition placeholder:text-slate-400 focus:ring-2 focus:ring-[#2FE85F]/50 focus:outline-none dark:border-slate-700 dark:bg-[#162032] dark:text-white"
-          />
-        </div>
-      </div>
+        {/* Filters (right aligned) */}
+        <div className="flex flex-wrap items-center gap-3 lg:ml-auto lg:justify-end">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            {POSITIONS.map((pos) => {
+              const isActive = activePosition === pos;
+              const color = POSITION_BADGE_COLORS[pos];
+              return (
+                <button
+                  key={pos}
+                  id={`filter-pos-${pos}`}
+                  onClick={() => setActivePosition(pos)}
+                  className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-bold transition-all ${
+                    isActive
+                      ? 'text-white shadow-sm'
+                      : 'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
+                  style={
+                    isActive
+                      ? { backgroundColor: color, borderColor: color }
+                      : { color: color, border: `1px solid ${color}33` }
+                  }
+                >
+                  {pos}
+                </button>
+              );
+            })}
+          </div>
 
-      {/* Position filter pills */}
-      <div className="flex flex-wrap items-center gap-2 text-xs">
-        {POSITIONS.map((pos) => {
-          const isActive = activePosition === pos;
-          const color = POSITION_BADGE_COLORS[pos];
-          return (
-            <button
-              key={pos}
-              id={`filter-pos-${pos}`}
-              onClick={() => setActivePosition(pos)}
-              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-bold transition-all ${
-                isActive
-                  ? 'text-white shadow-sm'
-                  : 'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800'
-              }`}
-              style={
-                isActive
-                  ? { backgroundColor: color, borderColor: color }
-                  : { color: color, border: `1px solid ${color}33` }
-              }
-            >
-              {pos}
-            </button>
-          );
-        })}
-        <span className="ml-auto text-xs font-semibold text-slate-400">
-          {filtered.length} resultado{filtered.length !== 1 ? 's' : ''}
-        </span>
+          <div className="relative w-full sm:w-64">
+            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              id="player-search"
+              type="search"
+              placeholder="Buscar jugador, equipo…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pr-4 pl-9 text-sm text-[#111827] transition placeholder:text-slate-400 focus:ring-2 focus:ring-[#2FE85F]/50 focus:outline-none dark:border-slate-700 dark:bg-[#162032] dark:text-white"
+            />
+          </div>
+
+          <span className="text-xs font-semibold whitespace-nowrap text-slate-400">
+            {filtered.length} resultado{filtered.length !== 1 ? 's' : ''}
+          </span>
+        </div>
       </div>
 
       {/* Player cards grid */}
       {pool.length === 0 ? (
         <div className="py-20 text-center">
           <p className="text-sm text-slate-400">
-            {emptyMessage ?? 'La plantilla completa se encuentra en proceso de validación por la liga.'}
+            {emptyMessage ??
+              'La plantilla completa se encuentra en proceso de validación por la liga.'}
           </p>
         </div>
       ) : filtered.length === 0 ? (
@@ -117,7 +120,7 @@ export const PlayersView: React.FC<PlayersViewProps> = ({ teamName, emptyMessage
           <p className="text-sm text-slate-400">No se encontraron jugadores con ese criterio.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-3">
           {filtered.map((player) => (
             <PlayerCard key={player.id} player={player} onClick={(p) => setSelectedPlayer(p)} />
           ))}

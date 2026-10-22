@@ -61,6 +61,9 @@ const DEFAULT_LEAGUE_TWO = 'League Two';
 const DEFAULT_LEAGUE_THREE = 'League Three';
 const LEAGUES = [DEFAULT_LEAGUE_ONE, DEFAULT_LEAGUE_TWO, DEFAULT_LEAGUE_THREE];
 const ALL_LEAGUES = 'Todas las ligas';
+const CANCHA1 = 'Cancha 1';
+const CANCHA2 = 'Cancha 2';
+const CANCHA3 = 'Cancha 3';
 
 const leagueTeams: Record<string, TeamInfo[]> = {
   [DEFAULT_LEAGUE_ONE]: [
@@ -265,7 +268,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                   >
                     <div className="mb-5 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
                       <span>{time} hrs</span>
-                      <span className="rounded-full bg-[#43bd63] dark:bg-[#0A4D1A]/60 px-2.5 py-0.5 text-white dark:text-[#2FE85F] font-medium border border-[#2FE85F]/20">
+                      <span className="rounded-full bg-[#042274] dark:bg-[#0A4D1A]/60 px-2.5 py-0.5 text-white dark:text-[#2FE85F] font-medium border border-[#2FE85F]/20">
                         Cancha {pitch}
                       </span>
                     </div>

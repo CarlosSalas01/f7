@@ -45,7 +45,7 @@ export function App() {
 
       {/* Main Content Panel */}
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        <main className="p-4 sm:p-6 lg:p-10 max-w-7xl w-full mx-auto space-y-6 sm:space-y-8">
+        <main className="p-4 sm:p-6 lg:p-8 2xl:px-12 max-w-[1920px] w-full mx-auto space-y-6 sm:space-y-8">
 
           {/* Tab 1: Tournaments (Main View from Screenshot) */}
           {activeTab === 'tournaments' && (
@@ -64,8 +64,8 @@ export function App() {
           {/* Tab 3: Fixtures & Canchas */}
           {activeTab === 'fixtures' && (
             <div className="space-y-4 animate-fadeIn">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 pb-6">
-                <div>
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-10 px-2 pb-6">
+                <div className="lg:shrink-0">
                   <h1 className="text-3xl font-extrabold text-[#111827] dark:text-white font-display flex items-center gap-2">
                     Canchas y fixture de partidos 
                     {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
@@ -77,7 +77,7 @@ export function App() {
 
                 <button
                   onClick={() => handleOpenBookingModal()}
-                  className="px-6 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
+                  className="lg:ml-auto px-6 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
                 >
                   <CalendarPlus className="w-4 h-4" /> + Nueva Reserva
                 </button>
@@ -91,7 +91,7 @@ export function App() {
               />
 
               {/* Pitch Cards Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6">
                 {pitches.map((pitch) => (
                   <PitchCard
                     key={pitch.id}

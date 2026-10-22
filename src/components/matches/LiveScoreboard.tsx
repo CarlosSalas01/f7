@@ -128,135 +128,134 @@ export const LiveScoreboard: React.FC = () => {
 
   return (
     <div className="">
-      <div className="flex flex-col justify-between gap-4 px-2 pb-6 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
-            Resultados
-            {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
-          </h1>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            Visualiza los resultados de los partidos por liga, jornada y fecha
-          </p>
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="flex flex-col gap-4 px-2 lg:shrink-0">
+          <div>
+            <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
+              Resultados
+              {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
+            </h1>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+              Visualiza los resultados de los partidos por liga, jornada y fecha
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="white-card p-6">
-        <div className="mb-6 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center">
-          <div className="flex flex-wrap items-center gap-4 text-sm sm:gap-6">
-            {/* Filtro Liga */}
-            <div className="flex items-center gap-3">
-              <label
-                htmlFor="league-filter"
-                className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+        <div className="flex flex-wrap gap-4 text-sm sm:gap-6 lg:ml-auto lg:justify-end">
+          {/* Filtro Liga */}
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="league-filter"
+              className="shrink-0 font-extrabold text-slate-600 dark:text-slate-300"
+            >
+              Liga
+            </label>
+
+            <div className="relative inline-flex items-center">
+              <select
+                id="league-filter"
+                value={activeLeague}
+                onChange={(e) => setActiveLeague(e.target.value)}
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
               >
-                Liga
-              </label>
+                {leagueFilters.map((league) => (
+                  <option key={league} value={league}>
+                    {league}
+                  </option>
+                ))}
+              </select>
 
-              <div className="relative inline-flex items-center">
-                <select
-                  id="league-filter"
-                  value={activeLeague}
-                  onChange={(e) => setActiveLeague(e.target.value)}
-                  className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
-                >
-                  {leagueFilters.map((league) => (
-                    <option key={league} value={league}>
-                      {league}
-                    </option>
-                  ))}
-                </select>
-
-                <svg
-                  className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </div>
+              <svg
+                className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </div>
+          </div>
 
-            {/* Filtro Jornada */}
-            <div className="flex items-center gap-3">
-              <label
-                htmlFor="round-filter"
-                className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
+          {/* Filtro Jornada */}
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="round-filter"
+              className="shrink-0 font-extrabold text-slate-600 dark:text-slate-300"
+            >
+              Jornada
+            </label>
+
+            <div className="relative inline-flex items-center">
+              <select
+                id="round-filter"
+                value={activeRound}
+                onChange={(e) => setActiveRound(e.target.value)}
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
               >
-                Jornada
-              </label>
+                {roundFilters.map((round) => (
+                  <option key={round} value={round}>
+                    {round}
+                  </option>
+                ))}
+              </select>
 
-              <div className="relative inline-flex items-center">
-                <select
-                  id="round-filter"
-                  value={activeRound}
-                  onChange={(e) => setActiveRound(e.target.value)}
-                  className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
-                >
-                  {roundFilters.map((round) => (
-                    <option key={round} value={round}>
-                      {round}
-                    </option>
-                  ))}
-                </select>
-
-                <svg
-                  className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </div>
+              <svg
+                className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </div>
+          </div>
 
-            {/* Filtro Calendario / Fecha */}
-            <div className="flex items-center gap-3">
-              <label
-                htmlFor="date-filter"
-                className="shrink-0 font-bold text-slate-600 dark:text-slate-300"
-              >
-                Fecha
-              </label>
+          {/* Filtro Calendario / Fecha */}
+          <div className="flex items-center gap-3">
+            <label
+              htmlFor="date-filter"
+              className="shrink-0 font-extrabold text-slate-600 dark:text-slate-300"
+            >
+              Fecha
+            </label>
 
-              <div className="relative inline-flex items-center">
-                <input
-                  id="date-filter"
-                  type="date"
-                  list="match-dates"
-                  value={selectedDate}
-                  onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-44 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
-                />
-                <datalist id="match-dates">
-                  {availableDates.map((date) => (
-                    <option key={date} value={date} />
-                  ))}
-                </datalist>
+            <div className="relative inline-flex items-center">
+              <input
+                id="date-filter"
+                type="date"
+                list="match-dates"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="w-44 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
+              />
+              <datalist id="match-dates">
+                {availableDates.map((date) => (
+                  <option key={date} value={date} />
+                ))}
+              </datalist>
 
-                {selectedDate && (
-                  <button
-                    type="button"
-                    onClick={() => setSelectedDate('')}
-                    title="Restablecer filtro de fecha"
-                    className="ml-1 cursor-pointer rounded-lg p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700"
-                  >
-                    <span className="text-xs font-bold">✕</span>
-                  </button>
-                )}
-              </div>
+              {selectedDate && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedDate('')}
+                  title="Restablecer filtro de fecha"
+                  className="ml-1 cursor-pointer rounded-lg p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-red-500 dark:hover:bg-slate-700"
+                >
+                  <span className="text-xs font-bold">✕</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
-
+      </div>
+      <div className="white-card p-6">
         {rounds.length > 0 ? (
           rounds.map(({ round, date, results }, index) => (
             <section key={round}>
