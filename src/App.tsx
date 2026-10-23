@@ -64,25 +64,6 @@ export function App() {
           {/* Tab 3: Fixtures & Canchas */}
           {activeTab === 'fixtures' && (
             <div className="space-y-4 animate-fadeIn">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-10 px-2 pb-6">
-                <div className="lg:shrink-0">
-                  <h1 className="text-3xl font-extrabold text-[#111827] dark:text-white font-display flex items-center gap-2">
-                    Canchas y fixture de partidos 
-                    {/* <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> */}
-                  </h1>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                    Administra las canchas del complejo, horarios y asignación de turnos
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => handleOpenBookingModal()}
-                  className="lg:ml-auto px-6 py-3 bg-[#05AD31] hover:bg-[#078328] text-white font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#2FE85F]/30 hover:border-[#2FE85F]"
-                >
-                  <CalendarPlus className="w-4 h-4" /> + Nueva Reserva
-                </button>
-              </div>
-
               {/* Interactive Pitch Visual Map */}
               <PitchVisualMap
                 pitches={pitches}

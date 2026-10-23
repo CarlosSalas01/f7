@@ -16,23 +16,16 @@ const TEAM_COLORS: Record<string, string> = Object.fromEntries(
 
 // Map team alias → logo file key
 const LOGO_KEY_MAP: Record<string, string> = {
-  'Man City': 'Manchester_city',
-  'Man United': 'Manchester_United',
+  'Manchester City': 'Manchester_city',
+  'Manchester United': 'Manchester_United',
   Tottenham: 'Tottenham',
   Newcastle: 'Newcastle',
   Arsenal: 'Arsenal',
   Liverpool: 'Liverpool',
-  Chelsea: 'Cheelsea',
+  Chelsea: 'Chelsea',
   'Aston Villa': 'Aston_Villa',
   Brentford: 'Brentford',
   'West Ham': 'West_Ham',
-};
-
-const POSITION_COLORS: Record<string, { bg: string; text: string }> = {
-  Portero: { bg: '#fef3c7', text: '#000' },
-  Defensa: { bg: '#dbeafe', text: '#000' },
-  Medio: { bg: '#dcfce7', text: '#000' },
-  Delantero: { bg: '#fee2e2', text: '#000' },
 };
 
 /** Returns the last name (or last two words if surname is short) */
@@ -59,48 +52,58 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
   const primaryColor = TEAM_COLORS[player.team] ?? '#05AD31';
   const logoKey = LOGO_KEY_MAP[player.team];
   const logoUrl = logoKey ? teamLogos[logoKey] : undefined;
-  const positionStyle = POSITION_COLORS[player.posicion] ?? { bg: '#f1f5f9', text: '#475569' };
 
   return (
     <article
       onClick={() => onClick?.(player)}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
-      onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick(player) : undefined}
-      className={`white-card flex h-[100px] overflow-hidden transition-all duration-200 select-none ${
-        onClick ? 'white-card-hover cursor-pointer' : ''
+      aria-label={onClick ? `Ver ficha de ${player.name}` : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onClick(player);
+              }
+            }
+          : undefined
+      }
+      className={`group flex min-h-28 overflow-hidden rounded-2xl border border-[#E1E8E2] bg-white transition-[border-color,box-shadow] duration-200 select-none dark:border-slate-700 dark:bg-slate-900 ${
+        onClick
+          ? 'cursor-pointer hover:border-[#0A4D1A]/40 hover:shadow-md focus-visible:ring-2 focus-visible:ring-[#0A4D1A] focus-visible:outline-none dark:hover:border-[#2FE85F]/50'
+          : ''
       }`}
       style={{ fontFamily: "'Manrope Variable', sans-serif" }}
     >
-      {/* LEFT: Photo + team-color bg */}
+      {/* Photo: fixed portrait tile, same treatment for every player */}
       <div
-        className="relative w-[38%] max-w-[150px] min-w-[120px] flex-shrink-0 overflow-hidden"
+        className="relative w-28 shrink-0 self-stretch overflow-hidden"
         style={{
           background: `linear-gradient(135deg, ${primaryColor}cc 0%, ${primaryColor}44 100%)`,
         }}
       >
-        {/* Faint watermark logo */}
         {logoUrl && (
           <img
             src={logoUrl}
             alt=""
             aria-hidden
-            className="pointer-events-none absolute inset-0 h-full w-full translate-x-8 scale-110 object-contain opacity-20"
+            className="pointer-events-none absolute inset-0 h-full w-full translate-x-4 scale-110 object-contain opacity-10"
           />
         )}
 
-        {/* Player photo or initials fallback */}
         {player.avatarUrl ? (
           <img
             src={player.avatarUrl}
-            alt={player.name}
-            className="absolute bottom-0 left-0 h-full w-auto object-cover object-top"
+            alt={`Foto de ${player.name}`}
+            className="absolute inset-0 h-full w-full object-cover object-top"
           />
         ) : (
-          <div className="absolute bottom-0 left-4 flex h-full items-end">
+          <div className="absolute inset-0 flex items-center justify-center">
             <div
-              className="mb-2 flex h-16 w-16 items-center justify-center rounded-2xl text-xl font-black text-white shadow-lg"
-              style={{ backgroundColor: `${primaryColor}` }}
+              className="flex h-14 w-14 items-center justify-center rounded-2xl text-lg font-black text-white shadow-md"
+              style={{ backgroundColor: primaryColor }}
+              aria-hidden
             >
               {getInitials(player.name)}
             </div>
@@ -108,55 +111,53 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
         )}
       </div>
 
-      {/* RIGHT: Info panel */}
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 px-4">
-        {/* JUGADOR label */}
-        <span className="text-[10px] leading-none font-bold tracking-[0.18em] text-slate-400 uppercase">
-          <h5
-            className="font-title leading-none text-[#111827] dark:text-white"
-            style={{ fontSize: 'clamp(0.6rem, 2.2vw, 1.15rem)', letterSpacing: '0.04em' }}
-          >
+      {/* Info */}
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 px-4 py-3">
+        <div className="min-w-0">
+          <p className="text-[11px] leading-tight font-bold tracking-[0.12em] text-[#647067] uppercase dark:text-slate-400">
             {getFirstName(player.name)}
-          </h5>
-        </span>
+          </p>
+          <h3 className="mt-0.5 text-xl leading-tight font-black tracking-tight wrap-break-word text-[#17211B] dark:text-white">
+            {getDisplayLastName(player.name)}
+          </h3>
+        </div>
 
-        {/* Big last-name */}
-        <h3
-          className="leading-none font-black text-[#111827] dark:text-white"
-          style={{ fontSize: 'clamp(1.1rem, 2.2vw, 1.6rem)', letterSpacing: '-0.03em' }}
-        >
-          {getDisplayLastName(player.name)}
-        </h3>
-
-        {/* Team badge + position */}
-        <div className="mt-0.5 flex items-center gap-2">
-          {/* Team badge */}
-          <div
-            className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-extrabold text-white shadow-sm"
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5">
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-extrabold tracking-wide text-white uppercase"
             style={{ backgroundColor: primaryColor }}
           >
             {logoUrl && (
-              <img
-                src={logoUrl}
-                alt={player.team}
-                className="h-4 w-4 flex-shrink-0 object-contain"
-              />
+              <img src={logoUrl} alt="" aria-hidden className="h-3.5 w-3.5 object-contain" />
             )}
-            <span className="tracking-wide uppercase">{player.team}</span>
-          </div>
-
-          {/* Divider */}
-          <span className="h-4 w-px bg-slate-300 dark:bg-slate-600" />
-
-          {/* Position */}
-          <span
-            className="text-[11px] font-bold tracking-widest whitespace-nowrap uppercase"
-            style={{ color: positionStyle.text }}
-          >
+            {player.team}
+          </span>
+          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold tracking-wide whitespace-nowrap text-[#17211B] uppercase dark:bg-slate-800 dark:text-slate-200">
             {player.posicion}
           </span>
         </div>
       </div>
+
+      {player.dorsal !== undefined && (
+        <div
+          className="flex w-16 shrink-0 flex-col items-center justify-center gap-0.5 border-l border-dashed border-[#E1E8E2] transition-colors group-hover:bg-[#F3F7F4] dark:border-slate-700 dark:group-hover:bg-slate-800/60"
+          role="group"
+          aria-label={`Dorsal ${player.dorsal}`}
+        >
+          <span
+            className="text-[9px] font-bold tracking-[0.16em] text-[#706464] uppercase dark:text-slate-400"
+            aria-hidden
+          >
+            N.º
+          </span>
+          <span
+            className="text-3xl leading-none font-black tracking-tighter text-[#000200] tabular-nums dark:text-[#2FE85F]"
+            aria-hidden
+          >
+            {player.dorsal}
+          </span>
+        </div>
+      )}
     </article>
   );
 };

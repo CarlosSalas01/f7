@@ -58,6 +58,9 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
       </div> */}
 
       <div className="p-2">
+        {/* <h2 className="my-3.5 text-2xl flex text-center justify-start font-extrabold font-stretch-expanded text-[#0A4D1A] dark:text-white mb-4">
+          League One
+        </h2> */}
         <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
           <table className="w-full text-left border-collapse min-w-175">
             <thead>
@@ -138,15 +141,16 @@ export const LeagueOne: React.FC<LeagueOneProps> = ({ onBack }) => {
             </tbody>
           </table>
         </div>
-
+        <div className="mt-6 flex justify-center">
         <dl className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-1 text-base text-slate-500 dark:text-slate-400">
           {[...columns, { key: 'PTS', title: 'Puntos' }].map(({ key, title }) => (
             <div key={key} className="flex gap-1">
-              <dt className="font-bold text-slate-700 dark:text-slate-300">{key}:</dt>
+              <dt className="font-bold text-emerald-700 dark:text-slate-300">{key}:</dt>
               <dd>{title}</dd>
             </div>
           ))}
         </dl>
+        </div>
       </div>
     </div>
   );

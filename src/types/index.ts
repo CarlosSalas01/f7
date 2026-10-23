@@ -59,6 +59,7 @@ export interface SquadPlayer {
   assists: number;
   saves?: number;
   avatarUrl?: string;
+  dorsal?: number;
 }
 
 export interface Team {

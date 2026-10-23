@@ -3,7 +3,7 @@ import { Team } from '../../types';
 import { leagues } from '../../services/leagueData';
 import { getSquad } from '../../services/playerData';
 import { PlayersView } from '../players/PlayersView';
-import { Crown, ArrowLeft } from 'lucide-react';
+import { Crown, ChevronRight } from 'lucide-react';
 import '@fontsource-variable/manrope';
 
 const SEASON = '2025/26';
@@ -72,24 +72,46 @@ export const TeamGrid: React.FC = () => {
   if (selectedTeam) {
     return (
       <div className="animate-fadeIn space-y-6">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <button
-            type="button"
-            onClick={() => setSelectedTeam(null)}
-            className="flex w-fit cursor-pointer items-center gap-2 rounded-xl border border-[#2FE85F]/30 bg-white px-4 py-2.5 text-xs font-extrabold text-[#05AD31] transition-colors hover:bg-[#DCEFE1] dark:border-slate-700 dark:bg-slate-900 dark:text-[#DCEFE1] dark:hover:bg-slate-800"
-          >
-            <ArrowLeft className="h-4 w-4" /> Volver a Equipos
-          </button>
+        <header className="space-y-4">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs font-semibold">
+            <button
+              type="button"
+              onClick={() => setSelectedTeam(null)}
+              className="cursor-pointer rounded text-[#647067] transition-colors hover:text-[#0A4D1A] focus-visible:ring-2 focus-visible:ring-[#0A4D1A] focus-visible:outline-none dark:text-slate-400 dark:hover:text-[#2FE85F]"
+            >
+              Equipos
+            </button>
+            <ChevronRight className="h-3.5 w-3.5 text-slate-400" aria-hidden />
+            <span aria-current="page" className="text-[#17211B] dark:text-white">
+              {selectedTeam.name}
+            </span>
+          </nav>
 
-          <div className="flex flex-col gap-1 sm:items-end">
-            <p className="text-xs font-bold text-[#111827] dark:text-white">
-              Capitán: {selectedTeam.captainName} · Teléfono: {selectedTeam.captainPhone}
-            </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              {squad.length} jugadores registrados · Temporada {SEASON}
-            </p>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+            <div className="lg:shrink-0">
+              <h1 className="font-display text-3xl font-extrabold text-[#17211B] dark:text-white">
+                Plantilla
+              </h1>
+              <p className="mt-1 text-sm text-[#647067] dark:text-slate-400">
+                Gestiona y consulta los jugadores de tu equipo
+              </p>
+            </div>
+
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-2 rounded-2xl border border-[#E1E8E2] bg-white px-5 py-3 text-xs sm:grid-cols-4 dark:border-slate-700 dark:bg-slate-900">
+              {[
+                ['Capitán', selectedTeam.captainName],
+                ['Teléfono', selectedTeam.captainPhone],
+                ['Temporada', SEASON],
+                ['Jugadores', String(squad.length)],
+              ].map(([label, value]) => (
+                <div key={label} className="min-w-0">
+                  <dt className="font-semibold text-[#647067] dark:text-slate-400">{label}</dt>
+                  <dd className="truncate font-bold text-[#17211B] dark:text-white">{value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-        </div>
+        </header>
 
         <PlayersView teamName={selectedTeam.name} />
       </div>

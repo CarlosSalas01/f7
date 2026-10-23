@@ -2,19 +2,11 @@ import React, { useMemo, useState } from 'react';
 import { PlayerCard } from './PlayerCard';
 import { allPlayers } from '../../services/playerData';
 import { SquadPlayer } from '../../types';
-import { Search } from 'lucide-react';
+import { ChevronDown, Search, X } from 'lucide-react';
 
 type Posicion = 'Todos' | 'Portero' | 'Defensa' | 'Medio' | 'Delantero';
 
 const POSITIONS: Posicion[] = ['Todos', 'Portero', 'Defensa', 'Medio', 'Delantero'];
-
-const POSITION_BADGE_COLORS: Record<string, string> = {
-  Todos: '#05AD31',
-  Portero: '#05AD31',
-  Defensa: '#05AD31',
-  Medio: '#05AD31',
-  Delantero: '#05AD31',
-};
 
 interface PlayersViewProps {
   /** Si se indica, el directorio se limita a la plantilla de ese equipo */
@@ -46,64 +38,117 @@ export const PlayersView: React.FC<PlayersViewProps> = ({ teamName, emptyMessage
     });
   }, [pool, search, activePosition]);
 
+  const hasActiveFilters = search.trim() !== '' || activePosition !== 'Todos';
+
+  const clearFilters = () => {
+    setSearch('');
+    setActivePosition('Todos');
+  };
+
+  const countByPosition = useMemo(() => {
+    const counts: Record<string, number> = { Todos: pool.length };
+    pool.forEach((p) => {
+      counts[p.posicion] = (counts[p.posicion] ?? 0) + 1;
+    });
+    return counts;
+  }, [pool]);
+
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col gap-4 px-2 pb-2 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-        <div className="lg:shrink-0">
-          <h1 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
-            {teamName ?? 'Jugadores'}
+    <div className="space-y-5">
+      {!teamName && (
+        <div className="px-2">
+          <h1 className="font-display text-3xl font-extrabold text-[#17211B] dark:text-white">
+            Jugadores
           </h1>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-            {teamName
-              ? `Plantilla oficial · ${pool.length} jugadores registrados`
-              : `Directorio completo de jugadores registrados en la liga · ${allPlayers.length} jugadores`}
+          <p className="mt-1 text-sm text-[#647067] dark:text-slate-400">
+            Directorio completo de jugadores registrados en la liga · {allPlayers.length} jugadores
           </p>
         </div>
+      )}
 
-        {/* Filters (right aligned) */}
-        <div className="flex flex-wrap items-center gap-3 lg:ml-auto lg:justify-end">
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            {POSITIONS.map((pos) => {
-              const isActive = activePosition === pos;
-              const color = POSITION_BADGE_COLORS[pos];
-              return (
-                <button
-                  key={pos}
-                  id={`filter-pos-${pos}`}
-                  onClick={() => setActivePosition(pos)}
-                  className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-bold transition-all ${
-                    isActive
-                      ? 'text-white shadow-sm'
-                      : 'bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800'
-                  }`}
-                  style={
-                    isActive
-                      ? { backgroundColor: color, borderColor: color }
-                      : { color: color, border: `1px solid ${color}33` }
-                  }
-                >
-                  {pos}
-                </button>
-              );
-            })}
+      {/* Toolbar: search + position filter + results */}
+      <div
+        role="search"
+        className="flex flex-col gap-3 rounded-2xl border border-[#E1E8E2] bg-white p-3 sm:flex-row sm:items-center dark:border-slate-700 dark:bg-slate-900"
+      >
+        <div className="relative min-w-0 flex-1">
+          <label htmlFor="player-search" className="sr-only">
+            Buscar jugador
+          </label>
+          <Search
+            className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400"
+            aria-hidden
+          />
+          <input
+            id="player-search"
+            type="search"
+            placeholder="Buscar jugador por nombre…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-xl border border-[#E1E8E2] bg-white py-2.5 pr-4 pl-9 text-sm text-[#17211B] transition-colors placeholder:text-slate-400 hover:border-[#2FE85F] focus:border-[#0A4D1A] focus:ring-2 focus:ring-[#2FE85F]/40 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+          />
+        </div>
+
+        <div className="relative inline-flex items-center sm:w-56">
+          <label htmlFor="position-filter" className="sr-only">
+            Filtrar por posición
+          </label>
+          <select
+            id="position-filter"
+            value={activePosition}
+            onChange={(e) => setActivePosition(e.target.value as Posicion)}
+            className={`w-full cursor-pointer appearance-none rounded-xl border bg-white py-2.5 pr-10 pl-4 text-sm font-bold transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] focus:ring-2 focus:ring-[#2FE85F]/40 dark:bg-slate-800 ${
+              activePosition === 'Todos'
+                ? 'border-[#E1E8E2] text-[#17211B] dark:border-slate-700 dark:text-white'
+                : 'border-[#0A4D1A] text-[#0A4D1A] dark:border-[#2FE85F] dark:text-[#2FE85F]'
+            }`}
+          >
+            {POSITIONS.map((pos) => (
+              <option key={pos} value={pos}>
+                {pos === 'Todos' ? 'Todas las posiciones' : pos} ({countByPosition[pos] ?? 0})
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            className="pointer-events-none absolute right-3 h-4 w-4 text-[#0A4D1A] dark:text-[#2FE85F]"
+            aria-hidden
+          />
+        </div>
+
+        {hasActiveFilters && (
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-sm font-bold text-[#0A4D1A] transition-colors hover:bg-[#DCEFE1] focus-visible:ring-2 focus-visible:ring-[#0A4D1A] focus-visible:outline-none dark:text-[#2FE85F] dark:hover:bg-[#0A4D1A]/40"
+          >
+            <X className="h-4 w-4" aria-hidden /> Limpiar
+          </button>
+        )}
+
+        <span
+          aria-live="polite"
+          className="text-xs font-semibold whitespace-nowrap text-[#647067] sm:ml-auto sm:px-2 dark:text-slate-400"
+        >
+          {filtered.length} de {pool.length} jugadores
+        </span>
+      </div>
+
+      <div>
+        <div className="my-4 flex items-center justify-between gap-1.5 bg-fuchsia-50 shadow-sm">
+          <div className="flex gap-1.5 px-2 my-1.5">
+            <div className="border border-amber-300 bg-amber-200 p-3">
+              <h1>Posición</h1>
+            </div>
+            <div className="border border-amber-300 bg-amber-200 p-3">
+              <h1>Puntos</h1>
+            </div>
+            <div className="border border-amber-300 bg-amber-200 p-3">
+              <h1>Goles</h1>
+            </div>
+            <div className="border border-amber-300 bg-amber-200 p-3">
+              <h1>Máximo goleador</h1>
+            </div>
           </div>
-
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input
-              id="player-search"
-              type="search"
-              placeholder="Buscar jugador, equipo…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pr-4 pl-9 text-sm text-[#111827] transition placeholder:text-slate-400 focus:ring-2 focus:ring-[#2FE85F]/50 focus:outline-none dark:border-slate-700 dark:bg-[#162032] dark:text-white"
-            />
-          </div>
-
-          <span className="text-xs font-semibold whitespace-nowrap text-slate-400">
-            {filtered.length} resultado{filtered.length !== 1 ? 's' : ''}
-          </span>
         </div>
       </div>
 
@@ -116,11 +161,20 @@ export const PlayersView: React.FC<PlayersViewProps> = ({ teamName, emptyMessage
           </p>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="py-20 text-center">
-          <p className="text-sm text-slate-400">No se encontraron jugadores con ese criterio.</p>
+        <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-[#E1E8E2] bg-white py-16 text-center dark:border-slate-700 dark:bg-slate-900">
+          <p className="text-sm font-semibold text-[#17211B] dark:text-white">
+            No se encontraron jugadores con ese criterio
+          </p>
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="cursor-pointer rounded-xl bg-[#0A4D1A] px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-[#0e5f22] focus-visible:ring-2 focus-visible:ring-[#2FE85F] focus-visible:outline-none"
+          >
+            Limpiar búsqueda y filtros
+          </button>
         </div>
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-3">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-4">
           {filtered.map((player) => (
             <PlayerCard key={player.id} player={player} onClick={(p) => setSelectedPlayer(p)} />
           ))}

@@ -7,7 +7,8 @@
     "partidosJugados": 38,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 114
+    "atajadas": 114,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "William Saliba",
@@ -16,7 +17,8 @@
     "edad": 25,
     "partidosJugados": 36,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Jurrien Timber",
@@ -25,7 +27,8 @@
     "edad": 23,
     "partidosJugados": 4,
     "goles": 0,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 12
   },
   {
     "nombreCompleto": "Riccardo Calafiori",
@@ -34,7 +37,8 @@
     "edad": 22,
     "partidosJugados": 34,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 3
   },
   {
     "nombreCompleto": "Gabriel Magalhaes",
@@ -43,7 +47,8 @@
     "edad": 27,
     "partidosJugados": 35,
     "goles": 4,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Ben White",
@@ -52,7 +57,8 @@
     "edad": 27,
     "partidosJugados": 33,
     "goles": 1,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Declan Rice",
@@ -61,7 +67,8 @@
     "edad": 26,
     "partidosJugados": 34,
     "goles": 5,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 41
   },
   {
     "nombreCompleto": "Martin Odegaard",
@@ -70,7 +77,8 @@
     "edad": 26,
     "partidosJugados": 32,
     "goles": 9,
-    "asistencias": 11
+    "asistencias": 11,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Mikel Merino",
@@ -79,7 +87,8 @@
     "edad": 28,
     "partidosJugados": 35,
     "goles": 6,
-    "asistencias": 10
+    "asistencias": 10,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Bruno Guimaraes",
@@ -88,7 +97,8 @@
     "edad": 26,
     "partidosJugados": 30,
     "goles": 7,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 39
   },
   {
     "nombreCompleto": "Bukayo Saka",
@@ -97,7 +107,8 @@
     "edad": 24,
     "partidosJugados": 31,
     "goles": 12,
-    "asistencias": 10
+    "asistencias": 10,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Gabriel Martinelli",
@@ -106,7 +117,8 @@
     "edad": 24,
     "partidosJugados": 30,
     "goles": 10,
-    "asistencias": 7
+    "asistencias": 7,
+    "dorsal": 11
   },
   {
     "nombreCompleto": "Kai Havertz",
@@ -115,7 +127,8 @@
     "edad": 26,
     "partidosJugados": 32,
     "goles": 13,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 29
   },
   {
     "nombreCompleto": "Leandro Trossard",
@@ -124,7 +137,8 @@
     "edad": 30,
     "partidosJugados": 29,
     "goles": 8,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 19
   },
   {
     "nombreCompleto": "Victor Gyokeres",
@@ -133,7 +147,8 @@
     "edad": 28,
     "partidosJugados": 29,
     "goles": 22,
-    "asistencias": 16
+    "asistencias": 16,
+    "dorsal": 9
   },
   {
     "nombreCompleto": "Noni Madueke",
@@ -142,7 +157,8 @@
     "edad": 23,
     "partidosJugados": 31,
     "goles": 8,
-    "asistencias": 4
+    "asistencias": 4,
+    "dorsal": 17
   },
   {
     "nombreCompleto": "Gianluigi Donnarumma",
@@ -152,7 +168,8 @@
     "partidosJugados": 30,
     "goles": 0,
     "asistencias": 1,
-    "atajadas": 89
+    "atajadas": 89,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Ruben Dias",
@@ -161,7 +178,8 @@
     "edad": 29,
     "partidosJugados": 34,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 3
   },
   {
     "nombreCompleto": "Josko Gvardiol",
@@ -170,7 +188,8 @@
     "edad": 24,
     "partidosJugados": 35,
     "goles": 4,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Marc Guehi",
@@ -179,7 +198,8 @@
     "edad": 24,
     "partidosJugados": 31,
     "goles": 3,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Matheus Nunes",
@@ -188,7 +208,8 @@
     "edad": 27,
     "partidosJugados": 34,
     "goles": 4,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Vitor Reis",
@@ -197,7 +218,8 @@
     "edad": 24,
     "partidosJugados": 30,
     "goles": 9,
-    "asistencias": 13
+    "asistencias": 13,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Phil Foden",
@@ -206,7 +228,8 @@
     "edad": 31,
     "partidosJugados": 36,
     "goles": 5,
-    "asistencias": 9
+    "asistencias": 9,
+    "dorsal": 47
   },
   {
     "nombreCompleto": "Claudio Echeverri",
@@ -215,7 +238,8 @@
     "edad": 19,
     "partidosJugados": 29,
     "goles": 7,
-    "asistencias": 10
+    "asistencias": 10,
+    "dorsal": 42
   },
   {
     "nombreCompleto": "Enzo Fernandez",
@@ -224,7 +248,8 @@
     "edad": 24,
     "partidosJugados": 30,
     "goles": 5,
-    "asistencias": 11
+    "asistencias": 11,
+    "dorsal": 13
   },
   {
     "nombreCompleto": "Erling Haaland",
@@ -233,7 +258,8 @@
     "edad": 26,
     "partidosJugados": 33,
     "goles": 27,
-    "asistencias": 4
+    "asistencias": 4,
+    "dorsal": 9
   },
   {
     "nombreCompleto": "Jéremy Doku",
@@ -242,7 +268,8 @@
     "edad": 23,
     "partidosJugados": 28,
     "goles": 7,
-    "asistencias": 9
+    "asistencias": 9,
+    "dorsal": 11
   },
   {
     "nombreCompleto": "Omar Marmoush",
@@ -251,7 +278,8 @@
     "edad": 26,
     "partidosJugados": 30,
     "goles": 11,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 14
   },
 
   {
@@ -262,7 +290,8 @@
     "partidosJugados": 30,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 110
+    "atajadas": 110,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Matthijs de Ligt",
@@ -271,7 +300,8 @@
     "edad": 27,
     "partidosJugados": 33,
     "goles": 2,
-    "asistencias": 0
+    "asistencias": 0,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Lisandro Martinez",
@@ -280,7 +310,8 @@
     "edad": 28,
     "partidosJugados": 27,
     "goles": 1,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Diogo Dalot",
@@ -289,7 +320,8 @@
     "edad": 27,
     "partidosJugados": 35,
     "goles": 2,
-    "asistencias": 4
+    "asistencias": 4,
+    "dorsal": 2
   },
   {
     "nombreCompleto": "Casemiro",
@@ -298,7 +330,8 @@
     "edad": 34,
     "partidosJugados": 29,
     "goles": 3,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 18
   },
   {
     "nombreCompleto": "Kobbie Mainoo",
@@ -307,7 +340,8 @@
     "edad": 21,
     "partidosJugados": 30,
     "goles": 4,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 21
   },
   {
     "nombreCompleto": "Bruno Fernandes",
@@ -316,7 +350,8 @@
     "edad": 32,
     "partidosJugados": 36,
     "goles": 10,
-    "asistencias": 12
+    "asistencias": 12,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Amad Diallo",
@@ -325,7 +360,8 @@
     "edad": 23,
     "partidosJugados": 29,
     "goles": 8,
-    "asistencias": 7
+    "asistencias": 7,
+    "dorsal": 19
   },
   {
     "nombreCompleto": "Alejandro Garnacho",
@@ -334,7 +370,8 @@
     "edad": 21,
     "partidosJugados": 35,
     "goles": 9,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Rasmus Hojlund",
@@ -343,7 +380,8 @@
     "edad": 23,
     "partidosJugados": 33,
     "goles": 15,
-    "asistencias": 3
+    "asistencias": 3,
+    "dorsal": 20
   },
 
   {
@@ -354,7 +392,8 @@
     "partidosJugados": 36,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 121
+    "atajadas": 121,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Cristian Romero",
@@ -363,7 +402,8 @@
     "edad": 28,
     "partidosJugados": 31,
     "goles": 3,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 3
   },
   {
     "nombreCompleto": "Micky van de Ven",
@@ -372,7 +412,8 @@
     "edad": 25,
     "partidosJugados": 30,
     "goles": 1,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Pedro Porro",
@@ -381,7 +422,8 @@
     "edad": 27,
     "partidosJugados": 35,
     "goles": 3,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 12
   },
   {
     "nombreCompleto": "Destiny Udogie",
@@ -390,7 +432,8 @@
     "edad": 23,
     "partidosJugados": 28,
     "goles": 2,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 33
   },
   {
     "nombreCompleto": "Yves Bissouma",
@@ -399,7 +442,8 @@
     "edad": 30,
     "partidosJugados": 32,
     "goles": 2,
-    "asistencias": 3
+    "asistencias": 3,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "James Maddison",
@@ -408,7 +452,8 @@
     "edad": 29,
     "partidosJugados": 30,
     "goles": 8,
-    "asistencias": 11
+    "asistencias": 11,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Dejan Kulusevski",
@@ -417,7 +462,8 @@
     "edad": 26,
     "partidosJugados": 34,
     "goles": 7,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 44
   },
   {
     "nombreCompleto": "Brennan Johnson",
@@ -426,7 +472,8 @@
     "edad": 25,
     "partidosJugados": 31,
     "goles": 10,
-    "asistencias": 4
+    "asistencias": 4,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Son Heung-min",
@@ -435,7 +482,8 @@
     "edad": 34,
     "partidosJugados": 33,
     "goles": 16,
-    "asistencias": 10
+    "asistencias": 10,
+    "dorsal": 7
   },
 
   {
@@ -446,7 +494,8 @@
     "partidosJugados": 31,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 109
+    "atajadas": 109,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Kieran Trippier",
@@ -455,7 +504,8 @@
     "edad": 36,
     "partidosJugados": 29,
     "goles": 1,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 2
   },
   {
     "nombreCompleto": "Sven Botman",
@@ -464,7 +514,8 @@
     "edad": 26,
     "partidosJugados": 28,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Dan Burn",
@@ -473,7 +524,8 @@
     "edad": 34,
     "partidosJugados": 33,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Bruno Guimaraes",
@@ -482,7 +534,8 @@
     "edad": 29,
     "partidosJugados": 36,
     "goles": 5,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Sandro Tonali",
@@ -491,7 +544,8 @@
     "edad": 26,
     "partidosJugados": 30,
     "goles": 3,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Joelinton",
@@ -500,7 +554,8 @@
     "edad": 30,
     "partidosJugados": 29,
     "goles": 6,
-    "asistencias": 4
+    "asistencias": 4,
+    "dorsal": 11
   },
   {
     "nombreCompleto": "Anthony Gordon",
@@ -509,7 +564,8 @@
     "edad": 25,
     "partidosJugados": 35,
     "goles": 11,
-    "asistencias": 9
+    "asistencias": 9,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Harvey Barnes",
@@ -518,7 +574,8 @@
     "edad": 28,
     "partidosJugados": 30,
     "goles": 8,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 11
   },
   {
     "nombreCompleto": "Alexander Isak",
@@ -527,7 +584,8 @@
     "edad": 27,
     "partidosJugados": 32,
     "goles": 22,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 14
   },
 
   {
@@ -538,7 +596,8 @@
     "partidosJugados": 37,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 136
+    "atajadas": 136,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Nathan Collins",
@@ -547,7 +606,8 @@
     "edad": 25,
     "partidosJugados": 36,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 3
   },
   {
     "nombreCompleto": "Ben Mee",
@@ -556,7 +616,8 @@
     "edad": 37,
     "partidosJugados": 24,
     "goles": 1,
-    "asistencias": 0
+    "asistencias": 0,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Kristoffer Ajer",
@@ -565,7 +626,8 @@
     "edad": 28,
     "partidosJugados": 29,
     "goles": 1,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Christian Norgaard",
@@ -574,7 +636,8 @@
     "edad": 32,
     "partidosJugados": 31,
     "goles": 4,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Vitaly Janelt",
@@ -583,7 +646,8 @@
     "edad": 28,
     "partidosJugados": 32,
     "goles": 3,
-    "asistencias": 3
+    "asistencias": 3,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Mathias Jensen",
@@ -592,7 +656,8 @@
     "edad": 30,
     "partidosJugados": 29,
     "goles": 4,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Kevin Schade",
@@ -601,7 +666,8 @@
     "edad": 25,
     "partidosJugados": 27,
     "goles": 7,
-    "asistencias": 3
+    "asistencias": 3,
+    "dorsal": 9
   },
   {
     "nombreCompleto": "Yoane Wissa",
@@ -610,7 +676,8 @@
     "edad": 30,
     "partidosJugados": 34,
     "goles": 15,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 11
   },
   {
     "nombreCompleto": "Bryan Mbeumo",
@@ -619,7 +686,8 @@
     "edad": 27,
     "partidosJugados": 35,
     "goles": 18,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 10
   },
 
   {
@@ -630,7 +698,8 @@
     "partidosJugados": 34,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 98
+    "atajadas": 98,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Virgil van Dijk",
@@ -639,7 +708,8 @@
     "edad": 35,
     "partidosJugados": 37,
     "goles": 4,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Ibrahima Konate",
@@ -648,7 +718,8 @@
     "edad": 27,
     "partidosJugados": 33,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Andrew Robertson",
@@ -657,7 +728,8 @@
     "edad": 32,
     "partidosJugados": 30,
     "goles": 1,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 3
   },
   {
     "nombreCompleto": "Alexis Mac Allister",
@@ -666,7 +738,8 @@
     "edad": 28,
     "partidosJugados": 35,
     "goles": 6,
-    "asistencias": 7
+    "asistencias": 7,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Ryan Gravenberch",
@@ -675,7 +748,8 @@
     "edad": 25,
     "partidosJugados": 34,
     "goles": 4,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Dominik Szoboszlai",
@@ -684,7 +758,8 @@
     "edad": 26,
     "partidosJugados": 32,
     "goles": 7,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Luis Diaz",
@@ -693,7 +768,8 @@
     "edad": 30,
     "partidosJugados": 34,
     "goles": 13,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Cody Gakpo",
@@ -702,7 +778,8 @@
     "edad": 27,
     "partidosJugados": 31,
     "goles": 12,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 9
   },
   {
     "nombreCompleto": "Mohamed Salah",
@@ -711,7 +788,8 @@
     "edad": 34,
     "partidosJugados": 36,
     "goles": 24,
-    "asistencias": 14
+    "asistencias": 14,
+    "dorsal": 11
   },
 
   {
@@ -722,7 +800,8 @@
     "partidosJugados": 38,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 123
+    "atajadas": 123,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Ezri Konsa",
@@ -731,7 +810,8 @@
     "edad": 29,
     "partidosJugados": 34,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Pau Torres",
@@ -740,7 +820,8 @@
     "edad": 30,
     "partidosJugados": 33,
     "goles": 1,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Lucas Digne",
@@ -749,7 +830,8 @@
     "edad": 33,
     "partidosJugados": 32,
     "goles": 1,
-    "asistencias": 7
+    "asistencias": 7,
+    "dorsal": 3
   },
   {
     "nombreCompleto": "Boubacar Kamara",
@@ -758,7 +840,9 @@
     "edad": 27,
     "partidosJugados": 30,
     "goles": 2,
-    "asistencias": 3
+    "goles": 2,
+    "asistencias": 3,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Youri Tielemans",
@@ -767,7 +851,8 @@
     "edad": 30,
     "partidosJugados": 35,
     "goles": 6,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "John McGinn",
@@ -776,7 +861,8 @@
     "edad": 32,
     "partidosJugados": 34,
     "goles": 4,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Morgan Rogers",
@@ -785,7 +871,8 @@
     "edad": 24,
     "partidosJugados": 33,
     "goles": 9,
-    "asistencias": 7
+    "asistencias": 7,
+    "dorsal": 9
   },
   {
     "nombreCompleto": "Leon Bailey",
@@ -794,7 +881,8 @@
     "edad": 29,
     "partidosJugados": 31,
     "goles": 10,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 11
   },
   {
     "nombreCompleto": "Ollie Watkins",
@@ -803,7 +891,8 @@
     "edad": 31,
     "partidosJugados": 35,
     "goles": 19,
-    "asistencias": 9
+    "asistencias": 9,
+    "dorsal": 10
   },
 
   {
@@ -814,7 +903,8 @@
     "partidosJugados": 36,
     "goles": 0,
     "asistencias": 0,
-    "atajadas": 127
+    "atajadas": 127,
+    "dorsal": 1
   },
   {
     "nombreCompleto": "Max Kilman",
@@ -823,7 +913,8 @@
     "edad": 30,
     "partidosJugados": 35,
     "goles": 2,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 4
   },
   {
     "nombreCompleto": "Jean-Clair Todibo",
@@ -832,7 +923,8 @@
     "edad": 27,
     "partidosJugados": 32,
     "goles": 1,
-    "asistencias": 1
+    "asistencias": 1,
+    "dorsal": 5
   },
   {
     "nombreCompleto": "Aaron Wan-Bissaka",
@@ -841,7 +933,8 @@
     "edad": 29,
     "partidosJugados": 33,
     "goles": 1,
-    "asistencias": 4
+    "asistencias": 4,
+    "dorsal": 2
   },
   {
     "nombreCompleto": "Edson Alvarez",
@@ -850,7 +943,8 @@
     "edad": 29,
     "partidosJugados": 31,
     "goles": 3,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 6
   },
   {
     "nombreCompleto": "Tomas Soucek",
@@ -859,7 +953,8 @@
     "edad": 32,
     "partidosJugados": 34,
     "goles": 6,
-    "asistencias": 2
+    "asistencias": 2,
+    "dorsal": 8
   },
   {
     "nombreCompleto": "Lucas Paqueta",
@@ -868,7 +963,8 @@
     "edad": 29,
     "partidosJugados": 29,
     "goles": 7,
-    "asistencias": 8
+    "asistencias": 8,
+    "dorsal": 10
   },
   {
     "nombreCompleto": "Mohammed Kudus",
@@ -877,7 +973,8 @@
     "edad": 26,
     "partidosJugados": 32,
     "goles": 11,
-    "asistencias": 6
+    "asistencias": 6,
+    "dorsal": 9
   },
   {
     "nombreCompleto": "Crysencio Summerville",
@@ -886,7 +983,8 @@
     "edad": 25,
     "partidosJugados": 30,
     "goles": 8,
-    "asistencias": 5
+    "asistencias": 5,
+    "dorsal": 7
   },
   {
     "nombreCompleto": "Jarrod Bowen",
@@ -895,6 +993,209 @@
     "edad": 30,
     "partidosJugados": 34,
     "goles": 15,
-    "asistencias": 9
+    "asistencias": 9,
+    "dorsal": 11
+  },
+  {
+    "nombreCompleto": "Robert Sanchez",
+    "equipo": "Chelsea",
+    "posicion": "Portero",
+    "edad": 28,
+    "partidosJugados": 34,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 109,
+    "dorsal": 1
+  },
+  {
+    "nombreCompleto": "Mike Penders",
+    "equipo": "Chelsea",
+    "posicion": "Portero",
+    "edad": 21,
+    "partidosJugados": 12,
+    "goles": 0,
+    "asistencias": 0,
+    "atajadas": 42,
+    "dorsal": 39
+  },
+  {
+    "nombreCompleto": "Wesley Fofana",
+    "equipo": "Chelsea",
+    "posicion": "Defensa",
+    "edad": 25,
+    "partidosJugados": 28,
+    "goles": 1,
+    "asistencias": 0,
+    "dorsal": 3
+  },
+  {
+    "nombreCompleto": "Maxence Lacroix",
+    "equipo": "Chelsea",
+    "posicion": "Defensa",
+    "edad": 26,
+    "partidosJugados": 35,
+    "goles": 2,
+    "asistencias": 2,
+    "dorsal": 5
+  },
+  {
+    "nombreCompleto": "Levi Colwill",
+    "equipo": "Chelsea",
+    "posicion": "Defensa",
+    "edad": 23,
+    "partidosJugados": 36,
+    "goles": 2,
+    "asistencias": 1,
+    "dorsal": 6
+  },
+  {
+    "nombreCompleto": "Reece James",
+    "equipo": "Chelsea",
+    "posicion": "Defensa",
+    "edad": 26,
+    "partidosJugados": 27,
+    "goles": 3,
+    "asistencias": 7,
+    "dorsal": 24
+  },
+  {
+    "nombreCompleto": "Malo Gusto",
+    "equipo": "Chelsea",
+    "posicion": "Defensa",
+    "edad": 23,
+    "partidosJugados": 31,
+    "goles": 1,
+    "asistencias": 6,
+    "dorsal": 27
+  },
+  {
+    "nombreCompleto": "Jorrel Hato",
+    "equipo": "Chelsea",
+    "posicion": "Defensa",
+    "edad": 20,
+    "partidosJugados": 29,
+    "goles": 1,
+    "asistencias": 4,
+    "dorsal": 21
+  },
+  {
+    "nombreCompleto": "Moises Caicedo",
+    "equipo": "Chelsea",
+    "posicion": "Mediocampista",
+    "edad": 24,
+    "partidosJugados": 37,
+    "goles": 4,
+    "asistencias": 7,
+    "dorsal": 25
+  },
+  {
+    "nombreCompleto": "Enzo Fernandez",
+    "equipo": "Chelsea",
+    "posicion": "Mediocampista",
+    "edad": 25,
+    "partidosJugados": 35,
+    "goles": 8,
+    "asistencias": 11,
+    "dorsal": 8
+  },
+  {
+    "nombreCompleto": "Romeo Lavia",
+    "equipo": "Chelsea",
+    "posicion": "Mediocampista",
+    "edad": 22,
+    "partidosJugados": 26,
+    "goles": 2,
+    "asistencias": 3,
+    "dorsal": 45
+  },
+  {
+    "nombreCompleto": "Cole Palmer",
+    "equipo": "Chelsea",
+    "posicion": "Mediocampista",
+    "edad": 24,
+    "partidosJugados": 38,
+    "goles": 21,
+    "asistencias": 14,
+    "dorsal": 10
+  },
+  {
+    "nombreCompleto": "Morgan Rogers",
+    "equipo": "Chelsea",
+    "posicion": "Mediocampista",
+    "edad": 24,
+    "partidosJugados": 34,
+    "goles": 11,
+    "asistencias": 8,
+    "dorsal": 17
+  },
+  {
+    "nombreCompleto": "Pedro Neto",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 26,
+    "partidosJugados": 33,
+    "goles": 9,
+    "asistencias": 10,
+    "dorsal": 7
+  },
+  {
+    "nombreCompleto": "Joao Pedro",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 25,
+    "partidosJugados": 36,
+    "goles": 18,
+    "asistencias": 8,
+    "dorsal": 9
+  },
+  {
+    "nombreCompleto": "Jamie Gittens",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 22,
+    "partidosJugados": 29,
+    "goles": 10,
+    "asistencias": 6,
+    "dorsal": 11
+  },
+  {
+    "nombreCompleto": "Liam Delap",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 23,
+    "partidosJugados": 31,
+    "goles": 14,
+    "asistencias": 3,
+    "dorsal": 12
+  },
+  {
+    "nombreCompleto": "Nicolas Jackson",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 25,
+    "partidosJugados": 30,
+    "goles": 13,
+    "asistencias": 4,
+    "dorsal": 15
+  },
+  {
+    "nombreCompleto": "Estevao Willian",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 19,
+    "partidosJugados": 24,
+    "goles": 7,
+    "asistencias": 8,
+    "dorsal": 41
+  },
+  {
+    "nombreCompleto": "Geovany Quenda",
+    "equipo": "Chelsea",
+    "posicion": "Delantero",
+    "edad": 19,
+    "partidosJugados": 22,
+    "goles": 5,
+    "asistencias": 7,
+    "dorsal": 23
   }
 ]

@@ -5,7 +5,7 @@ import { teamLogos } from '@/assets/teams/logos';
 const {
   Arsenal,
   Brentford,
-  Cheelsea: Chelsea,
+  Chelsea,
   Liverpool,
   Manchester_city: ManCity,
   Manchester_United: ManUnited,
@@ -71,8 +71,8 @@ const leagueTeams: Record<string, TeamInfo[]> = {
     { name: 'Brentford', logo: Brentford },
     { name: 'Chelsea', logo: Chelsea },
     { name: 'Liverpool', logo: Liverpool },
-    { name: 'Man City', logo: ManCity },
-    { name: 'Man United', logo: ManUnited },
+    { name: 'Manchester City', logo: ManCity },
+    { name: 'Manchester United', logo: ManUnited },
     { name: 'Tottenham', logo: Tottenham },
   ],
   [DEFAULT_LEAGUE_TWO]: [
@@ -164,15 +164,18 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
   const visibleDays = days.filter((day) => activeDay === ALL_DAYS || activeDay === day);
 
   return (
-    <div className="white-card p-6">
-      <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h2 className="font-display flex items-center gap-2 text-xl font-extrabold text-[#111827] dark:text-white">
+    <div className="">
+      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="px-2 lg:shrink-0">
+          <h2 className="font-display flex items-center gap-2 text-3xl font-extrabold text-[#111827] dark:text-white">
             Calendario
           </h2>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+            Consulta la programación de partidos por liga y día
+          </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
+        <div className="flex flex-wrap gap-4 text-sm sm:gap-6 lg:ml-auto lg:justify-end">
           <div className="flex items-center gap-3">
             <label
               htmlFor="league-filter"
@@ -186,7 +189,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                 id="league-filter"
                 value={activeLeague}
                 onChange={(e) => setActiveLeague(e.target.value)}
-                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] dark:text-[#2FE85F] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
               >
                 {leagueFilters.map((league) => (
                   <option key={league} value={league}>
@@ -223,7 +226,7 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
                 id="day-filter"
                 value={activeDay}
                 onChange={(e) => setActiveDay(e.target.value as Day | typeof ALL_DAYS)}
-                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] dark:text-[#2FE85F] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:focus:border-[#2FE85F]"
+                className="w-44 cursor-pointer appearance-none rounded-xl border border-slate-200 bg-white py-2 pr-10 pl-4 text-sm font-bold text-[#0A4D1A] shadow-sm transition-colors outline-none hover:border-[#2FE85F] focus:border-[#0A4D1A] dark:border-slate-700 dark:bg-slate-800 dark:text-[#2FE85F] dark:focus:border-[#2FE85F]"
               >
                 {dayFilters.map((day) => (
                   <option key={day} value={day}>
@@ -249,54 +252,68 @@ export const PitchVisualMap: React.FC<PitchVisualMapProps> = () => {
         </div>
       </div>
 
-      {visibleDays.map((day, visibleIndex) => {
-        const index = days.indexOf(day);
-        const dayFixtures = visibleFixturesByDay[index];
-        return (
-          <section key={day}>
-            <p
-              className={`border-b border-slate-300 pb-3 font-extrabold ${visibleIndex === 0 ? 'mb-5' : 'my-5'}`}
-            >
-              {day}
-            </p>
-            {dayFixtures.length > 0 ? (
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-                {dayFixtures.map(({ home, away, time, pitch, league }) => (
-                  <div
-                    key={`${day}-${home.name}-${away.name}`}
-                    className="relative w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 p-4 pb-9 hover:border-emerald-600"
-                  >
-                    <div className="mb-5 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
-                      <span>{time} hrs</span>
-                      <span className="rounded-full bg-[#042274] dark:bg-[#0A4D1A]/60 px-2.5 py-0.5 text-white dark:text-[#2FE85F] font-medium border border-[#2FE85F]/20">
-                        Cancha {pitch}
+      <div className="white-card p-6">
+        {visibleDays.map((day, visibleIndex) => {
+          const index = days.indexOf(day);
+          const dayFixtures = visibleFixturesByDay[index];
+          return (
+            <section key={day}>
+              <p
+                className={`border-b border-slate-300 pb-3 font-extrabold ${visibleIndex === 0 ? 'mb-5' : 'my-5'}`}
+              >
+                {day}
+              </p>
+              {dayFixtures.length > 0 ? (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                  {dayFixtures.map(({ home, away, time, pitch, league }) => (
+                    <div
+                      key={`${day}-${home.name}-${away.name}`}
+                      className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-4 pb-9 hover:border-emerald-600 dark:border-slate-800 dark:bg-slate-900/60"
+                    >
+                      <div className="mb-5 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
+                        <span>{time} hrs</span>
+                        <span className="rounded-full border border-[#2FE85F]/20 bg-[#042274] px-2.5 py-0.5 font-medium text-white dark:bg-[#0A4D1A]/60 dark:text-[#2FE85F]">
+                          Cancha {pitch}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between gap-2 py-2">
+                        <div className="flex flex-1 flex-col items-center gap-1 text-center">
+                          <img
+                            src={home.logo}
+                            alt={home.name}
+                            className="h-12 w-12 object-contain"
+                          />
+                          <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                            {home.name}
+                          </span>
+                        </div>
+                        <span className="text-sm font-extrabold text-slate-400">VS</span>
+                        <div className="flex flex-1 flex-col items-center gap-1 text-center">
+                          <img
+                            src={away.logo}
+                            alt={away.name}
+                            className="h-12 w-12 object-contain"
+                          />
+                          <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                            {away.name}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full border-x border-t border-[#2FE85F]/30 bg-[#43bd63] px-4 pt-1 pb-0.5 text-xs font-medium text-white dark:bg-[#0A4D1A] dark:text-[#2FE85F]">
+                        {league}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between gap-2 py-2">
-                      <div className="flex flex-1 flex-col items-center gap-1 text-center">
-                        <img src={home.logo} alt={home.name} className="h-12 w-12 object-contain" />
-                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">{home.name}</span>
-                      </div>
-                      <span className="text-sm font-extrabold text-slate-400">VS</span>
-                      <div className="flex flex-1 flex-col items-center gap-1 text-center">
-                        <img src={away.logo} alt={away.name} className="h-12 w-12 object-contain" />
-                        <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">{away.name}</span>
-                      </div>
-                    </div>
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-t-full bg-[#43bd63] dark:bg-[#0A4D1A] px-4 pt-1 pb-0.5 text-xs font-medium text-white dark:text-[#2FE85F] border-t border-x border-[#2FE85F]/30">
-                      {league}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-xs font-semibold text-slate-400">
-                No hay partidos programados para esta liga.
-              </p>
-            )}
-          </section>
-        );
-      })}
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs font-semibold text-slate-400">
+                  No hay partidos programados para esta liga.
+                </p>
+              )}
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 };

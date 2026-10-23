@@ -20,10 +20,10 @@ export const LEAGUE_THREE = 'League Three';
 
 export const leagueOneRecords: TeamRecord[] = [
   { name: 'Arsenal', logo: teamLogos.Arsenal, wins: 6, draws: 1, losses: 1, goalsFor: 18, goalsAgainst: 7, captainName: 'Carlos Salas', captainPhone: '5511111101', playersCount: 16, primaryColor: '#ef4444' },
-  { name: 'Man City', logo: teamLogos.Manchester_city, wins: 6, draws: 0, losses: 2, goalsFor: 17, goalsAgainst: 8, captainName: 'Diego Martínez', captainPhone: '5511111102', playersCount: 14, primaryColor: '#38bdf8' },
+  { name: 'Manchester City', logo: teamLogos.Manchester_city, wins: 6, draws: 0, losses: 2, goalsFor: 17, goalsAgainst: 8, captainName: 'Diego Martínez', captainPhone: '5511111102', playersCount: 14, primaryColor: '#38bdf8' },
   { name: 'Liverpool', logo: teamLogos.Liverpool, wins: 5, draws: 2, losses: 1, goalsFor: 16, goalsAgainst: 9, captainName: 'Luis Herrera', captainPhone: '5511111103', playersCount: 15, primaryColor: '#dc2626' },
-  { name: 'Chelsea', logo: teamLogos.Cheelsea, wins: 4, draws: 2, losses: 2, goalsFor: 14, goalsAgainst: 10, captainName: 'Javier Navarro', captainPhone: '5511111104', playersCount: 13, primaryColor: '#1d4ed8' },
-  { name: 'Man United', logo: teamLogos.Manchester_United, wins: 4, draws: 1, losses: 3, goalsFor: 12, goalsAgainst: 11, captainName: 'Roberto Gómez', captainPhone: '5511111105', playersCount: 14, primaryColor: '#b91c1c' },
+  { name: 'Chelsea', logo: teamLogos.Chelsea, wins: 4, draws: 2, losses: 2, goalsFor: 14, goalsAgainst: 10, captainName: 'Javier Navarro', captainPhone: '5511111104', playersCount: 13, primaryColor: '#1d4ed8' },
+  { name: 'Manchester United', logo: teamLogos.Manchester_United, wins: 4, draws: 1, losses: 3, goalsFor: 12, goalsAgainst: 11, captainName: 'Roberto Gómez', captainPhone: '5511111105', playersCount: 14, primaryColor: '#b91c1c' },
   { name: 'Tottenham', logo: teamLogos.Tottenham, wins: 3, draws: 2, losses: 3, goalsFor: 13, goalsAgainst: 13, captainName: 'Fernando Ibarra', captainPhone: '5511111106', playersCount: 12, primaryColor: '#1e3a8a' },
   { name: 'Newcastle', logo: teamLogos.Newcastle, wins: 3, draws: 1, losses: 4, goalsFor: 10, goalsAgainst: 12, captainName: 'Hugo Sánchez', captainPhone: '5511111107', playersCount: 12, primaryColor: '#334155' },
   { name: 'Aston Villa', logo: teamLogos.Aston_Villa, wins: 1, draws: 2, losses: 5, goalsFor: 9, goalsAgainst: 14, captainName: 'Mateo Hernández', captainPhone: '5511111108', playersCount: 11, primaryColor: '#7c3aed' },

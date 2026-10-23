@@ -275,7 +275,7 @@ export const LiveScoreboard: React.FC = () => {
                   >
                     <div className="mb-5 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-300">
                       <span>Jornada {round}</span>
-                      <span className="rounded-full bg-red-400 px-2 py-0.5 text-white">
+                      <span className="rounded-full bg-red-600 px-2 py-0.5 text-white">
                         Finalizado
                       </span>
                     </div>
